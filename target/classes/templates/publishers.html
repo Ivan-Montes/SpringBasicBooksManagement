@@ -18,15 +18,23 @@
 						    <tr>
 						      <th scope="col">Id</th>
 						      <th scope="col">Name</th>
+						      <th scope="col">Actions</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 							  <tr th:each = "publisher: ${publishers}">
 								  <td th:text = "${publisher.publisherId}"></td>
 								  <td th:text = "${publisher.name}"></td>
+								  <td>
+									  <a class="btn btn-outline-info btn-sm" th:href="@{/index}" role="button">Edit</a>
+									  <a class="btn btn-outline-danger btn-sm" th:href="@{/index}" role="button">Delete</a>
+								  </td>
 							  </td>							  
 						  </tbody>
 					</table>
+					<div class=" text-center">
+						<a th:href="@{/addPublisher}" role="button" class="btn btn-outline-success">Add New</a>
+					</div>
 				</div>			
 		</main>
 		<div class="container" th:replace="~{fragments/footer}"/>

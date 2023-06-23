@@ -19,6 +19,7 @@
 						      <th scope="col">Id</th>
 						      <th scope="col">Name</th>
 						      <th scope="col">Description</th>
+						      <th scope="col" colspan="2">Actions</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -26,9 +27,14 @@
 								  <td th:text = "${genre.genreId}"></td>
 								  <td th:text = "${genre.name}"></td>
 								  <td th:text = "${genre.description}"></td>
+								  <td><a class="btn btn-outline-info btn-sm" th:href="@{/index}" role="button">Edit</a></td>
+								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/index}" role="button">Delete</a></td>
 							  </td>							  
 						  </tbody>
 					</table>
+					<div class=" text-center">
+						<a th:href="@{/addGenre}" role="button" class="btn btn-outline-success">Add New</a>
+					</div>
 				</div>
 			
 		</main>

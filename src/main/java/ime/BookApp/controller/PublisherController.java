@@ -18,4 +18,10 @@ public class PublisherController {
 		model.addAttribute("publishers", publisherService.getAllPublisherDTO());
 		return "publishers";
 	}
+
+	@GetMapping("/addPublisher")
+	public String addPublisher(Model model) {
+		//model.addAttribute("publishers", publisherService.getAllPublisherDTO());
+		return "add/addPublisher";
+	}
 }

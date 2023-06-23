@@ -17,5 +17,11 @@ public class GenreController {
 		model.addAttribute("genres", genreService.getAllGenreDTO());
 		return "genres";
 	}
+	
+	@GetMapping("/addGenre")
+	public String addGenre(Model model) {
+		//model.addAttribute("genres", genreService.getAllGenreDTO());
+		return "/add/addGenre";
+	}
 
 }

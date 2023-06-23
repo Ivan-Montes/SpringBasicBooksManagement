@@ -7,4 +7,6 @@ import ime.BookApp.dto.GenreDTO;
 public interface GenreService {
 
 	public List<GenreDTO> getAllGenreDTO();
+	
+	
 }
