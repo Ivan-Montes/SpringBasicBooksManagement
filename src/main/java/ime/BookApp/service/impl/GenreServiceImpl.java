@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.GenreDTO;
+import ime.BookApp.entity.Genre;
 import ime.BookApp.repository.GenreRepository;
 import ime.BookApp.service.GenreService;
 
@@ -19,5 +20,12 @@ public class GenreServiceImpl implements GenreService {
 	public List<GenreDTO> getAllGenreDTO() {
 		return genreRepository.getAllGenreDTO();
 	}
+
+	@Override
+	public Genre findGenreById(Long id) {		
+		return genreRepository.findById(id).orElse(new Genre());
+	}
+	
+	
 
 }
