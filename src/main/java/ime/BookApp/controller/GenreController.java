@@ -2,7 +2,9 @@ package ime.BookApp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,8 +26,14 @@ public class GenreController {
 	
 	@GetMapping("/addGenre")
 	public String addGenre(Model model) {
-		model.addAttribute("genre", new Genre());
+		model.addAttribute("newGenre", new Genre());
 		return "/add/addGenre";
+	}
+	
+	@PostMapping("/addGenre")
+	public String saveGenre(@ModelAttribute("newGenre")Genre newGenre){
+		genreService.saveGenre(newGenre);
+		return "redirect:/genres";
 	}
 	
 	@GetMapping("/editGenre/{id}")
@@ -35,10 +43,20 @@ public class GenreController {
 	}
 	
 	@PostMapping("/updateGenre/{id}")
-	public String updateGenre(Model model, @PathVariable Long id) {
+	public String updateGenre(@PathVariable Long id, @ModelAttribute("newGenre") Genre newGenre) {
+		Genre genre = genreService.findGenreById(id);
+		genre.setName(newGenre.getName());
+		genre.setDescription(newGenre.getDescription());
+		genreService.updateGenre(genre);
 		
-		
-		return "";
+		return "redirect:/genres";
+	}
+	
+	@GetMapping("/deleteGenre/{id}")
+	public String deleteGenre(Model model, @PathVariable Long id) {
+		Genre genre = genreService.findGenreById(id);
+		model.addAttribute("genre",genre);
+		return "/delete/confirmDeleteGenre";
 	}
 
 }

@@ -12,18 +12,18 @@
 			
 			<div class="container">
 				
-				<form th:action="/genres/{id} (id=${genre.genreId})}" th:objet="${genre}" method="post">
+				<form th:action="@{/updateGenre/{id} (id=${genre.genreId})}" th:objet="${newGenre}" method="post">
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{genreId}">
+					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{genre.genreId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}">
+					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{genre.name}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputDescription">Description</label>
-					    <input type="text" class="form-control form-control-lg" id="inputDescription" aria-describedby="descHelp" placeholder="Enter a description" th:field="*{description}">
+					    <input type="text" class="form-control form-control-lg" id="inputDescription" aria-describedby="descHelp" placeholder="Enter a description" th:field="*{genre.description}">
 					    <small id="descHelp" class="form-text text-muted">A brief description for the literary genre</small>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Save</button>
