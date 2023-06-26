@@ -10,17 +10,21 @@
 			
 			<div class="container" th:replace="~{fragments/header::header}"/>
 			
-			<div class="container">
+			<div class="container text-center">
 				
-					<form method="post" th:action="@{/addPublisher}" th:object="${newPublisher}" >
-					  <div class="form-group mb-3">
-					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}" name = "name">
-					  </div>
-					  <button type="submit" class="btn btn-primary">Save</button>
-				</form>	
-				
-				</div>
+					<h1> = ERROR = </h1>
+					<img class="d-block mx-auto mb-4" src="/images/spring-3-logo-svg-vector.svg" alt="" width="72" height="57">
+					<p th:text="${exception.name}"></p>	
+					<p th:text="${exception.description}"></p>					
+					<p>
+					  <a class="btn btn-outline-info" data-bs-toggle="collapse" href="#collapseMessage" role="button" aria-expanded="false" aria-controls="collapseMessage">
+					    Extended Message
+					  </a>
+					</p>
+					<div class="collapse" id="collapseMessage">
+					  <div class="card card-body"><p th:text="${exception.message}"></p></div>
+					</div>
+			</div>
 			
 		</main>
 		

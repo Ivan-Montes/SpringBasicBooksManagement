@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.BookshopDTO;
+import ime.BookApp.entity.Bookshop;
+import ime.BookApp.entity.Publisher;
 import ime.BookApp.repository.BookshopRepository;
 import ime.BookApp.service.BookshopService;
 
@@ -18,6 +20,26 @@ public class BookshopServiceImpl implements BookshopService{
 	@Override
 	public List<BookshopDTO> getAllBookshopDTO() {		
 		return bookshopRepository.getAllBookshopDTO();
+	}
+
+	@Override
+	public Bookshop findBookshopById(Long id) {
+		return bookshopRepository.findById(id).orElse(new Bookshop());
+	}
+
+	@Override
+	public void updateBookshop(Bookshop bookshop) {
+		bookshopRepository.save(bookshop);	
+	}
+
+	@Override
+	public Bookshop saveBookshop(Bookshop bookshop) {
+		return bookshopRepository.save(bookshop);	
+	}
+
+	@Override
+	public void deleteBookshopById(Long id) {
+		bookshopRepository.deleteById(id);
 	}
 
 }

@@ -12,15 +12,18 @@
 			
 			<div class="container">
 				
-					<form method="post" th:action="@{/addPublisher}" th:object="${newPublisher}" >
+					<h1>Are you sure of deleting this item?</h1>
+					<div class="form-group mb-3">
+					    <label for="inputId">Id</label>
+					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{bookshop.bookshopId}">
+					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}" name = "name">
+					    <input type="text" class="form-control form-control-lg" id="inputName" readonly  placeholder="Enter name" th:field="*{bookshop.name}">
 					  </div>
-					  <button type="submit" class="btn btn-primary">Save</button>
-				</form>	
+					<a class="btn btn-outline-danger btn-sm" th:href="@{/confirmDeleteBookshop/{id} (id=${bookshop.bookshopId})}" role="button">Delete</a>	
 				
-				</div>
+			</div>
 			
 		</main>
 		
