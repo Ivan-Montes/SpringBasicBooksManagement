@@ -11,23 +11,30 @@
 			<div class="container" th:replace="~{fragments/header::header}"/>
 			
 			<div class="container">
-				<span class="table-responsive">
+				<div class="table-responsive">	
 					<h2>List of bookshops</h2>
 					<table class="table table-striped table-hover caption-top"
 		  				<thead>
 						    <tr>
 						      <th scope="col">Id</th>
 						      <th scope="col">Name</th>
+						      <th scope="col" colspan="2">Actions</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 							  <tr th:each = "bookshop: ${bookshops}">
 								  <td th:text = "${bookshop.bookshopId}"></td>
 								  <td th:text = "${bookshop.name}"></td>
+								  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBookshop/{id} (id=${bookshop.bookshopId})}" role="button">Edit</a></td>
+								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/deleteBookshop/{id} (id=${bookshop.bookshopId})}" role="button">Delete</a></td>							  
 							  </td>							  
 						  </tbody>
 					</table>
 				</div>
+					<div class=" text-center">
+						<a th:href="@{/addBookshop}" role="button" class="btn btn-outline-success">Add New</a>
+					</div>
+			</div>
 			
 		</main>
 		<div class="container" th:replace="~{fragments/footer}"/>

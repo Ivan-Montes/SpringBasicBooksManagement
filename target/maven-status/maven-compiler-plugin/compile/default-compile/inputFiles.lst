@@ -5,6 +5,7 @@ C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\reposit
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\repository\BookshopRepository.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\service\AuthorService.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\controller\GenreController.java
+C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\exception\GlobalExceptionHandler.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\service\impl\AuthorServiceImpl.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\config\SecurityConfig.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\entity\Genre.java
@@ -21,6 +22,7 @@ C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\dto\Aut
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\dto\GenreDTO.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\BookAppApplication.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\dto\BookshopDTO.java
+C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\exception\BasicException.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\entity\Book.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\entity\Publisher.java
 C:\Users\User\Desktop\Proyectos\Spring\BookApp\src\main\java\ime\BookApp\repository\BookRepository.java

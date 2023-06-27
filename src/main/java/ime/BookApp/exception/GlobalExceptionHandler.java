@@ -15,5 +15,9 @@ public class GlobalExceptionHandler {
 		return "/error/exception";
 	}
 	
-	
+	@ExceptionHandler(java.lang.NumberFormatException.class)
+	public String numberFormatException(Exception ex, Model model) {
+		model.addAttribute("exception", new BasicException("NumberFormatException", ex.getMessage(), "Failed to convert value"));
+		return "/error/exception";
+	}
 }

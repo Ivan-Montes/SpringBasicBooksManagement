@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.BookDTO;
+import ime.BookApp.entity.Book;
 import ime.BookApp.service.BookService;
 import jakarta.persistence.Tuple;
 import ime.BookApp.repository.BookRepository;
@@ -45,6 +46,18 @@ public class BookServiceImpl implements BookService{
 		
 		return BookDTOList;
 	}
+
+	@Override
+	public Book findBookById(Long id) {
+		return bookRepository.findById(id).orElse(new Book());
+	}
+
+	@Override
+	public void deleteBookById(Long id) {
+		bookRepository.deleteById(id);		
+	}
+	
+	
 
 	
 }

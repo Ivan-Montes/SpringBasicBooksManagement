@@ -53,11 +53,11 @@ public class Book {
 	private LocalDateTime updateTimestamp;
 	
 	@ManyToOne
-	@JoinColumn( name = "publisher_id", nullable = false)
+	@JoinColumn( name = "publisher_id")
 	private Publisher publisher;
 	
 	@ManyToOne
-	@JoinColumn( name = "genre_id", nullable = false)
+	@JoinColumn( name = "genre_id")
 	private Genre genre;
 	
 	//@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})

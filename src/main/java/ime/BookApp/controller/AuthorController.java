@@ -3,7 +3,12 @@ package ime.BookApp.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import ime.BookApp.entity.Author;
+import ime.BookApp.entity.Genre;
 import ime.BookApp.service.*;
 
 @Controller
@@ -19,5 +24,46 @@ public class AuthorController {
 	public String getAllAuthorDTO(Model model) {		
 		model.addAttribute("authors", authorService.getAllAuthorDTO());
 		return "authors";
+	}
+	
+	@GetMapping("/addAuthor")
+	public String addAuthor(Model model) {
+		model.addAttribute("newAuthor", new Author());
+		return "/add/addAuthor";
+	}
+	
+	@PostMapping("/addAuthor")
+	public String saveAuthor(@ModelAttribute("newAuthor")Author newAuthor){
+		authorService.saveAuthor(newAuthor);
+		return "redirect:/authors";
+	}
+	
+	@GetMapping("/editAuthor/{id}")
+	public String editAuthor(Model model, @PathVariable Long id) {
+		model.addAttribute("author", authorService.findAuthorById(id));
+		return "/edit/editAuthor";
+	}
+	
+	@PostMapping("/updateAuthor/{id}")
+	public String updateAuthor(@PathVariable Long id, @ModelAttribute("newAuthor") Author newAuthor) {
+		Author author = authorService.findAuthorById(id);
+		author.setName(newAuthor.getName());
+		author.setSurname(newAuthor.getSurname());
+		authorService.updateAuthor(author);
+		
+		return "redirect:/authors";
+	}
+	
+	@GetMapping("/deleteAuthor/{id}")
+	public String deleteAuthor(Model model, @PathVariable Long id) {
+		Author author = authorService.findAuthorById(id);
+		model.addAttribute("author",author);
+		return "/delete/confirmDeleteAuthor";
+	}
+	
+	@GetMapping("/confirmDeleteAuthor/{id}")
+	public String confirmDeleteAuthor(@PathVariable Long id) {
+		authorService.deleteAuthorById(id);
+		return "redirect:/authors";
 	}
 }

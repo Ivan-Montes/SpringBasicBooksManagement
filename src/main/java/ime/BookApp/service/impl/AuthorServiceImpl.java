@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.AuthorDTO;
+import ime.BookApp.entity.Author;
 import ime.BookApp.repository.AuthorRepository;
 import ime.BookApp.service.AuthorService;
 
@@ -27,6 +28,34 @@ public class AuthorServiceImpl implements AuthorService{
 	public List<AuthorDTO> getAllAuthorDTO() {
 		
 		return authorRepository.getAllAuthorsDTO();
+	}
+
+
+
+	@Override
+	public Author findAuthorById(Long id) {
+		return authorRepository.findById(id).orElse(new Author());
+	}
+
+
+
+	@Override
+	public void updateAuthor(Author author) {
+		authorRepository.save(author);		
+	}
+
+
+
+	@Override
+	public Author saveAuthor(Author author) {
+		return authorRepository.save(author);		
+	}
+
+
+
+	@Override
+	public void deleteAuthorById(Long id) {
+		authorRepository.deleteById(id);
 	}
 
 }
