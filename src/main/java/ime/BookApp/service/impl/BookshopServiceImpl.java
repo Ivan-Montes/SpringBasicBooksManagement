@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.BookshopDTO;
 import ime.BookApp.entity.Bookshop;
-import ime.BookApp.entity.Publisher;
 import ime.BookApp.repository.BookshopRepository;
 import ime.BookApp.service.BookshopService;
 

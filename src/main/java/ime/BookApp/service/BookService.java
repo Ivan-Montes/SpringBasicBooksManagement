@@ -4,7 +4,6 @@ import java.util.List;
 
 import ime.BookApp.dto.BookDTO;
 import ime.BookApp.entity.Book;
-import ime.BookApp.entity.Genre;
 
 @Service
 public interface BookService {

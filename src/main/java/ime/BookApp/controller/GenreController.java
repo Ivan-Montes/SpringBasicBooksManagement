@@ -2,8 +2,6 @@ package ime.BookApp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ime.BookApp.entity.Genre;
 import ime.BookApp.service.GenreService;
-import jakarta.websocket.server.PathParam;
 
 @Controller
 public class GenreController {

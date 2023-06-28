@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.AuthorDTO;
 import ime.BookApp.entity.Author;
-import ime.BookApp.entity.Genre;
 
 @Service
 public interface AuthorService {

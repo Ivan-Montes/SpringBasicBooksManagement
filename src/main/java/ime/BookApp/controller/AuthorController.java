@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ime.BookApp.entity.Author;
-import ime.BookApp.entity.Genre;
 import ime.BookApp.service.*;
 
 @Controller

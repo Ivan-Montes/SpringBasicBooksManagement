@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.BookshopDTO;
 import ime.BookApp.entity.Bookshop;
-import ime.BookApp.entity.Publisher;
 
 @Service
 public interface BookshopService {

@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ime.BookApp.dto.PublisherDTO;
-import ime.BookApp.entity.Genre;
 import ime.BookApp.entity.Publisher;
 
 @Service
