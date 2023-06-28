@@ -17,6 +17,7 @@ ime\BookApp\dto\BookDTO.class
 ime\BookApp\entity\Author.class
 ime\BookApp\entity\Book.class
 ime\BookApp\dto\GenreDTO.class
+ime\BookApp\dto\BookNewDTO.class
 ime\BookApp\service\impl\BookshopServiceImpl.class
 ime\BookApp\dto\BookDTO$BookDTOBuilder.class
 ime\BookApp\service\impl\AuthorServiceImpl.class

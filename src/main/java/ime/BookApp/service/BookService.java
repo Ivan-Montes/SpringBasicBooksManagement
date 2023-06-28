@@ -14,11 +14,11 @@ public interface BookService {
 	
 	
 	public Book findBookById(Long id);
-	/*
+	
 	public void updateBook(Book book);
 	
 	public Book saveBook(Book book);
-	*/
+	
 	public void deleteBookById(Long id);
 	 
 }

@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import ime.BookApp.dto.BookNewDTO;
 import ime.BookApp.entity.Book;
 import ime.BookApp.service.*;
 
@@ -13,40 +17,53 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private PublisherService publisherService;
+	@Autowired
+	private GenreService genreService;
+	@Autowired
+	private AuthorService authorService;
 	
 	@GetMapping("/books")
 	public String getAllBookDTO(Model model) {
 		model.addAttribute("books", bookService.getAllBookDTO());
 		return "books";
+	}	
+	
+	@GetMapping("/addBook")
+	public String addBook(Model model) {
+		model.addAttribute("newBook", new BookNewDTO());
+		model.addAttribute("publishers",publisherService.getAllPublisherDTO());
+		model.addAttribute("genres", genreService.getAllGenreDTO());
+		model.addAttribute("authors", authorService.getAllAuthorDTO());
+		return "/add/addBook";
 	}
 	
-	/*
-	@GetMapping("/addGenre")
-	public String addGenre(Model model) {
-		model.addAttribute("newGenre", new Genre());
-		return "/add/addGenre";
-	}
-	@PostMapping("/addGenre")
-	public String saveGenre(@ModelAttribute("newGenre")Genre newGenre){
-		genreService.saveGenre(newGenre);
-		return "redirect:/genres";
-	}
-	
-	@GetMapping("/editGenre/{id}")
-	public String editGenre(Model model, @PathVariable Long id) {
-		model.addAttribute("genre", genreService.findGenreById(id));
-		return "/edit/editGenre";
-	}
-	
-	@PostMapping("/updateGenre/{id}")
-	public String updateGenre(@PathVariable Long id, @ModelAttribute("newGenre") Genre newGenre) {
-		Genre genre = genreService.findGenreById(id);
-		genre.setName(newGenre.getName());
-		genre.setDescription(newGenre.getDescription());
-		genreService.updateGenre(genre);
+	@PostMapping("/addBook")
+	public String saveBook(@ModelAttribute("newBook")BookNewDTO newBook){
+		//bookService.saveBook(newBook);
 		
-		return "redirect:/genres";
-	} */
+		System.out.println(newBook);
+		
+		
+		return "redirect:/books";
+	}
+	
+	@GetMapping("/editBook/{id}")
+	public String editBook(Model model, @PathVariable Long id) {
+		model.addAttribute("book", bookService.findBookById(id));
+		return "/edit/editBook";
+	}
+	
+	@PostMapping("/updateBook/{id}")
+	public String updateBook(@PathVariable Long id, @ModelAttribute("newBook") Book newBook) {
+		Book book = bookService.findBookById(id);
+		book.setIsbn(newBook.getIsbn());
+		book.setTitle(newBook.getTitle());
+		bookService.updateBook(book);
+		
+		return "redirect:/books";
+	}
 	
 	@GetMapping("/deleteBook/{id}")
 	public String deleteBook(Model model, @PathVariable Long id) {

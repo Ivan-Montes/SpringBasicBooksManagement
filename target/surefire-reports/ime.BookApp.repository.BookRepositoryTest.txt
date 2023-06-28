@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ime.BookApp.repository.BookRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.236 s - in ime.BookApp.repository.BookRepositoryTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.314 s - in ime.BookApp.repository.BookRepositoryTest
