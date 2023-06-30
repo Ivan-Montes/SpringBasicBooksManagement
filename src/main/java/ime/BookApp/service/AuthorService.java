@@ -1,6 +1,7 @@
 package ime.BookApp.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -19,4 +20,6 @@ public interface AuthorService {
 	public Author saveAuthor(Author author);
 	
 	public void deleteAuthorById(Long id);
+	
+	public Set<Author> findAllById(Set<Long> ids);
 }

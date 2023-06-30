@@ -8,7 +8,7 @@ VALUES('Isaac', 'Newton', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Koyoharu ', 'Gotouge', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Richard', 'Helm', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Erich', 'Gamma', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-('Raplph', 'Johnson', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+('Ralph', 'Johnson', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO GENRES (name, description, creation_timestamp, update_timestamp)
 VALUES('Drama','Sucesos desafortunados en la vida',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),

@@ -20,6 +20,6 @@ public class BookNewDTO implements Serializable{
 	private String title;		
 	private Long publisherId;
 	private Long genreId;
-	private Long authorId;
+	private Set<Long> authorId;
 	
 }

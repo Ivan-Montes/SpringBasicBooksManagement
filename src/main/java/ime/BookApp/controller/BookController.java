@@ -1,5 +1,7 @@
 package ime.BookApp.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +43,15 @@ public class BookController {
 	
 	@PostMapping("/addBook")
 	public String saveBook(@ModelAttribute("newBook")BookNewDTO newBook){
-		//bookService.saveBook(newBook);
 		
-		System.out.println(newBook);
+		Book book = new Book();		
+		book.setIsbn(newBook.getIsbn());
+		book.setTitle(newBook.getTitle());
+		book.setGenre(genreService.findGenreById(newBook.getGenreId()));
+		book.setPublisher(publisherService.findPublisherById(newBook.getPublisherId()));
+		book.setAuthors(authorService.findAllById(newBook.getAuthorId()));
 		
+		bookService.saveBook(book);
 		
 		return "redirect:/books";
 	}

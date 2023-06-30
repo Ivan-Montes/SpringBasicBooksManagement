@@ -1,6 +1,7 @@
 package ime.BookApp.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -58,4 +59,10 @@ public class AuthorServiceImpl implements AuthorService{
 		authorRepository.deleteById(id);
 	}
 
+
+	@Override
+	public Set<Author> findAllById(Set<Long> ids) {		
+		return Set.copyOf(authorRepository.findAllById(ids));
+	}
+	
 }

@@ -15,11 +15,11 @@
 				<form method="post" th:action="@{/addBook}" th:object="${newBook}">
 					<div class="mb-3">
 						<label for="inputIsbn" class="form-label">ISBN</label>
-						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn">
+						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13">
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title">
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" maxlength="100">
 					</div>
 					<div class="mb-3">
 						<label for="inputPublisher" class="form-label">Publisher</label>
@@ -37,7 +37,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputAuthor" class="form-label">Author</label>
-						<select class="form-select" aria-label="Author" th:field="*{authorId}" id="inputAuthor" name="author">							
+						<select class="form-select" aria-label="Author" th:field="*{authorId}" id="inputAuthor" name="author" multiple>							
     					  <option selected th:value="null">select option</option>
 						  <option th:each="author:${authors}" th:value="${author.authorId}" th:with = "authorName = ${author.name} + ' ' + ${author.surname}" th:text="${authorName}"></option>
 						</select>
