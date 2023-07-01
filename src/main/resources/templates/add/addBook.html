@@ -15,30 +15,29 @@
 				<form method="post" th:action="@{/addBook}" th:object="${newBook}">
 					<div class="mb-3">
 						<label for="inputIsbn" class="form-label">ISBN</label>
-						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13">
+						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" maxlength="100">
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" minlength="1" maxlength="100" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputPublisher" class="form-label">Publisher</label>
-						<select class="form-select" aria-label="Publisher" th:field="*{publisherId}" id="inputPublisher" name="publisher">							
+						<select class="form-select" aria-label="Publisher" th:field="*{publisherId}" id="inputPublisher" name="publisher" required>							
     					  <option selected th:value="null">select option</option>
 						  <option th:each="publisher:${publishers}" th:value="${publisher.publisherId}" th:text="${publisher.name}"></option>
 						</select>
 					</div>
 					<div class="mb-3">
 						<label for="inputGenre" class="form-label">Genre</label>
-						<select class="form-select" aria-label="Genre" th:field="*{genreId}" id="inputGenre" name="genre">							
+						<select class="form-select" aria-label="Genre" th:field="*{genreId}" id="inputGenre" name="genre" required>							
     					  <option selected th:value="null">select option</option>
 						  <option th:each="genre:${genres}" th:value="${genre.genreId}"th:text="${genre.name}"></option>
 						</select>
 					</div>
 					<div class="mb-3">
 						<label for="inputAuthor" class="form-label">Author</label>
-						<select class="form-select" aria-label="Author" th:field="*{authorId}" id="inputAuthor" name="author" multiple>							
-    					  <option selected th:value="null">select option</option>
+						<select class="form-select" aria-label="Author" th:field="*{authorId}" id="inputAuthor" name="author" multiple required>
 						  <option th:each="author:${authors}" th:value="${author.authorId}" th:with = "authorName = ${author.name} + ' ' + ${author.surname}" th:text="${authorName}"></option>
 						</select>
 					</div>

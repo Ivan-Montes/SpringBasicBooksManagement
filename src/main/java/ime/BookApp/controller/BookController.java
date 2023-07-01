@@ -63,10 +63,14 @@ public class BookController {
 	}
 	
 	@PostMapping("/updateBook/{id}")
-	public String updateBook(@PathVariable Long id, @ModelAttribute("newBook") Book newBook) {
+	public String updateBook(@PathVariable Long id, @ModelAttribute("newBook") BookNewDTO newBook) {
 		Book book = bookService.findBookById(id);
 		book.setIsbn(newBook.getIsbn());
 		book.setTitle(newBook.getTitle());
+		book.setGenre(genreService.findGenreById(newBook.getGenreId()));
+		book.setPublisher(publisherService.findPublisherById(newBook.getPublisherId()));
+		book.setAuthors(authorService.findAllById(newBook.getAuthorId()));
+		
 		bookService.updateBook(book);
 		
 		return "redirect:/books";
