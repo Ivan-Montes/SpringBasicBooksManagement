@@ -12,18 +12,18 @@
 			
 			<div class="container">
 						
-				<form method="post" th:action="@{/updateBook{id} (id=${book.bookId})}" th:object="${newBook}">
+				<form method="post" th:action="@{/updateBook/{id} (id=${book.bookId})}" th:object="${book}">
 					<div class="mb-3">
 						<label for="inputId" class="form-label">Id</label>
-						<input type="text" class="form-control" id="inputId" placeholder="Enter Id" name="id" required th:field="*{book.boodId}" readonly>
+						<input type="text" class="form-control" id="inputId" placeholder="Enter Id" name="id" required th:field="*{bookId}" readonly>
 					</div>
 					<div class="mb-3">
 						<label for="inputIsbn" class="form-label">ISBN</label>
-						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13" required  th:field="*{book.isbn}">
+						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13" required th:field="*{isbn}">
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" minlength="1" maxlength="100" required th:field="*{book.title}">
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" minlength="1" maxlength="100" required th:field="*{title}">
 					</div>
 					<div class="mb-3">
 						<label for="inputPublisher" class="form-label">Publisher</label>

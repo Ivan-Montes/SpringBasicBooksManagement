@@ -64,5 +64,11 @@ public class AuthorServiceImpl implements AuthorService{
 	public Set<Author> findAllById(Set<Long> ids) {		
 		return Set.copyOf(authorRepository.findAllById(ids));
 	}
+
+
+	@Override
+	public List<AuthorDTO> getAuthorDTOByBookIdWithConstructor(Long id) {
+		return authorRepository.getAuthorDTOByBookIdWithConstructor(id);
+	}
 	
 }

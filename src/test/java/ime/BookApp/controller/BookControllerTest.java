@@ -17,7 +17,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import ime.BookApp.dto.BookDTO;
+import ime.BookApp.service.AuthorService;
 import ime.BookApp.service.BookService;
+import ime.BookApp.service.GenreService;
+import ime.BookApp.service.PublisherService;
 
 @WebMvcTest(BookController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -29,6 +32,15 @@ class BookControllerTest {
 	
 	@MockBean
 	private BookService bookService;
+	
+	@MockBean
+	private PublisherService publisherService;
+	
+	@MockBean
+	private GenreService genreService;
+	
+	@MockBean
+	private AuthorService authorService;
 	
 	@Test
 	void BookController_getAllBookDTO_ReturnView() throws Exception{

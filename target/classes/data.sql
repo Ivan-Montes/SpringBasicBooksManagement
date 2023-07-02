@@ -22,16 +22,18 @@ VALUES('The Cornershop', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Fly you fools Books', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO BOOKS (isbn, title, genre_id, publisher_id, creation_timestamp, update_timestamp)
-VALUES(1231231231233, 'Principia Mathematica', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+VALUES(1231231231231, 'Principia Mathematica', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (1231231231232, 'Kimetsu No Yaiba Vol I', 3, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(1231231231231, 'Design patterns', 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(1231231231233, 'Design patterns', 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(1231231231234, 'Sin Librerias en tu vida', 3, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO BOOKS_AUTHORS (book_id, author_id)
 VALUES(1,1),
 (2,2),
 (3,3),
 (3,4),
-(3,5);
+(3,5),
+(4,5);
 
 INSERT INTO BOOKS_BOOKSHOPS (book_book_id, bookshop_bookshop_id, price, units)
 VALUES(1,3,13,25),

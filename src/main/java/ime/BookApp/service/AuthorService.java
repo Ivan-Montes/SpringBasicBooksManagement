@@ -22,4 +22,6 @@ public interface AuthorService {
 	public void deleteAuthorById(Long id);
 	
 	public Set<Author> findAllById(Set<Long> ids);
+	
+	public List<AuthorDTO>getAuthorDTOByBookIdWithConstructor(Long id);
 }
