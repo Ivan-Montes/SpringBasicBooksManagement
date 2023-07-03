@@ -2,12 +2,12 @@ package ime.BookApp.entity;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,14 +21,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table ( name = "BOOKS")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class Book {
 
 	@Id
@@ -61,17 +64,42 @@ public class Book {
 	private Genre genre;
 	
 	//@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
 	@JoinTable(
 			name = "BOOKS_AUTHORS",
 			joinColumns = @JoinColumn( name = "book_id"),
 			inverseJoinColumns = @JoinColumn( name = "author_id")
 			)
-	//@Fetch(FetchMode.JOIN)
 	private Set<Author>authors = new HashSet<>();
 	
 	@OneToMany( mappedBy = "book")
 	private Set<BookBookshop> bookshops = new HashSet<>();
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", isbn=" + isbn + ", title=" + title + ", creationTimestamp="
+				+ creationTimestamp + ", updateTimestamp=" + updateTimestamp + ", publisher=" + publisher + ", genre="
+				+ genre + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookId, creationTimestamp, genre, isbn, publisher, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(bookId, other.bookId) && Objects.equals(creationTimestamp, other.creationTimestamp)
+				&& Objects.equals(genre, other.genre) && Objects.equals(isbn, other.isbn)
+				&& Objects.equals(publisher, other.publisher) && Objects.equals(title, other.title);
+	}
 
 	
 	

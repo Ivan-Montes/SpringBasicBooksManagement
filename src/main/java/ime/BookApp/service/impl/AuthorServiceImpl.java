@@ -2,6 +2,7 @@ package ime.BookApp.service.impl;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -62,7 +63,7 @@ public class AuthorServiceImpl implements AuthorService{
 
 	@Override
 	public Set<Author> findAllById(Set<Long> ids) {		
-		return Set.copyOf(authorRepository.findAllById(ids));
+		return authorRepository.findAllById(ids).stream().collect(Collectors.toSet());
 	}
 
 
