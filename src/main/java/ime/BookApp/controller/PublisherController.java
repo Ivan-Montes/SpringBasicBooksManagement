@@ -38,7 +38,7 @@ public class PublisherController {
 	@GetMapping("/editPublisher/{id}")
 	public String editPublisher(Model model, @PathVariable Long id) {
 		model.addAttribute("publisher", publisherService.findPublisherById(id));
-		return "/edit/editPublisher";
+		return "edit/editPublisher";
 	}
 	
 	@PostMapping("/updatePublisher/{id}")
@@ -54,7 +54,7 @@ public class PublisherController {
 	public String deletePublisher(Model model, @PathVariable Long id) {
 		Publisher publisher = publisherService.findPublisherById(id);
 		model.addAttribute("publisher",publisher);
-		return "/delete/confirmDeletePublisher";
+		return "delete/confirmDeletePublisher";
 	}
 	
 	@GetMapping("/confirmDeletePublisher/{id}")

@@ -25,7 +25,7 @@ public class GenreController {
 	@GetMapping("/addGenre")
 	public String addGenre(Model model) {
 		model.addAttribute("newGenre", new Genre());
-		return "/add/addGenre";
+		return "add/addGenre";
 	}
 	
 	@PostMapping("/addGenre")
@@ -37,7 +37,7 @@ public class GenreController {
 	@GetMapping("/editGenre/{id}")
 	public String editGenre(Model model, @PathVariable Long id) {
 		model.addAttribute("genre", genreService.findGenreById(id));
-		return "/edit/editGenre";
+		return "edit/editGenre";
 	}
 	
 	@PostMapping("/updateGenre/{id}")
@@ -54,7 +54,7 @@ public class GenreController {
 	public String deleteGenre(Model model, @PathVariable Long id) {
 		Genre genre = genreService.findGenreById(id);
 		model.addAttribute("genre",genre);
-		return "/delete/confirmDeleteGenre";
+		return "delete/confirmDeleteGenre";
 	}
 	
 	@GetMapping("/confirmDeleteGenre/{id}")
