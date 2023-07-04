@@ -15,7 +15,7 @@ public interface AuthorService {
 	
 	public Author findAuthorById(Long id);
 	
-	public void updateAuthor(Author author);
+	public Author updateAuthor(Author author);
 	
 	public Author saveAuthor(Author author);
 	

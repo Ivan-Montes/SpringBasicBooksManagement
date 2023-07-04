@@ -39,7 +39,7 @@ public class BookshopController {
 	@GetMapping("/editBookshop/{id}")
 	public String editBookshop(Model model, @PathVariable Long id) {
 		model.addAttribute("bookshop", bookshopService.findBookshopById(id));
-		return "/edit/editBookshop";
+		return "edit/editBookshop";
 	}
 	
 	@PostMapping("/updateBookshop/{id}")
@@ -55,7 +55,7 @@ public class BookshopController {
 	public String deleteBookshopr(Model model, @PathVariable Long id) {
 		Bookshop bookshop = bookshopService.findBookshopById(id);
 		model.addAttribute("bookshop",bookshop);
-		return "/delete/confirmDeleteBookshop";
+		return "delete/confirmDeleteBookshop";
 	}
 	
 	@GetMapping("/confirmDeleteBookshop/{id}")

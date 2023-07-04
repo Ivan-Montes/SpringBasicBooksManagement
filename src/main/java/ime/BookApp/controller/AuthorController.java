@@ -28,7 +28,7 @@ public class AuthorController {
 	@GetMapping("/addAuthor")
 	public String addAuthor(Model model) {
 		model.addAttribute("newAuthor", new Author());
-		return "/add/addAuthor";
+		return "add/addAuthor";
 	}
 	
 	@PostMapping("/addAuthor")
@@ -40,7 +40,7 @@ public class AuthorController {
 	@GetMapping("/editAuthor/{id}")
 	public String editAuthor(Model model, @PathVariable Long id) {
 		model.addAttribute("author", authorService.findAuthorById(id));
-		return "/edit/editAuthor";
+		return "edit/editAuthor";
 	}
 	
 	@PostMapping("/updateAuthor/{id}")
@@ -57,7 +57,7 @@ public class AuthorController {
 	public String deleteAuthor(Model model, @PathVariable Long id) {
 		Author author = authorService.findAuthorById(id);
 		model.addAttribute("author",author);
-		return "/delete/confirmDeleteAuthor";
+		return "delete/confirmDeleteAuthor";
 	}
 	
 	@GetMapping("/confirmDeleteAuthor/{id}")

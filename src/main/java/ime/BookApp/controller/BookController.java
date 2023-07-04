@@ -42,7 +42,7 @@ public class BookController {
 		model.addAttribute("publishers",publisherService.getAllPublisherDTO());
 		model.addAttribute("genres", genreService.getAllGenreDTO());
 		model.addAttribute("authors", authorService.getAllAuthorDTO());
-		return "/add/addBook";
+		return "add/addBook";
 	}
 	
 	@PostMapping("/addBook")
@@ -80,7 +80,7 @@ public class BookController {
 		model.addAttribute("genres", genreService.getAllGenreDTO());
 		model.addAttribute("authors", authorService.getAllAuthorDTO());
 		
-		return "/edit/editBook";
+		return "edit/editBook";
 	}
 	
 	@PostMapping("/updateBook/{id}")
@@ -103,7 +103,7 @@ public class BookController {
 	public String deleteBook(Model model, @PathVariable Long id) {
 		Book book = bookService.findBookById(id);
 		model.addAttribute("book",book);
-		return "/delete/confirmDeleteBook";
+		return "delete/confirmDeleteBook";
 	}
 
 	
