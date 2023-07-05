@@ -11,7 +11,7 @@ public interface GenreService {
 	
 	public Genre findGenreById(Long id);
 	
-	public void updateGenre(Genre genre);
+	public Genre updateGenre(Genre genre);
 	
 	public Genre saveGenre(Genre genre);
 	

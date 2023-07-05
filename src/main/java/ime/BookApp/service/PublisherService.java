@@ -13,7 +13,7 @@ public interface PublisherService {
 
 	public Publisher findPublisherById(Long id);
 	
-	public void updatePublisher(Publisher publisher);
+	public Publisher updatePublisher(Publisher publisher);
 	
 	public Publisher savePublisher(Publisher publisher);
 	

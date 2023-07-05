@@ -28,8 +28,8 @@ public class PublisherServiceImpl implements PublisherService{
 	}
 
 	@Override
-	public void updatePublisher(Publisher publisher) {
-		publisherRepository.save(publisher);		
+	public Publisher updatePublisher(Publisher publisher) {
+		return  publisherRepository.save(publisher);		
 	}
 
 	@Override

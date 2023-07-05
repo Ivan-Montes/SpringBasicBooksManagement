@@ -22,14 +22,14 @@ class BookshopServiceImplTest {
 	private BookshopRepository boookShopRepository;
 	
 	@InjectMocks
-	private BookshopServiceImpl bookShopServiceImpl;
+	private BookshopServiceImpl bookShopService;
 	
 	@Test
 	public void BookshopRepository_getAllBookshopDTO_ReturnZeroOrMoreDTO() {
 		
 		List<BookshopDTO> bookDTOList = List.of(Mockito.mock(BookshopDTO.class));
 		when(boookShopRepository.getAllBookshopDTO()).thenReturn(bookDTOList);
-		List<BookshopDTO> list = bookShopServiceImpl.getAllBookshopDTO();
+		List<BookshopDTO> list = bookShopService.getAllBookshopDTO();
 		
 		Assertions.assertThat(list).isNotNull();
 		Assertions.assertThat(list.size()).isEqualTo(1);
