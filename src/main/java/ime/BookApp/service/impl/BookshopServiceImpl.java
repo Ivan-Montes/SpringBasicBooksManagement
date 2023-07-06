@@ -27,8 +27,8 @@ public class BookshopServiceImpl implements BookshopService{
 	}
 
 	@Override
-	public void updateBookshop(Bookshop bookshop) {
-		bookshopRepository.save(bookshop);	
+	public Bookshop updateBookshop(Bookshop bookshop) {
+		return bookshopRepository.save(bookshop);	
 	}
 
 	@Override

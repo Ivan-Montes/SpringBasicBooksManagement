@@ -13,7 +13,7 @@ public interface BookshopService {
 	
 	public Bookshop findBookshopById(Long id);
 	
-	public void updateBookshop(Bookshop bookshop);
+	public Bookshop updateBookshop(Bookshop bookshop);
 	
 	public Bookshop saveBookshop(Bookshop bookshop);
 	

@@ -8,14 +8,13 @@ import ime.BookApp.entity.Book;
 @Service
 public interface BookService {
 
-	public List<BookDTO> getAllBookDTO();	
-	public List<BookDTO> getAllBooksDTOWithQueryToTuple();
-
+	public List<BookDTO> getAllBookDTO();
 	
+	public List<BookDTO> getAllBooksDTOWithQueryToTuple();	
 	
 	public Book findBookById(Long id);
 	
-	public void updateBook(Book book);
+	public Book updateBook(Book book);
 	
 	public Book saveBook(Book book);
 	

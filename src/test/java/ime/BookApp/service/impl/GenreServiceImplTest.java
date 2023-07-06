@@ -1,6 +1,8 @@
 package ime.BookApp.service.impl;
 
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -54,16 +56,36 @@ class GenreServiceImplTest {
 
 	@Test
 	public void GenreRepository_updateGenre_ReturnGenre() {
+		Long genreId = 1L;
+		Genre genre = new Genre();
+		genre.setGenreId(genreId);
 		
+		doReturn(genre).when(genreRepository).save(genre);
+		Genre genreFound = genreService.updateGenre(genre);
+		
+		Assertions.assertThat(genreFound).isNotNull();
+		Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId);
 	}
 	
 	@Test
 	public void GenreRepository_saveGenre_ReturnGenre() {
+		Long genreId = 1L;
+		Genre genre = new Genre();
+		genre.setGenreId(genreId);
 		
+		doReturn(genre).when(genreRepository).save(genre);
+		Genre genreFound = genreService.saveGenre(genre);
+		
+		Assertions.assertThat(genreFound).isNotNull();
+		Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId);
 	}
 	
 	@Test
 	public void GenreRepository_deleteGenreById_ReturnVoid() {
+		Long genreId = 1L;
 		
+		genreService.deleteGenreById(genreId);
+		
+		verify(genreRepository,times(1)).deleteById(genreId);
 	}
 }
