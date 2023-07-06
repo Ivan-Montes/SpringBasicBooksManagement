@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import ime.BookApp.dto.PublisherDTO;
+import ime.BookApp.entity.Publisher;
 import ime.BookApp.service.PublisherService;
 
 @WebMvcTest(PublisherController.class)
@@ -44,5 +45,45 @@ class PublisherControllerTest {
 		.andExpect(MockMvcResultMatchers.model().attribute("publishers", publisherDTOList));
 		
 	}
-
+	
+	@Test
+	void PublisherController_addPublisher_ReturnView() throws Exception{		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/addPublisher"))
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.view().name("add/addPublisher"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("newPublisher"));
+	}
+	
+/*
+	@Test
+	void PublisherController_post_addPublisher_ReturnView() throws Exception{		
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/addPublisher")
+				.content(null)
+		.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	/*
+	@Test
+	void PublisherController_editPublisher_ReturnView() throws Exception{
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/editPublisher/{id},1L"))
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.view().name("add/addPublisher"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("newPublisher"));
+	}*/
+	
+	/*
+	@Test
+	void PublisherController_deletePublisher_ReturnVoid() throws Exception{
+	
+			doNothing().when(publisherService)deletePublisher(Mockito.any()));
+			
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/deletePublisher/{id},1L"))
+		.andExpect(MockMvcResultMatchers.status().isOk());
+	}*/
+	
 }
