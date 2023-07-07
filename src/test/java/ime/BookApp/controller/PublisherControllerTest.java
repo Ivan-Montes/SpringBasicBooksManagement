@@ -1,9 +1,12 @@
 package ime.BookApp.controller;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -13,8 +16,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ime.BookApp.dto.PublisherDTO;
 import ime.BookApp.entity.Publisher;
@@ -27,7 +33,10 @@ class PublisherControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-	
+
+    @Autowired
+    private ObjectMapper mapper;
+    
 	@MockBean
 	private PublisherService publisherService;	
 	
@@ -55,14 +64,25 @@ class PublisherControllerTest {
 		.andExpect(MockMvcResultMatchers.model().attributeExists("newPublisher"));
 	}
 	
-/*
+
 	@Test
 	void PublisherController_post_addPublisher_ReturnView() throws Exception{		
 		
-		this.mockMvc
+		Publisher publisher = Mockito.mock(Publisher.class);
+		
+		//doReturn(publisher).when(publisherService).savePublisher(Mockito.any(Publisher.class));
+		
+		MvcResult result =this.mockMvc
 		.perform(MockMvcRequestBuilders.post("/addPublisher")
-				.content(null)
-		.andExpect(MockMvcResultMatchers.status().isOk());
+				.flashAttr("newPublisher", publisher)
+				)
+	      .andExpect(MockMvcResultMatchers.status().is(302))
+	      .andExpect(MockMvcResultMatchers.view().name("redirect:/publishers"))
+	      .andExpect(MockMvcResultMatchers.redirectedUrl("/publishers"))
+		.andReturn();
+		
+		Assertions.assertThat(result).isNotNull();
+		verify(publisherService, times(1)).savePublisher(Mockito.any(Publisher.class));
 	}
 	
 	/*
