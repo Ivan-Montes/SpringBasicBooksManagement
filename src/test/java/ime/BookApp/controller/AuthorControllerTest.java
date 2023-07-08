@@ -1,5 +1,9 @@
 package ime.BookApp.controller;
 
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -17,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import ime.BookApp.dto.AuthorDTO;
+import ime.BookApp.entity.Author;
 import ime.BookApp.service.AuthorService;
 
 @WebMvcTest(AuthorController.class)
@@ -43,4 +48,92 @@ class AuthorControllerTest {
 		.andExpect(MockMvcResultMatchers.model().attribute("authors", authorDTOList));
 	}
 
+
+	@Test
+	void AuthorController_addAuthor_ReturnView() throws Exception{
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/addAuthor"))
+		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+		.andExpect(MockMvcResultMatchers.view().name("add/addAuthor"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("newAuthor"));		
+	}
+
+	@Test
+	void AuthorController_saveAuthor_ReturnView() throws Exception{
+		
+		Author author = Mockito.mock(Author.class);
+		doReturn(author).when(authorService).saveAuthor(Mockito.any(Author.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/addAuthor")
+				.param("name", "nameTest"))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
+	
+		verify(authorService,times(1)).saveAuthor(Mockito.any(Author.class));
+	}
+
+	@Test
+	void AuthorController_editAuthor_ReturnView() throws Exception{
+		
+		Author author = Mockito.mock(Author.class);
+		doReturn(author).when(authorService).findAuthorById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/editAuthor/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+		.andExpect(MockMvcResultMatchers.view().name("edit/editAuthor"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("author"))
+		.andExpect(MockMvcResultMatchers.model().attribute("author", author));
+		
+		verify(authorService,times(1)).findAuthorById(Mockito.any(Long.class));		
+	}
+
+	@Test
+	void AuthorController_updateAuthor_ReturnView() throws Exception{
+
+		Author author = Mockito.mock(Author.class);
+		doReturn(author).when(authorService).findAuthorById(Mockito.any(Long.class));
+		doReturn(author).when(authorService).updateAuthor(Mockito.any(Author.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/updateAuthor/{id}", Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
+		
+		verify(authorService,times(1)).findAuthorById(Mockito.any(Long.class));
+		verify(authorService,times(1)).updateAuthor(Mockito.any(Author.class));
+	}
+
+	@Test
+	void AuthorController_deleteAuthor_ReturnView() throws Exception{
+		
+		Author author = Mockito.mock(Author.class);
+		doReturn(author).when(authorService).findAuthorById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/deleteAuthor/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.view().name("delete/confirmDeleteAuthor"));
+		
+		verify(authorService,times(1)).findAuthorById(Mockito.any(Long.class));
+	}
+
+	@Test
+	void AuthorController_confirmDeleteAuthor_ReturnView() throws Exception{
+		
+		doNothing().when(authorService).deleteAuthorById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/confirmDeleteAuthor/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
+		
+		verify(authorService, times(1)).deleteAuthorById(Mockito.any(Long.class));		
+	}
+	
 }

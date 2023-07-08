@@ -5,9 +5,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
-import java.util.HashSet;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -27,7 +24,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ime.BookApp.dto.PublisherDTO;
-import ime.BookApp.entity.Book;
 import ime.BookApp.entity.Publisher;
 import ime.BookApp.service.PublisherService;
 
@@ -38,9 +34,6 @@ class PublisherControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper mapper;
     
 	@MockBean
 	private PublisherService publisherService;	
@@ -93,12 +86,12 @@ class PublisherControllerTest {
 	
 	@Test
 	void PublisherController_editPublisher_ReturnView() throws Exception{
-		Long publisherId = 1L;
+		
 		Publisher publisher = Mockito.mock(Publisher.class);
-		doReturn(publisher).when(publisherService).findPublisherById(publisherId);
+		doReturn(publisher).when(publisherService).findPublisherById(Mockito.any(Long.class));
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/editPublisher/{id}", publisherId))
+		.perform(MockMvcRequestBuilders.get("/editPublisher/{id}", Mockito.any(Long.class)))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("edit/editPublisher"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("publisher"))
@@ -111,25 +104,48 @@ class PublisherControllerTest {
 	@Test
 	void PublisherController_updatePublisher_ReturnView() throws Exception{
 		
+		Publisher publisher = Mockito.mock(Publisher.class);
+		doReturn(publisher).when(publisherService).findPublisherById(Mockito.any(Long.class));
+		doReturn(publisher).when(publisherService).updatePublisher(publisher);
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/updatePublisher/{id}", Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/publishers"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/publishers"));
+		
+		verify(publisherService, times(1)).findPublisherById(Mockito.any(Long.class));
+		verify(publisherService, times(1)).updatePublisher(publisher);
 	}
 	
 	
 	@Test
 	void PublisherController_deletePublisher_ReturnView() throws Exception{
-		Long publisherId = 1L;
+		
 		Publisher publisher = Mockito.mock(Publisher.class);
-		doReturn(publisher).when(publisherService).findPublisherById(publisherId);
+		doReturn(publisher).when(publisherService).findPublisherById(Mockito.any(Long.class));
 			
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/deletePublisher/{id}",publisherId))
-		.andDo(print())
+		.perform(MockMvcRequestBuilders.get("/deletePublisher/{id}",Mockito.any(Long.class)))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("delete/confirmDeletePublisher"));
+		
+		verify(publisherService, times(1)).findPublisherById(Mockito.any(Long.class));
 	}
 	
 
 	@Test
 	void PublisherController_confirmDeletePublisher_ReturnView() throws Exception{
 		
+		doNothing().when(publisherService).deletePublisherById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/confirmDeletePublisher/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/publishers"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/publishers"));
+		
+		verify(publisherService, times(1)).deletePublisherById(Mockito.any(Long.class));
+
 	}
 }

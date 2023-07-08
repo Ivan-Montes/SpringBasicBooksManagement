@@ -1,5 +1,9 @@
 package ime.BookApp.controller;
 
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -17,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import ime.BookApp.dto.GenreDTO;
+import ime.BookApp.entity.Genre;
 import ime.BookApp.service.GenreService;
 
 @WebMvcTest(GenreController.class)
@@ -25,7 +30,7 @@ import ime.BookApp.service.GenreService;
 class GenreControllerTest {
 
 	@Autowired
-	private MockMvc mock;
+	private MockMvc mockMvc;
 	
 	@MockBean
 	private GenreService genreService;
@@ -36,12 +41,101 @@ class GenreControllerTest {
 		List<GenreDTO> genreDTOList = List.of(Mockito.mock(GenreDTO.class));
 		when(genreService.getAllGenreDTO()).thenReturn(genreDTOList);
 		
-		this.mock
+		this.mockMvc
 		.perform(MockMvcRequestBuilders.get("/genres"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("genres"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("genres"))
 		.andExpect(MockMvcResultMatchers.model().attribute("genres", genreDTOList));
 	}
+	
+	@Test
+	void GenreController_addGenre_ReturnView() throws Exception{
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/addGenre"))
+		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+		.andExpect(MockMvcResultMatchers.view().name("add/addGenre"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("newGenre"));		
+	}
+
+	@Test
+	void GenreController_saveGenre_ReturnView() throws Exception{
+		
+		Genre genre = Mockito.mock(Genre.class);
+		doReturn(genre).when(genreService).saveGenre(Mockito.any(Genre.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/addGenre")
+				.param("name", "nameTest"))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/genres"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/genres"));
+	
+		verify(genreService,times(1)).saveGenre(Mockito.any(Genre.class));
+	}
+
+	@Test
+	void GenreController_editGenre_ReturnView() throws Exception{
+		
+		Genre genre = Mockito.mock(Genre.class);
+		doReturn(genre).when(genreService).findGenreById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/editGenre/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+		.andExpect(MockMvcResultMatchers.view().name("edit/editGenre"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("genre"))
+		.andExpect(MockMvcResultMatchers.model().attribute("genre", genre));
+		
+		verify(genreService,times(1)).findGenreById(Mockito.any(Long.class));		
+	}
+
+	@Test
+	void GenreController_updateGenre_ReturnView() throws Exception{
+
+		Genre genre = Mockito.mock(Genre.class);
+		doReturn(genre).when(genreService).findGenreById(Mockito.any(Long.class));
+		doReturn(genre).when(genreService).updateGenre(Mockito.any(Genre.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/updateGenre/{id}", Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/genres"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/genres"));
+		
+		verify(genreService,times(1)).findGenreById(Mockito.any(Long.class));
+		verify(genreService,times(1)).updateGenre(Mockito.any(Genre.class));
+	}
+
+	@Test
+	void GenreController_deleteGenre_ReturnView() throws Exception{
+		
+		Genre genre = Mockito.mock(Genre.class);
+		doReturn(genre).when(genreService).findGenreById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/deleteGenre/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.view().name("delete/confirmDeleteGenre"));
+		
+		verify(genreService,times(1)).findGenreById(Mockito.any(Long.class));
+	}
+
+	@Test
+	void GenreController_confirmDeleteGenre_ReturnView() throws Exception{
+		
+		doNothing().when(genreService).deleteGenreById(Mockito.any(Long.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/confirmDeleteGenre/{id}",Mockito.any(Long.class)))
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/genres"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/genres"));
+		
+		verify(genreService, times(1)).deleteGenreById(Mockito.any(Long.class));		
+	}
+	
+	
 
 }
