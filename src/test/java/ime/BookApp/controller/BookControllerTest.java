@@ -1,5 +1,7 @@
 package ime.BookApp.controller;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
@@ -8,7 +10,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,15 +23,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.BookApp.dto.AuthorDTO;
-import ime.BookApp.dto.BookDTO;
-import ime.BookApp.dto.GenreDTO;
-import ime.BookApp.dto.PublisherDTO;
-import ime.BookApp.entity.Book;
-import ime.BookApp.service.AuthorService;
-import ime.BookApp.service.BookService;
-import ime.BookApp.service.GenreService;
-import ime.BookApp.service.PublisherService;
+import ime.BookApp.dto.*;
+import ime.BookApp.entity.*;
+import ime.BookApp.service.*;
 
 @WebMvcTest(BookController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -95,29 +90,40 @@ class BookControllerTest {
 	@Test
 	void BookController_editBook_ReturnView() throws Exception{
 		
+		Long anyId = 1L;
 		Book book = Mockito.mock(Book.class);
+		Genre genre = Mockito.mock(Genre.class);
+		Publisher publisher = Mockito.mock(Publisher.class);
+		
 		List<GenreDTO> genreDTOList = List.of(Mockito.mock(GenreDTO.class));
 		List<PublisherDTO> publisherDTOList = List.of(Mockito.mock(PublisherDTO.class));
 		List<AuthorDTO>authorDTOList = List.of(Mockito.mock(AuthorDTO.class));
-		//List<AuthorDTO>author = List.of(Mockito.mock(AuthorDTO.class));
 		
 		doReturn(book).when(bookService).findBookById(Mockito.any(Long.class));
 		when(genreService.getAllGenreDTO()).thenReturn(genreDTOList);
 		when(publisherService.getAllPublisherDTO()).thenReturn(publisherDTOList);
 		when(authorService.getAllAuthorDTO()).thenReturn(authorDTOList);
-		doReturn(authorDTOList).when(authorService).getAuthorDTOByBookIdWithConstructor(Mockito.mock(Long.class));
+		doReturn(authorDTOList).when(authorService).getAuthorDTOByBookIdWithConstructor(Mockito.any(Long.class));
+		doReturn(genre).when(book).getGenre();
+		doReturn(anyId).when(genre).getGenreId();
+		doReturn(publisher).when(book).getPublisher();
+		doReturn(anyId).when(publisher).getPublisherId();
 		
 		this.mockMvc
 		.perform(MockMvcRequestBuilders.get("/editBook/{id}",Mockito.any(Long.class)))
 		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
 		.andExpect(MockMvcResultMatchers.view().name("edit/editBook"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("book"))
-		.andExpect(MockMvcResultMatchers.model().attribute("book", book))
-		.andDo(print());
+		.andExpect(MockMvcResultMatchers.model().attribute("book", notNullValue()))
+		.andExpect(MockMvcResultMatchers.model().attribute("book", instanceOf(BookNewDTO.class)));
 		
-		verify(bookService,times(1)).findBookById(Mockito.any(Long.class));		
+		verify(bookService, times(1)).findBookById(Mockito.any(Long.class));
+		verify(genreService, times(1)).getAllGenreDTO();
+		verify(publisherService, times(1)).getAllPublisherDTO();
+		verify(authorService, times(1)).getAllAuthorDTO();
+		verify(authorService, times(1)).getAuthorDTOByBookIdWithConstructor(Mockito.any(Long.class));
 	}
-/*
+
 	@Test
 	void BookController_updateBook_ReturnView() throws Exception{
 
@@ -133,7 +139,8 @@ class BookControllerTest {
 		
 		verify(bookService,times(1)).findBookById(Mockito.any(Long.class));
 		verify(bookService,times(1)).updateBook(Mockito.any(Book.class));
-	}*/
+		verify(genreService,times(1)).findGenreById(Mockito.any(Long.class));
+	}
 
 	@Test
 	void BookController_deleteBook_ReturnView() throws Exception{

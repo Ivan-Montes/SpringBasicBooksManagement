@@ -93,8 +93,6 @@ public class BookController {
 		book.setAuthors(authorService.findAllById(newBook.getAuthorId()));
 		
 		bookService.updateBook(book);
-		// Salvar autores y sus libros con authorService ??
-		//authorService.updateAuthor(author);
 		
 		return "redirect:/books";
 	}
