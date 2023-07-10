@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -127,19 +128,39 @@ class BookControllerTest {
 	@Test
 	void BookController_updateBook_ReturnView() throws Exception{
 
+		Long anyId = 1L;
 		Book book = Mockito.mock(Book.class);
+		Genre genre = Mockito.mock(Genre.class);
+		Publisher publisher = Mockito.mock(Publisher.class);
+		Set<Author>authorList = Set.of(Mockito.mock(Author.class));
+		Set<Long>authorIdList = Set.of(Mockito.mock(Long.class));
+		
 		doReturn(book).when(bookService).findBookById(Mockito.any(Long.class));
+		doReturn(genre).when(genreService).findGenreById(Mockito.any(Long.class));
+		doReturn(publisher).when(publisherService).findPublisherById(Mockito.any(Long.class));
+		doReturn(authorList).when(authorService).findAllById(Set.of(Mockito.any(Long.class)));
 		doReturn(book).when(bookService).updateBook(Mockito.any(Book.class));
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.post("/updateBook/{id}", Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.post("/updateBook/{id}", Mockito.any(Long.class))
+				.param("bookId", "1")
+				.param("isbn", "123456789123456")
+				.param("title", "Test title")
+				.param("publisherId", "1")
+				.param("genreId", "2")
+				//.param("authorId", "0")
+				.flashAttr("book", new BookNewDTO())
+				.sessionAttr("authorId", authorIdList)
+				)
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/books"))
-		.andExpect(MockMvcResultMatchers.redirectedUrl("/books"));
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/books")).andDo(print());
 		
 		verify(bookService,times(1)).findBookById(Mockito.any(Long.class));
 		verify(bookService,times(1)).updateBook(Mockito.any(Book.class));
-		verify(genreService,times(1)).findGenreById(Mockito.any(Long.class));
+		verify(genreService, times(1)).findGenreById(Mockito.any());
+		verify(publisherService, times(1)).findPublisherById(Mockito.any());
+		verify(authorService, times(1)).findAllById(Mockito.any());
 	}
 
 	@Test
