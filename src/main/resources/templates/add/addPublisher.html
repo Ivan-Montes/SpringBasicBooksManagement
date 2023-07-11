@@ -15,7 +15,7 @@
 					<form method="post" th:action="@{/addPublisher}" th:object="${newPublisher}" >
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}" name = "name">
+					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}" name = "name" minlength="1" maxlength="50" required>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Save</button>
 				</form>	

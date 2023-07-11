@@ -19,11 +19,11 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputIsbn" class="form-label">ISBN</label>
-						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13" required th:field="*{isbn}">
+						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" minlength="10" maxlength="13" th:field="*{isbn}" minlength="10" maxlength="13" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" minlength="1" maxlength="100" required th:field="*{title}">
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" minlength="1" maxlength="100" th:field="*{title}" minlength="1" maxlength="100" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputPublisher" class="form-label">Publisher</label>
