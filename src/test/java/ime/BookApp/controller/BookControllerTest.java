@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ime.BookApp.dto.*;
 import ime.BookApp.entity.*;
 import ime.BookApp.service.*;
+import org.springframework.util.LinkedMultiValueMap;
 
 @WebMvcTest(BookController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -128,12 +129,10 @@ class BookControllerTest {
 	@Test
 	void BookController_updateBook_ReturnView() throws Exception{
 
-		Long anyId = 1L;
 		Book book = Mockito.mock(Book.class);
 		Genre genre = Mockito.mock(Genre.class);
 		Publisher publisher = Mockito.mock(Publisher.class);
-		Set<Author>authorList = Set.of(Mockito.mock(Author.class));
-		Set<Long>authorIdList = Set.of(Mockito.mock(Long.class));
+		Set<Author>authorList = Set.of(Mockito.mock(Author.class));		
 		
 		doReturn(book).when(bookService).findBookById(Mockito.any(Long.class));
 		doReturn(genre).when(genreService).findGenreById(Mockito.any(Long.class));
@@ -141,25 +140,27 @@ class BookControllerTest {
 		doReturn(authorList).when(authorService).findAllById(Set.of(Mockito.any(Long.class)));
 		doReturn(book).when(bookService).updateBook(Mockito.any(Book.class));
 		
+		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
+		requestParams.add("bookId", "1");
+		requestParams.add("isbn", "123456789123456");
+		requestParams.add("title", "Test title");
+		requestParams.add("publisherId", "1");
+		requestParams.add("genreId", "2");
+		requestParams.add("authorId", "2");
+		requestParams.add("authorId", "3");
+		
 		this.mockMvc
 		.perform(MockMvcRequestBuilders.post("/updateBook/{id}", Mockito.any(Long.class))
-				.param("bookId", "1")
-				.param("isbn", "123456789123456")
-				.param("title", "Test title")
-				.param("publisherId", "1")
-				.param("genreId", "2")
-				//.param("authorId", "0")
-				.flashAttr("book", new BookNewDTO())
-				.sessionAttr("authorId", authorIdList)
+				.params(requestParams)
 				)
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/books"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/books")).andDo(print());
 		
-		verify(bookService,times(1)).findBookById(Mockito.any(Long.class));
+		verify(bookService,times(1)).findBookById(Mockito.anyLong());
 		verify(bookService,times(1)).updateBook(Mockito.any(Book.class));
-		verify(genreService, times(1)).findGenreById(Mockito.any());
-		verify(publisherService, times(1)).findPublisherById(Mockito.any());
+		verify(genreService, times(1)).findGenreById(Mockito.anyLong());
+		verify(publisherService, times(1)).findPublisherById(Mockito.anyLong());
 		verify(authorService, times(1)).findAllById(Mockito.any());
 	}
 
