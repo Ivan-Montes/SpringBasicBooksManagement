@@ -30,7 +30,7 @@ class BookshopServiceImplTest {
 	private BookshopServiceImpl bookShopService;
 	
 	@Test
-	public void BookshopRepository_getAllBookshopDTO_ReturnZeroOrMoreDTO() {
+	public void BookshopServiceImpl_getAllBookshopDTO_ReturnZeroOrMoreDTO() {
 		
 		List<BookshopDTO> bookDTOList = List.of(Mockito.mock(BookshopDTO.class));
 		when(boookShopRepository.getAllBookshopDTO()).thenReturn(bookDTOList);
@@ -41,7 +41,7 @@ class BookshopServiceImplTest {
 	}
 	
 	@Test
-	public void BookshopRepository_findBookshopById_ReturnBookshop() {
+	public void BookshopServiceImpl_findBookshopById_ReturnBookshop() {
 		Long bookshopId = 1L;
 		Bookshop bookshop = new Bookshop();
 		bookshop.setBookshopId(bookshopId);
@@ -54,7 +54,7 @@ class BookshopServiceImplTest {
 	}
 
 	@Test
-	public void BookshopRepository_updateBookshop_ReturnBookshop() {
+	public void BookshopServiceImpl_updateBookshop_ReturnBookshop() {
 		Long bookshopId = 1L;
 		Bookshop bookshop = new Bookshop();
 		bookshop.setBookshopId(bookshopId);
@@ -66,7 +66,7 @@ class BookshopServiceImplTest {
 	}
 
 	@Test
-	public void BookshopRepository_saveBookshop_ReturnBookshop() {
+	public void BookshopServiceImpl_saveBookshop_ReturnBookshop() {
 		Long bookshopId = 1L;
 		Bookshop bookshop = new Bookshop();
 		bookshop.setBookshopId(bookshopId);
@@ -78,7 +78,7 @@ class BookshopServiceImplTest {
 	}
 
 	@Test
-	public void BookshopRepository_deleteBookshopById_ReturnVoid() {
+	public void BookshopServiceImpl_deleteBookshopById_ReturnVoid() {
 		Long bookshopId = 1L;
 		bookShopService.deleteBookshopById(bookshopId);
 	

@@ -18,27 +18,22 @@
 						      <th scope="col">Id</th>
 						      <th scope="col">Isbn</th>
 						      <th scope="col">Title</th>
-						      <th scope="col">Authors</th>
-						      <th scope="col">Genre</th>
-						      <th scope="col">Publisher</th>
-						      <th scope="col" colspan="2">Actions</th>
+						      <th scope="col">Id</th>
+						      <th scope="col">Name</th>
+<!--						      <th scope="col" colspan="2">Actions</th>-->
 						    </tr>
 						  </thead>
 						  <tbody>
-							  <!--<tr th:each = "book: ${books}">
-								  <td th:text = "${book.bookId}"></td>
-								  <td th:text = "${book.isbn}"></td>
-								  <td th:text = "${book.title}"></td>
-								  <td>
-									<span th:each = "author: ${book.authors}">
-									  <p th:with = "authorName = ${author.name} + ' ' + ${author.surname}" th:text="${authorName}"></p>
-									</span>
-									</td>
-								  <td th:text = "${book.genre}"></td>
-								  <td th:text = "${book.publisher}"></td>
-								  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBook/{id} (id = ${book.bookId})}" role="button">Edit</a></td>
+							  <tr th:each = "bbs: ${bookbookshops}">
+								  <td th:text = "${bbs.bookId}"></td>
+								  <td th:text = "${bbs.isbn}"></td>
+								  <td th:text = "${bbs.title}"></td>
+								  
+								  <td th:text = "${bbs.bookshopId}"></td>
+								  <td th:text = "${bbs.name}"></td>
+							<!--	  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBook/{id} (id = ${book.bookId})}" role="button">Edit</a></td>
 								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/deleteBook/{id} (id=${book.bookId})}" role="button">Delete</a></td>
-							  </td>	-->						  
+							  --></tr>							  
 						  </tbody>
 					</table>
 				</div>

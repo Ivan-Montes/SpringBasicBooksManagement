@@ -30,7 +30,7 @@ class GenreServiceImplTest {
 	private GenreServiceImpl genreService;
 	
 	@Test
-	public void GenreRepository_getAllGenreDTO_ReturnZeroOrMoreDTO() {
+	public void GenreServiceImpl_getAllGenreDTO_ReturnZeroOrMoreDTO() {
 		
 		List<GenreDTO> genreDTOList = List.of(Mockito.mock(GenreDTO.class));
 		when(genreRepository.getAllGenreDTO()).thenReturn(genreDTOList);
@@ -41,7 +41,7 @@ class GenreServiceImplTest {
 	}
 	
 	@Test
-	public void GenreRepository_findGenreById_ReturnGenre() {
+	public void GenreServiceImpl_findGenreById_ReturnGenre() {
 		Long genreId = 1L;
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
@@ -55,7 +55,7 @@ class GenreServiceImplTest {
 	}
 
 	@Test
-	public void GenreRepository_updateGenre_ReturnGenre() {
+	public void GenreServiceImpl_updateGenre_ReturnGenre() {
 		Long genreId = 1L;
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
@@ -68,7 +68,7 @@ class GenreServiceImplTest {
 	}
 	
 	@Test
-	public void GenreRepository_saveGenre_ReturnGenre() {
+	public void GenreServiceImpl_saveGenre_ReturnGenre() {
 		Long genreId = 1L;
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
@@ -81,7 +81,7 @@ class GenreServiceImplTest {
 	}
 	
 	@Test
-	public void GenreRepository_deleteGenreById_ReturnVoid() {
+	public void GenreServiceImpl_deleteGenreById_ReturnVoid() {
 		Long genreId = 1L;
 		
 		genreService.deleteGenreById(genreId);

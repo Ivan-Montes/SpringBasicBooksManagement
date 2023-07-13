@@ -12,7 +12,6 @@ import ime.BookApp.entity.BookBookshopId;
 public interface BookBookshopRepository  extends JpaRepository<BookBookshop, BookBookshopId>{
 
 	@Query("SELECT new ime.BookApp.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name) "
-			+ "FROM BookBookshop B"
-			+ "ORDER BY  B.book.bookId")
+			+ "FROM BookBookshop B ")
 	List<BookBookshopDTO>getAllBookBookshopDTO();
 }
