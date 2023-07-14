@@ -12,33 +12,38 @@
 			<div class="container">
 				<div class="table-responsive">					
 					<h2>List of Books and Bookshops</h2>
-					<table class="table table-striped table-hover caption-top"
+					<table class="table table-striped table-hover caption-top table-dark ">
 		  				<thead>
 						    <tr>
-						      <th scope="col">Id</th>
+						      <th scope="col">Book Id </th>
 						      <th scope="col">Isbn</th>
 						      <th scope="col">Title</th>
-						      <th scope="col">Id</th>
-						      <th scope="col">Name</th>
-<!--						      <th scope="col" colspan="2">Actions</th>-->
+						      <th scope="col">Price</th>
+						      <th scope="col">Units</th>
+						      <th scope="col">Bookshop Id</th>
+						      <th scope="col">Bookshop Name</th>
+						      <th scope="col" colspan="2">Actions</th>
 						    </tr>
 						  </thead>
-						  <tbody>
+						  <tbody  class="table-group-divider">
 							  <tr th:each = "bbs: ${bookbookshops}">
 								  <td th:text = "${bbs.bookId}"></td>
 								  <td th:text = "${bbs.isbn}"></td>
 								  <td th:text = "${bbs.title}"></td>
 								  
+								  <td th:text = "${bbs.price}"></td>
+								  <td th:text = "${bbs.units}"></td>
+								  
 								  <td th:text = "${bbs.bookshopId}"></td>
 								  <td th:text = "${bbs.name}"></td>
-							<!--	  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBook/{id} (id = ${book.bookId})}" role="button">Edit</a></td>
-								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/deleteBook/{id} (id=${book.bookId})}" role="button">Delete</a></td>
-							  --></tr>							  
+								  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBookBookshop/{id} (id = ${bbs.bookId})}" role="button">Edit</a></td>
+								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/deleteBookBookshop/{id} (id=${bbs.bookId})}" role="button">Delete</a></td>
+							  </tr>							  
 						  </tbody>
 					</table>
 				</div>
 				<div class=" text-center">
-					<a th:href="@{/addBookBookshop}" role="button" class="btn btn-outline-success">Add New Relation</a>
+					<a th:href="@{/addBookBookshop}" role="button" class="btn btn-outline-success">Add New Book available in Bookshop</a>
 				</div>
 			</div>
 		</main>			

@@ -22,5 +22,8 @@ public class BookBookshopDTO implements Serializable{
 	private Long bookshopId;
 	private String name;
 	
+	private Double price;
+	private Integer units;
+	
 
 }
