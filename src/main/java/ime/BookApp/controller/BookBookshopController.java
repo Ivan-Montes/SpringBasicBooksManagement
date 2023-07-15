@@ -1,5 +1,7 @@
 package ime.BookApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,20 @@ public class BookBookshopController {
 	@Autowired
 	private BookshopService bookshopService;
 	
+	@ModelAttribute("allBookshopDTO")
+	private List<BookshopDTO> prepareAllBookshopDTO(){
+		return bookshopService.getAllBookshopDTO();
+	}
+	
+	@ModelAttribute("allBookDTO")
+	private List<BookDTO>prepareAllBookDTO(){
+		return bookService.getAllBookDTO();
+	}
+	
+	@ModelAttribute("newBbsDTO")
+	private BookBookshopDTO prepareBookBookshopDTO() {
+		return new BookBookshopDTO();
+	}
 	
 	@GetMapping("/bookBookshops")
 	private String getAllBookBookshopDTO(Model model){
@@ -37,9 +53,6 @@ public class BookBookshopController {
 	
 	@GetMapping("/addBookBookshop")
 	private String addBookBookshop(Model model) {
-		model.addAttribute("bookshops", bookshopService.getAllBookshopDTO());
-		model.addAttribute("books", bookService.getAllBookDTO());
-		model.addAttribute("newBbsDTO", new BookBookshopDTO());
 		return "add/addBookBookshop";
 	}
 	

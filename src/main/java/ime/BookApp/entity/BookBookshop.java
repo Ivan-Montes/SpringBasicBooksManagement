@@ -37,7 +37,7 @@ public class BookBookshop {
 	
 	@Column( nullable = false)
 	@NotNull
-	@Max(value=999, message = "{Max.BookBookshop.price}")
+	@Max(value=1000000, message = "{Max.BookBookshop.price}")
 	@Min(value=0, message = "{Min.BookBookshop.price}")
 	private Double price;
 	

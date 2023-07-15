@@ -26,4 +26,11 @@ public class GlobalExceptionHandler {
 		model.addAttribute("exception", new BasicException("jakartaValidationConstraintViolationException", ex.getMessage(), "Failed checking some validation limit"));
 		return "/error/exception";
 	}
+
+	@ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
+	public String methodArgumentNotValidException(Exception ex, Model model) {
+		model.addAttribute("exception", new BasicException("methodArgumentNotValidException", ex.getMessage(), "Fail Bean validation argument"));
+		return "/error/exception";
+	}
+	
 }
