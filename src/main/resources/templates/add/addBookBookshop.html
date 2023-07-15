@@ -18,7 +18,7 @@
 						<label for="inputBook" class="form-label">Book</label>
 						<select class="form-select" aria-label="Book" th:field="*{bookId}" id="inputBook" name="bookId" required>							
     					  <option selected th:value="null">select option</option>
-						  <option th:each="book:${books}" th:value="${book.bookId}" th:text="${book.bookId}"></option>
+						  <option th:each="book:${books}" th:value="${book.bookId}" th:with="bookFullName = ${book.bookId} + ' ' + ${book.title} + ' ' + ${book.isbn}" th:text="${bookFullName}"></option>
 						</select>
 					</div>
 					  
@@ -32,12 +32,13 @@
 					
 					<div class="mb-3">
 						<label for="inputPrice" class="form-label">Price</label>
-						<input type="number" class="form-control" id="inputPrice" placeholder="Enter Price" name="price" min="1" max="99" required>
+						<input type="number" class="form-control" id="inputPrice" placeholder="Enter Price" name="price" th:field="*{price}" min="1" max="1000000" required>
 					</div>  
 					  
 					<div class="mb-3">
 						<label for="inputUnits" class="form-label">Units</label>
-						<input type="number" class="form-control" id="inputUnits" placeholder="Enter Units" name="units" min="1" max="99" required>
+						<input type="number" class="form-control" id="inputUnits" placeholder="Enter Units" name="units" th:field="*{units}" min="1" max="99" required>
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('units')}" th:errors="*{units}"></div>
 					</div>
 					  
 					  <button type="submit" class="btn btn-primary">Save</button>

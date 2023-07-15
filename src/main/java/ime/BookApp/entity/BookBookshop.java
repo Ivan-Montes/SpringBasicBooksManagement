@@ -9,6 +9,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,12 +36,14 @@ public class BookBookshop {
 	private Bookshop bookshop;
 	
 	@Column( nullable = false)
-	@Max(value=1000000, message = "Price should not be greater than One Million")
-	@Min(value=0, message = "Price should not be less than 0")
+	@NotNull
+	@Max(value=999, message = "{Max.BookBookshop.price}")
+	@Min(value=0, message = "{Min.BookBookshop.price}")
 	private Double price;
 	
 	@Column( nullable = false)
-	@Max(value=1000000, message = "units should not be greater than One Million")
-	@Min(value=0, message = "units should not be less than 0")
+	@NotNull
+	@Max(value=99, message = "{Max.BookBookshop.units}")
+	@Min(value=0, message = "{Min.BookBookshop.units}")
 	private Integer units;
 }
