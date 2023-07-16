@@ -80,8 +80,7 @@ class BookControllerTest {
 		doReturn(book).when(bookService).saveBook(Mockito.any(Book.class));
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.post("/addBook")
-				.param("name", "nameTest"))
+		.perform(MockMvcRequestBuilders.post("/addBook"))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/books"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/books"));

@@ -47,7 +47,7 @@ public class BookBookshopController {
 	
 	@GetMapping("/bookBookshops")
 	private String getAllBookBookshopDTO(Model model){
-		model.addAttribute("bookbookshops", bookBookshopService.getAllBookBookshopDTO());
+		model.addAttribute("bookBookshops", bookBookshopService.getAllBookBookshopDTO());
 		return "bookBookshops";
 	}
 	
