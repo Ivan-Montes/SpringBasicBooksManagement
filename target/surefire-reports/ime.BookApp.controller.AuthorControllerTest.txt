@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ime.BookApp.controller.AuthorControllerTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.629 s - in ime.BookApp.controller.AuthorControllerTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.044 s - in ime.BookApp.controller.AuthorControllerTest

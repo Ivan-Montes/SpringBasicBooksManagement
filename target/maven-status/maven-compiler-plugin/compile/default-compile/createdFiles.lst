@@ -1,8 +1,11 @@
 ime\BookApp\service\BookshopService.class
 ime\BookApp\entity\Genre.class
 ime\BookApp\repository\BookshopRepository.class
+ime\BookApp\controller\BookBookshopController.class
 ime\BookApp\service\impl\BookServiceImpl.class
 ime\BookApp\service\PublisherService.class
+ime\BookApp\service\BookBookshopService.class
+ime\BookApp\service\impl\BookBookshopServiceImpl.class
 ime\BookApp\entity\BookBookshop.class
 ime\BookApp\controller\MainController.class
 ime\BookApp\dto\PublisherDTO.class
@@ -15,9 +18,11 @@ ime\BookApp\service\AuthorService.class
 ime\BookApp\service\impl\GenreServiceImpl.class
 ime\BookApp\dto\BookDTO.class
 ime\BookApp\entity\Author.class
+ime\BookApp\repository\BookBookshopRepository.class
 ime\BookApp\entity\Book.class
 ime\BookApp\dto\GenreDTO.class
 ime\BookApp\dto\BookNewDTO.class
+ime\BookApp\dto\BookBookshopDTO.class
 ime\BookApp\service\impl\BookshopServiceImpl.class
 ime\BookApp\dto\BookDTO$BookDTOBuilder.class
 ime\BookApp\service\impl\AuthorServiceImpl.class

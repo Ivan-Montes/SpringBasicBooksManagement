@@ -100,29 +100,29 @@ class BookControllerTest {
 		List<PublisherDTO> publisherDTOList = List.of(Mockito.mock(PublisherDTO.class));
 		List<AuthorDTO>authorDTOList = List.of(Mockito.mock(AuthorDTO.class));
 		
-		doReturn(book).when(bookService).findBookById(Mockito.any(Long.class));
+		doReturn(book).when(bookService).findBookById(Mockito.anyLong());
 		when(genreService.getAllGenreDTO()).thenReturn(genreDTOList);
 		when(publisherService.getAllPublisherDTO()).thenReturn(publisherDTOList);
 		when(authorService.getAllAuthorDTO()).thenReturn(authorDTOList);
-		doReturn(authorDTOList).when(authorService).getAuthorDTOByBookIdWithConstructor(Mockito.any(Long.class));
+		doReturn(authorDTOList).when(authorService).getAuthorDTOByBookIdWithConstructor(Mockito.anyLong());
 		doReturn(genre).when(book).getGenre();
 		doReturn(anyId).when(genre).getGenreId();
 		doReturn(publisher).when(book).getPublisher();
 		doReturn(anyId).when(publisher).getPublisherId();
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/editBook/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/editBook/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
 		.andExpect(MockMvcResultMatchers.view().name("edit/editBook"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("book"))
 		.andExpect(MockMvcResultMatchers.model().attribute("book", notNullValue()))
 		.andExpect(MockMvcResultMatchers.model().attribute("book", instanceOf(BookNewDTO.class)));
 		
-		verify(bookService, times(1)).findBookById(Mockito.any(Long.class));
+		verify(bookService, times(1)).findBookById(Mockito.anyLong());
 		verify(genreService, times(1)).getAllGenreDTO();
 		verify(publisherService, times(1)).getAllPublisherDTO();
 		verify(authorService, times(1)).getAllAuthorDTO();
-		verify(authorService, times(1)).getAuthorDTOByBookIdWithConstructor(Mockito.any(Long.class));
+		verify(authorService, times(1)).getAuthorDTOByBookIdWithConstructor(Mockito.anyLong());
 	}
 
 	@Test
