@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -23,6 +24,8 @@ import ime.BookApp.service.BookBookshopService;
 import ime.BookApp.service.BookService;
 import ime.BookApp.service.BookshopService;
 import ime.BookApp.dto.BookBookshopDTO;
+import ime.BookApp.dto.BookDTO;
+import ime.BookApp.dto.BookshopDTO;
 import ime.BookApp.entity.Book;
 import ime.BookApp.entity.BookBookshop;
 import ime.BookApp.entity.Bookshop;
@@ -105,4 +108,30 @@ class BookBookshopControllerTest {
 		
 	}
 
+	@Test
+	void BookBookshopController_prepareAllBookshopDTO_ReturnListOfBookshopDTO()  throws Exception {
+		List<BookshopDTO> list = List.of(Mockito.mock(BookshopDTO.class));
+		doReturn(list).when(bookshopService).getAllBookshopDTO();
+		List<BookshopDTO>bookshopDTOs = bookshopService.getAllBookshopDTO();		
+		
+		verify(bookshopService,times(1)).getAllBookshopDTO();
+		
+		Assertions.assertThat(bookshopDTOs).isNotNull();
+		Assertions.assertThat(bookshopDTOs).isEqualTo(list);
+		
+	}
+
+	@Test
+	void BookBookshopController_prepareAllBookDTO_ReturnListOfBookDTO()  throws Exception {
+		List<BookDTO> list = List.of(Mockito.mock(BookDTO.class));
+		doReturn(list).when(bookService).getAllBookDTO();
+		List<BookDTO>bookDTOs = bookService.getAllBookDTO();		
+		
+		verify(bookService,times(1)).getAllBookDTO();
+		
+		Assertions.assertThat(bookDTOs).isNotNull();
+		Assertions.assertThat(bookDTOs).isEqualTo(list);
+		
+	}
+	
 }

@@ -27,7 +27,7 @@
 						    </tr>
 						  </thead>
 						  <tbody  class="table-group-divider">
-							  <tr th:each = "bbs: ${bookbookshops}">
+							  <tr th:each = "bbs: ${bookBookshops}">
 								  <td th:text = "${bbs.bookId}"></td>
 								  <td th:text = "${bbs.isbn}"></td>
 								  <td th:text = "${bbs.title}"></td>
@@ -37,8 +37,8 @@
 								  
 								  <td th:text = "${bbs.bookshopId}"></td>
 								  <td th:text = "${bbs.name}"></td>
-								  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBookBookshop/{id} (id = ${bbs.bookId})}" role="button">Edit</a></td>
-								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/deleteBookBookshop/{id} (id=${bbs.bookId})}" role="button">Delete</a></td>
+								  <td><a class="btn btn-outline-info btn-sm" th:href="@{/editBookBookshop(bookId = ${bbs.bookId}, bookshopId=${bbs.bookshopId})}" role="button">Edit</a></td>
+								  <td><a class="btn btn-outline-danger btn-sm" th:href="@{/deleteBookBookshop(bookId=${bbs.bookId}, bookshopId=${bbs.bookshopId})}" role="button">Delete</a></td>
 							  </tr>							  
 						  </tbody>
 					</table>

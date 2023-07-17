@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ime.BookApp.service.BookBookshopService;
 import ime.BookApp.service.BookService;
@@ -75,6 +76,21 @@ public class BookBookshopController {
 		return "redirect:/bookBookshops";
 	}
 	
+	@GetMapping("/deleteBookBookshop")
+	private String deleteBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId, Model model) {		
+		
+		model.addAttribute("thebbs", bookBookshopService.findBookBookshopById(new BookBookshopId(bookId,bookshopId)));
+		
+		return "delete/confirmDeleteBookBookshop";
+	}
 	
+	@GetMapping("/confirmDeleteBookBookshop")
+	private String confirmDeleteBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId) {
+		
+		bookBookshopService.deleteBookBookshop(new BookBookshopId(bookId,bookshopId));
+		
+		return "redirect:/bookBookshops";
+		
+	}
 	
 }

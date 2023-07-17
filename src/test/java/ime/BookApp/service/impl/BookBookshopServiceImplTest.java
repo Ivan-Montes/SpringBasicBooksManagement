@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import ime.BookApp.repository.BookBookshopRepository;
 import ime.BookApp.dto.BookBookshopDTO;
+import ime.BookApp.entity.BookBookshop;
 
 @ExtendWith(MockitoExtension.class)
 class BookBookshopServiceImplTest {
@@ -33,6 +34,15 @@ class BookBookshopServiceImplTest {
 		Assertions.assertThat(listFound.size()).isEqualTo(1);
 	}
 	
-	
+	@Test
+	void BookBookshopServiceImpl_saveBookBookshop_ReturnBookBookshop(){
+		BookBookshop bbs = Mockito.mock(BookBookshop.class);
+		doReturn(bbs).when(repository).save(Mockito.any(BookBookshop.class));
+		
+		BookBookshop bbsResult = bookService.saveBookBookshop(bbs);
+		
+		Assertions.assertThat(bbsResult).isNotNull();
+		Assertions.assertThat(bbsResult).isEqualTo(bbs);
+	}
 
 }

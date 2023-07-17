@@ -10,8 +10,6 @@ import ime.BookApp.entity.BookBookshop;
 import ime.BookApp.entity.BookBookshopId;
 import ime.BookApp.repository.BookBookshopRepository;
 import ime.BookApp.service.BookBookshopService;
-import ime.BookApp.service.BookService;
-import ime.BookApp.service.BookshopService;
 
 @Service
 public class BookBookshopServiceImpl implements BookBookshopService{
@@ -29,5 +27,16 @@ public class BookBookshopServiceImpl implements BookBookshopService{
 	public BookBookshop saveBookBookshop(BookBookshop bbs) {		
 		return bookBookshopRepository.save(bbs);
 	}
+
+	@Override
+	public BookBookshop findBookBookshopById(BookBookshopId bbsId) {
+		return bookBookshopRepository.findById(bbsId).orElse(new BookBookshop());
+	}
+
+	@Override
+	public void deleteBookBookshop(BookBookshopId bbsId) {
+		bookBookshopRepository.deleteById(bbsId);		
+	}
+	
 
 }
