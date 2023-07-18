@@ -16,7 +16,7 @@
 				<form method="post" th:action="@{/updateBook/{id} (id=${book.bookId})}" th:object="${book}">
 					<div class="mb-3">
 						<label for="inputId" class="form-label">Id</label>
-						<input type="text" class="form-control" id="inputId" placeholder="Enter Id" name="id" required th:field="*{bookId}" readonly>
+						<input type="text" class="form-control bg-secondary bg-gradient text-white" id="inputId" placeholder="Enter Id" name="id" required th:field="*{bookId}" readonly>
 					</div>
 					<div class="mb-3">
 						<label for="inputIsbn" class="form-label">ISBN</label>

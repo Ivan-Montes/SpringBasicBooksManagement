@@ -16,7 +16,7 @@
 				<form th:action="@{/updateAuthor/{id} (id=${author.authorId})}" th:objet="${newAuthor}" method="post">
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{author.authorId}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputId" readonly placeholder="Element id" th:field="*{author.authorId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>

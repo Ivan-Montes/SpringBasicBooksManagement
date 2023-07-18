@@ -16,7 +16,7 @@
 				<form th:action="@{/updateGenre/{id} (id=${genre.genreId})}" th:objet="${newGenre}" method="post">
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{genre.genreId}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputId" readonly placeholder="Element id" th:field="*{genre.genreId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
