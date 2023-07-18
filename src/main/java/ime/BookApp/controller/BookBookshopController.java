@@ -93,4 +93,20 @@ public class BookBookshopController {
 		
 	}
 	
+	@GetMapping("/editBookBookshop")
+	private String editBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId, Model model) {
+		model.addAttribute("thebbs", bookBookshopService.getBookBookshopDTOById(bookId, bookshopId));
+		return "edit/editBookBookshop";
+	}
+	
+	@PostMapping("/updateBookBookshop")
+	private String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO) {
+		
+		BookBookshop bbs = bookBookshopService.findBookBookshopById(new BookBookshopId(newBbsDTO.getBookId(),newBbsDTO.getBookshopId()));
+		bbs.setPrice(newBbsDTO.getPrice());
+		bbs.setUnits(newBbsDTO.getUnits());
+		
+		bookBookshopService.saveBookBookshop(bbs);
+		return "redirect:/bookBookshops";
+	}
 }

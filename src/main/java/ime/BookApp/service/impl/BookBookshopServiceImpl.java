@@ -37,6 +37,11 @@ public class BookBookshopServiceImpl implements BookBookshopService{
 	public void deleteBookBookshop(BookBookshopId bbsId) {
 		bookBookshopRepository.deleteById(bbsId);		
 	}
+
+	@Override
+	public BookBookshopDTO getBookBookshopDTOById(Long bookId, Long bookshopId) {		
+		return bookBookshopRepository.getBookBookshopDTOById(bookId, bookshopId);
+	}
 	
 
 }

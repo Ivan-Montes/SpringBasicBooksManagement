@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="table-responsive">					
 					<h2>List of Books and Bookshops</h2>
-					<table class="table table-striped table-hover caption-top table-dark ">
+					<table class="table table-striped table-hover caption-top">
 		  				<thead>
 						    <tr>
 						      <th scope="col">Book Id </th>
@@ -26,7 +26,7 @@
 						      <th scope="col" colspan="2">Actions</th>
 						    </tr>
 						  </thead>
-						  <tbody  class="table-group-divider">
+						  <tbody class="table-group-divider">
 							  <tr th:each = "bbs: ${bookBookshops}">
 								  <td th:text = "${bbs.bookId}"></td>
 								  <td th:text = "${bbs.isbn}"></td>

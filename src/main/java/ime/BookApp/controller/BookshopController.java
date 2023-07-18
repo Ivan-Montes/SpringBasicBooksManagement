@@ -43,7 +43,7 @@ public class BookshopController {
 	}
 	
 	@PostMapping("/updateBookshop/{id}")
-	public String updateBookshop(@PathVariable Long id, @ModelAttribute("newBookshop") Publisher newBookshop) {
+	public String updateBookshop(@PathVariable Long id, @ModelAttribute("newBookshop") Bookshop newBookshop) {
 		Bookshop bookshop = bookshopService.findBookshopById(id);
 		bookshop.setName(newBookshop.getName());
 		bookshopService.updateBookshop(bookshop);

@@ -14,4 +14,9 @@ public interface BookBookshopRepository  extends JpaRepository<BookBookshop, Boo
 	@Query("SELECT new ime.BookApp.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name, B.price, B.units) "
 			+ "FROM BookBookshop B ")
 	List<BookBookshopDTO>getAllBookBookshopDTO();
+	
+	@Query("SELECT new ime.BookApp.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name, B.price, B.units) "
+			+ "FROM BookBookshop B "
+			+ "WHERE B.book.bookId = ?1 AND B.bookshop.bookshopId = ?2")
+	BookBookshopDTO getBookBookshopDTOById(Long bookId, Long bookshopId);
 }

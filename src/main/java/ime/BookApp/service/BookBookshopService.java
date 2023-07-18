@@ -18,4 +18,6 @@ public interface BookBookshopService {
 	public BookBookshop findBookBookshopById(BookBookshopId bbsId);
 	
 	public void deleteBookBookshop(BookBookshopId bbsId);
+	
+	public BookBookshopDTO getBookBookshopDTOById(Long bookId, Long bookshopId);
 }
