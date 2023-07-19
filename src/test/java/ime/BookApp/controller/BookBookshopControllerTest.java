@@ -3,6 +3,7 @@ package ime.BookApp.controller;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ import ime.BookApp.dto.BookDTO;
 import ime.BookApp.dto.BookshopDTO;
 import ime.BookApp.entity.Book;
 import ime.BookApp.entity.BookBookshop;
+import ime.BookApp.entity.BookBookshopId;
 import ime.BookApp.entity.Bookshop;
 
 @WebMvcTest(BookBookshopController.class)
@@ -39,7 +41,7 @@ class BookBookshopControllerTest {
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private BookBookshopService bookbookshopService;
+	private BookBookshopService bookBookshopService;
 	
 	@MockBean
 	private BookService bookService;
@@ -51,7 +53,7 @@ class BookBookshopControllerTest {
 	void BookBookshopController_getAllBookBookshopDTO_ReturnView()  throws Exception{
 		
 		List<BookBookshopDTO>list = List.of(Mockito.mock(BookBookshopDTO.class));
-		doReturn(list).when(bookbookshopService).getAllBookBookshopDTO();
+		doReturn(list).when(bookBookshopService).getAllBookBookshopDTO();
 		
 		this.mockMvc
 		.perform(MockMvcRequestBuilders.get("/bookBookshops"))
@@ -59,7 +61,7 @@ class BookBookshopControllerTest {
 		.andExpect(MockMvcResultMatchers.view().name("bookBookshops"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("bookBookshops"));
 		
-		verify(bookbookshopService,times(1)).getAllBookBookshopDTO();
+		verify(bookBookshopService,times(1)).getAllBookBookshopDTO();
 		
 	}
 	
@@ -91,7 +93,7 @@ class BookBookshopControllerTest {
 		requestParams.add("price", "2");
 		requestParams.add("units", "3");
 		
-		doReturn(bbs).when(bookbookshopService).saveBookBookshop(Mockito.any(BookBookshop.class));
+		doReturn(bbs).when(bookBookshopService).saveBookBookshop(Mockito.any(BookBookshop.class));
 		doReturn(bs).when(bookshopService).findBookshopById(Mockito.anyLong());
 		doReturn(book).when(bookService).findBookById(Mockito.anyLong());
 		
@@ -102,7 +104,7 @@ class BookBookshopControllerTest {
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/bookBookshops"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/bookBookshops"));
 		
-		verify(bookbookshopService,times(1)).saveBookBookshop(Mockito.any());
+		verify(bookBookshopService,times(1)).saveBookBookshop(Mockito.any());
 		verify(bookshopService,times(1)).findBookshopById(Mockito.any());
 		verify(bookService,times(1)).findBookById(Mockito.any());
 		
@@ -133,5 +135,57 @@ class BookBookshopControllerTest {
 		Assertions.assertThat(bookDTOs).isEqualTo(list);
 		
 	}
+	
+	@Test
+	void BookBookshopController_deleteBookBookshop_ReturnView() throws Exception{
+	
+		//BookBookshop bbs = Mockito.mock(BookBookshop.class);
+		BookBookshop bbs = new BookBookshop();
+		bbs.setBook(Mockito.mock(Book.class));
+		bbs.setBookshop(Mockito.mock(Bookshop.class));
+		bbs.setBookBookshopId(Mockito.mock(BookBookshopId.class));
+		
+		doReturn(bbs).when(bookBookshopService).findBookBookshopById(Mockito.any(BookBookshopId.class));
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/deleteBookBookshop")
+				  .param("bookId", "1")
+				  .param("bookshopId","1")				 
+				)
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.view().name("delete/confirmDeleteBookBookshop"));
+		
+		verify(bookBookshopService,times(1)).findBookBookshopById(Mockito.any(BookBookshopId.class));
+	}
+	
+	@Test
+	void BookBookshopController_confirmDeleteBookBookshop_ReturnView() throws Exception{
+	
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/confirmDeleteBookBookshop")
+				  .param("bookId", "1")
+				  .param("bookshopId","1")				 
+				)
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/bookBookshops"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/bookBookshops"));
+		
+		verify(bookBookshopService,times(1)).deleteBookBookshop(Mockito.any(BookBookshopId.class));
+		
+	}
+	
+	@Test
+	void BookBookshopController_editBookBookshop_ReturnView() throws Exception{
+		
+		
+	}
+	
+	@Test
+	void BookBookshopController_eupdateBookshop_ReturnView() throws Exception{
+		
+		
+	}
+ 
+	
 	
 }
