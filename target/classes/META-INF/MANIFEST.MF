@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Build-Jdk-Spec: 17
-Implementation-Title: BookApp
-Implementation-Version: 1.0-Beta
-Created-By: Maven Integration for Eclipse
-
