@@ -1,5 +1,17 @@
 HELP.md
 
+## Custom ##
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Other
+target/*
+!target/*.jar
+
 
 ### STS ###
 .apt_generated
