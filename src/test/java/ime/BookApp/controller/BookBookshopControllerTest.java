@@ -139,7 +139,6 @@ class BookBookshopControllerTest {
 	@Test
 	void BookBookshopController_deleteBookBookshop_ReturnView() throws Exception{
 	
-		//BookBookshop bbs = Mockito.mock(BookBookshop.class);
 		BookBookshop bbs = new BookBookshop();
 		bbs.setBook(Mockito.mock(Book.class));
 		bbs.setBookshop(Mockito.mock(Bookshop.class));
@@ -177,13 +176,50 @@ class BookBookshopControllerTest {
 	@Test
 	void BookBookshopController_editBookBookshop_ReturnView() throws Exception{
 		
+		BookBookshopDTO bbs = Mockito.mock(BookBookshopDTO.class);
 		
+		doReturn(bbs).when(bookBookshopService).getBookBookshopDTOById(Mockito.anyLong(),Mockito.anyLong());
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.get("/editBookBookshop")
+				  .param("bookId", "1")
+				  .param("bookshopId","1")				 
+				)
+		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+		.andExpect(MockMvcResultMatchers.model().attributeExists("thebbs"))
+		.andExpect(MockMvcResultMatchers.model().attribute("thebbs", bbs))
+		.andExpect(MockMvcResultMatchers.view().name("edit/editBookBookshop"));
+		
+		verify(bookBookshopService,times(1)).getBookBookshopDTOById(Mockito.anyLong(),Mockito.anyLong());
 	}
 	
 	@Test
-	void BookBookshopController_eupdateBookshop_ReturnView() throws Exception{
+	void BookBookshopController_updateBookshop_ReturnView() throws Exception{
 		
+		BookBookshop bbs = Mockito.mock(BookBookshop.class);		
 		
+		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
+		requestParams.add("bookId", "1");
+		requestParams.add("isbn", "123456789123456");
+		requestParams.add("title", "Test title");
+		requestParams.add("bookshopId", "1");
+		requestParams.add("name", "Test name");
+		requestParams.add("price", "2");
+		requestParams.add("units", "3");
+		
+		doReturn(bbs).when(bookBookshopService).findBookBookshopById(Mockito.any());
+		doReturn(bbs).when(bookBookshopService).saveBookBookshop(Mockito.any());
+		
+		this.mockMvc
+		.perform(MockMvcRequestBuilders.post("/updateBookBookshop")
+				.params(requestParams)
+				)
+		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		.andExpect(MockMvcResultMatchers.view().name("redirect:/bookBookshops"))
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/bookBookshops"));
+		
+		verify(bookBookshopService,times(1)).findBookBookshopById(Mockito.any(BookBookshopId.class));
+		verify(bookBookshopService,times(1)).saveBookBookshop(Mockito.any());
 	}
  
 	
