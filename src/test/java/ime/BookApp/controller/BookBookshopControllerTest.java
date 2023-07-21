@@ -3,8 +3,6 @@ package ime.BookApp.controller;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
