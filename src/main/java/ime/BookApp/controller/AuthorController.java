@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ime.BookApp.entity.Author;
 import ime.BookApp.service.*;
+import jakarta.validation.Valid;
 
 @Controller
 public class AuthorController {
@@ -32,7 +33,7 @@ public class AuthorController {
 	}
 	
 	@PostMapping("/addAuthor")
-	public String saveAuthor(@ModelAttribute("newAuthor")Author newAuthor){
+	public String saveAuthor(@Valid @ModelAttribute("newAuthor")Author newAuthor){
 		authorService.saveAuthor(newAuthor);
 		return "redirect:/authors";
 	}
@@ -44,7 +45,7 @@ public class AuthorController {
 	}
 	
 	@PostMapping("/updateAuthor/{id}")
-	public String updateAuthor(@PathVariable Long id, @ModelAttribute("newAuthor") Author newAuthor) {
+	public String updateAuthor(@PathVariable Long id,@Valid @ModelAttribute("newAuthor") Author newAuthor) {
 		Author author = authorService.findAuthorById(id);
 		author.setName(newAuthor.getName());
 		author.setSurname(newAuthor.getSurname());
