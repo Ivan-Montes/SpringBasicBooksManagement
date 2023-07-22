@@ -16,11 +16,11 @@
 					<h1>Are you sure of deleting this item?</h1>
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{publisher.publisherId}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputId" readonly placeholder="Element id" th:field="*{publisher.publisherId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" readonly  placeholder="Enter name" th:field="*{publisher.name}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputName" readonly  placeholder="Enter name" th:field="*{publisher.name}">
 					  </div>
 					<a class="btn btn-outline-danger btn-sm" th:href="@{/confirmDeletePublisher/{id} (id=${publisher.publisherId})}" role="button">Delete</a>	
 				

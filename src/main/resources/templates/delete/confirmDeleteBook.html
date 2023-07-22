@@ -17,15 +17,15 @@
 				<h5>You can't erase the item while exist references in Book & Bookshops module</h5>
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{book.bookId}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputId" readonly placeholder="Element id" th:field="*{book.bookId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputIsbn">ISBN</label>
-					    <input type="text" class="form-control form-control-lg" id="inputIsbn" readonly  placeholder="Enter ISBN" th:field="*{book.isbn}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputIsbn" readonly  placeholder="Enter ISBN" th:field="*{book.isbn}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputTitle">Title</label>
-					    <input type="text" class="form-control form-control-lg" id="inputTitle" readonly  placeholder="Enter title" th:field="*{book.title}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputTitle" readonly  placeholder="Enter title" th:field="*{book.title}">
 					  </div>
 					<a class="btn btn-outline-danger btn-sm" th:href="@{/confirmDeleteBook/{id} (id=${book.bookId})}" role="button">Delete</a>	
 							

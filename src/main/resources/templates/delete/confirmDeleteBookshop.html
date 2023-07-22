@@ -17,11 +17,11 @@
 					<h5>You can't erase the item while exist references in other module</h5>
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{bookshop.bookshopId}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputId" readonly placeholder="Element id" th:field="*{bookshop.bookshopId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" readonly  placeholder="Enter name" th:field="*{bookshop.name}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputName" readonly  placeholder="Enter name" th:field="*{bookshop.name}">
 					  </div>
 					<a class="btn btn-outline-danger btn-sm" th:href="@{/confirmDeleteBookshop/{id} (id=${bookshop.bookshopId})}" role="button">Delete</a>	
 				

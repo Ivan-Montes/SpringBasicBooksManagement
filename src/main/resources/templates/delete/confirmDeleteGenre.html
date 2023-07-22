@@ -16,15 +16,15 @@
 					<h1>Are you sure of deleting this item?</h1>
 					<div class="form-group mb-3">
 					    <label for="inputId">Id</label>
-					    <input type="text" class="form-control form-control-lg" id="inputId" readonly placeholder="Element id" th:field="*{genre.genreId}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputId" readonly placeholder="Element id" th:field="*{genre.genreId}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" readonly  placeholder="Enter name" th:field="*{genre.name}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputName" readonly  placeholder="Enter name" th:field="*{genre.name}">
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputDescription">Description</label>
-					    <input type="text" class="form-control form-control-lg" id="inputDescription" readonly placeholder="Enter a description" th:field="*{genre.description}">
+					    <input type="text" class="form-control form-control-lg bg-secondary bg-gradient text-white" id="inputDescription" readonly placeholder="Enter a description" th:field="*{genre.description}">
 					  </div>
 					<a class="btn btn-outline-danger btn-sm" th:href="@{/confirmDeleteGenre/{id} (id=${genre.genreId})}" role="button">Delete</a>	
 				
