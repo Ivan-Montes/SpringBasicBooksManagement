@@ -3,6 +3,8 @@ package ime.BookApp.dto;
 import java.io.Serializable;
 import java.util.Set;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +22,22 @@ public class BookDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = -1880278942915598416L;
 	
+	@NotNull(message="{NotNull.BookDTO.bookId}")
 	private Long bookId;
+
+	@Size(min=10, max=13, message="{Size.BookDTO.isbn")
 	private String isbn;
-	private String title;		
+
+	@Size(min=1, max=100, message="{Size.BookDTO.title")
+	private String title;
+	
+	@Size( min = 1, max = 50, message="{Size.BookDTO.publisher")
 	private String publisher;
+	
+	@Size( min = 1, max = 50, message="{Size.BookDTO.genre")
 	private String genre;
+	
+	@NotNull(message="{NotNull.BookDTO.authors}")
 	private Set<AuthorDTO> authors;
 	
 	

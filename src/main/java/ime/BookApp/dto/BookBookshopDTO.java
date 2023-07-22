@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,17 @@ public class BookBookshopDTO implements Serializable{
 	
 	@NotNull(message="{NotNull.BookBookshopDTO.bookId}")
 	private Long bookId;
+
+	@Size(min=10, max=13, message="{Size.BookBookshopDTO.isbn")
 	private String isbn;
+	
+	@Size(min=1, max=100, message="{Size.BookBookshopDTO.title")
 	private String title;	
 	
 	@NotNull(message="{NotNull.BookBookshopDTO.bookshopId}")
 	private Long bookshopId;
+	
+	@Size( min = 1, max = 50,  message="{Size.BookBookshopDTO.name")
 	private String name;
 	
 	@NotNull
@@ -35,7 +42,6 @@ public class BookBookshopDTO implements Serializable{
 	@NotNull
 	@Max(value=99, message = "{Max.BookBookshopDTO.units}")
 	@Min(value=0, message = "{Min.BookBookshopDTO.units}")
-	private Integer units;
-	
+	private Integer units;	
 
 }
