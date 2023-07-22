@@ -9,13 +9,13 @@ import ime.BookApp.entity.Bookshop;
 @Service
 public interface BookshopService {
 
-	public List<BookshopDTO>getAllBookshopDTO();
+	List<BookshopDTO>getAllBookshopDTO();
 	
-	public Bookshop findBookshopById(Long id);
+	Bookshop findBookshopById(Long id);
 	
-	public Bookshop updateBookshop(Bookshop bookshop);
+	Bookshop updateBookshop(Bookshop bookshop);
 	
-	public Bookshop saveBookshop(Bookshop bookshop);
+	Bookshop saveBookshop(Bookshop bookshop);
 	
-	public void deleteBookshopById(Long id);
+	void deleteBookshopById(Long id);
 }

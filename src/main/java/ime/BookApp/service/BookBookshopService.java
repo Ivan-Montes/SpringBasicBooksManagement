@@ -11,13 +11,13 @@ import ime.BookApp.entity.BookBookshopId;
 @Service
 public interface BookBookshopService {
 
-	public List<BookBookshopDTO> getAllBookBookshopDTO();
+	List<BookBookshopDTO> getAllBookBookshopDTO();
 	
-	public BookBookshop saveBookBookshop(BookBookshop bbs);
+	BookBookshop saveBookBookshop(BookBookshop bbs);
 	
-	public BookBookshop findBookBookshopById(BookBookshopId bbsId);
+	BookBookshop findBookBookshopById(BookBookshopId bbsId);
 	
-	public void deleteBookBookshop(BookBookshopId bbsId);
+	void deleteBookBookshop(BookBookshopId bbsId);
 	
-	public BookBookshopDTO getBookBookshopDTOById(Long bookId, Long bookshopId);
+	BookBookshopDTO getBookBookshopDTOById(Long bookId, Long bookshopId);
 }

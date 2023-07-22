@@ -9,13 +9,13 @@ import ime.BookApp.entity.Publisher;
 @Service
 public interface PublisherService {
 
-	public List<PublisherDTO>getAllPublisherDTO();
+	List<PublisherDTO>getAllPublisherDTO();
 
-	public Publisher findPublisherById(Long id);
+	Publisher findPublisherById(Long id);
 	
-	public Publisher updatePublisher(Publisher publisher);
+	Publisher updatePublisher(Publisher publisher);
 	
-	public Publisher savePublisher(Publisher publisher);
+	Publisher savePublisher(Publisher publisher);
 	
-	public void deletePublisherById(Long id);
+	void deletePublisherById(Long id);
 }

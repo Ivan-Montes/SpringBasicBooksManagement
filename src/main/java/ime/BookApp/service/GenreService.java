@@ -7,13 +7,13 @@ import ime.BookApp.entity.Genre;
 @Service
 public interface GenreService {
 
-	public List<GenreDTO> getAllGenreDTO();
+	List<GenreDTO> getAllGenreDTO();
 	
-	public Genre findGenreById(Long id);
+	Genre findGenreById(Long id);
 	
-	public Genre updateGenre(Genre genre);
+	Genre updateGenre(Genre genre);
 	
-	public Genre saveGenre(Genre genre);
+	Genre saveGenre(Genre genre);
 	
-	public void deleteGenreById(Long id);
+	void deleteGenreById(Long id);
 }

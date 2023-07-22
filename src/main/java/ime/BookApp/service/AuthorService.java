@@ -11,17 +11,17 @@ import ime.BookApp.entity.Author;
 @Service
 public interface AuthorService {
 
-	public List<AuthorDTO> getAllAuthorDTO();
+	List<AuthorDTO> getAllAuthorDTO();
 	
-	public Author findAuthorById(Long id);
+	Author findAuthorById(Long id);
 	
-	public Author updateAuthor(Author author);
+	Author updateAuthor(Author author);
 	
-	public Author saveAuthor(Author author);
+	Author saveAuthor(Author author);
 	
-	public void deleteAuthorById(Long id);
+	void deleteAuthorById(Long id);
 	
-	public Set<Author> findAllById(Set<Long> ids);
+	Set<Author> findAllById(Set<Long> ids);
 	
-	public List<AuthorDTO>getAuthorDTOByBookIdWithConstructor(Long id);
+	List<AuthorDTO>getAuthorDTOByBookIdWithConstructor(Long id);
 }
