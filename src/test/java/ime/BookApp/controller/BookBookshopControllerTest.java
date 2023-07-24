@@ -84,7 +84,7 @@ class BookBookshopControllerTest {
 				
 		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
 		requestParams.add("bookId", "1");
-		requestParams.add("isbn", "123456789123456");
+		requestParams.add("isbn", "1234567891234");
 		requestParams.add("title", "Test title");
 		requestParams.add("bookshopId", "1");
 		requestParams.add("name", "Test name");
@@ -198,7 +198,7 @@ class BookBookshopControllerTest {
 		
 		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
 		requestParams.add("bookId", "1");
-		requestParams.add("isbn", "123456789123456");
+		requestParams.add("isbn", "1234567891234");
 		requestParams.add("title", "Test title");
 		requestParams.add("bookshopId", "1");
 		requestParams.add("name", "Test name");

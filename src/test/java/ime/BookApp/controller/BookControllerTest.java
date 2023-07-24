@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.List;
 import java.util.Set;
@@ -79,8 +78,17 @@ class BookControllerTest {
 		Book book = Mockito.mock(Book.class);
 		doReturn(book).when(bookService).saveBook(Mockito.any(Book.class));
 		
+		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
+		requestParams.add("isbn", "1234567891234");
+		requestParams.add("title", "Test title");
+		requestParams.add("publisherId", "1");
+		requestParams.add("genreId", "2");
+		requestParams.add("authorId", "2");
+		requestParams.add("authorId", "3");
+		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.post("/addBook"))
+		.perform(MockMvcRequestBuilders.post("/addBook")
+				.params(requestParams))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/books"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/books"));
@@ -133,15 +141,15 @@ class BookControllerTest {
 		Publisher publisher = Mockito.mock(Publisher.class);
 		Set<Author>authorList = Set.of(Mockito.mock(Author.class));		
 		
-		doReturn(book).when(bookService).findBookById(Mockito.any(Long.class));
-		doReturn(genre).when(genreService).findGenreById(Mockito.any(Long.class));
-		doReturn(publisher).when(publisherService).findPublisherById(Mockito.any(Long.class));
-		doReturn(authorList).when(authorService).findAllById(Set.of(Mockito.any(Long.class)));
+		doReturn(book).when(bookService).findBookById(Mockito.anyLong());
+		doReturn(genre).when(genreService).findGenreById(Mockito.anyLong());
+		doReturn(publisher).when(publisherService).findPublisherById(Mockito.anyLong());
+		doReturn(authorList).when(authorService).findAllById(Set.of(Mockito.anyLong()));
 		doReturn(book).when(bookService).updateBook(Mockito.any(Book.class));
 		
 		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
 		requestParams.add("bookId", "1");
-		requestParams.add("isbn", "123456789123456");
+		requestParams.add("isbn", "1234567891234");
 		requestParams.add("title", "Test title");
 		requestParams.add("publisherId", "1");
 		requestParams.add("genreId", "2");
@@ -149,12 +157,12 @@ class BookControllerTest {
 		requestParams.add("authorId", "3");
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.post("/updateBook/{id}", Mockito.any(Long.class))
+		.perform(MockMvcRequestBuilders.post("/updateBook/{id}", Mockito.anyLong())
 				.params(requestParams)
 				)
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/books"))
-		.andExpect(MockMvcResultMatchers.redirectedUrl("/books")).andDo(print());
+		.andExpect(MockMvcResultMatchers.redirectedUrl("/books"));
 		
 		verify(bookService,times(1)).findBookById(Mockito.anyLong());
 		verify(bookService,times(1)).updateBook(Mockito.any(Book.class));
