@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ime.BookApp.dto.BookshopCreationDTO;
+import ime.BookApp.dto.BookshopDTO;
 import ime.BookApp.entity.Bookshop;
 import ime.BookApp.service.BookshopService;
+import jakarta.validation.Valid;
 
 @Controller
 public class BookshopController {
@@ -31,7 +33,7 @@ public class BookshopController {
 	}	
 	
 	@PostMapping("/addBookshop")
-	public String saveBookshop(@ModelAttribute("newBookshop")BookshopCreationDTO newBookshop){
+	public String saveBookshop(@Valid @ModelAttribute("newBookshop")BookshopCreationDTO newBookshop){
 		Bookshop bookshop = new Bookshop();
 		bookshop.setName(newBookshop.getName());
 		bookshopService.saveBookshop(bookshop);
@@ -45,7 +47,7 @@ public class BookshopController {
 	}
 	
 	@PostMapping("/updateBookshop/{id}")
-	public String updateBookshop(@PathVariable Long id, @ModelAttribute("newBookshop") Bookshop newBookshop) {
+	public String updateBookshop(@PathVariable Long id, @ModelAttribute("newBookshop") BookshopDTO newBookshop) {
 		Bookshop bookshop = bookshopService.findBookshopById(id);
 		bookshop.setName(newBookshop.getName());
 		bookshopService.updateBookshop(bookshop);

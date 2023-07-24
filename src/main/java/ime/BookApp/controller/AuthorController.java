@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ime.BookApp.dto.AuthorCreationDTO;
+import ime.BookApp.dto.AuthorDTO;
 import ime.BookApp.entity.Author;
 import ime.BookApp.service.*;
 import jakarta.validation.Valid;
@@ -33,8 +35,10 @@ public class AuthorController {
 	}
 	
 	@PostMapping("/addAuthor")
-	public String saveAuthor(@Valid @ModelAttribute("newAuthor")Author newAuthor){
-		authorService.saveAuthor(newAuthor);
+	public String saveAuthor(@Valid @ModelAttribute("newAuthor")AuthorCreationDTO newAuthor){
+		Author author = new Author();
+		author.setName(newAuthor.getName());
+		authorService.saveAuthor(author);
 		return "redirect:/authors";
 	}
 	
@@ -45,7 +49,7 @@ public class AuthorController {
 	}
 	
 	@PostMapping("/updateAuthor/{id}")
-	public String updateAuthor(@PathVariable Long id,@Valid @ModelAttribute("newAuthor") Author newAuthor) {
+	public String updateAuthor(@PathVariable Long id,@Valid @ModelAttribute("newAuthor") AuthorDTO newAuthor) {
 		Author author = authorService.findAuthorById(id);
 		author.setName(newAuthor.getName());
 		author.setSurname(newAuthor.getSurname());

@@ -79,32 +79,35 @@ class AuthorControllerTest {
 	void AuthorController_editAuthor_ReturnView() throws Exception{
 		
 		Author author = Mockito.mock(Author.class);
-		doReturn(author).when(authorService).findAuthorById(Mockito.any(Long.class));
+		doReturn(author).when(authorService).findAuthorById(Mockito.anyLong());
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/editAuthor/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/editAuthor/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
 		.andExpect(MockMvcResultMatchers.view().name("edit/editAuthor"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("author"))
 		.andExpect(MockMvcResultMatchers.model().attribute("author", author));
 		
-		verify(authorService,times(1)).findAuthorById(Mockito.any(Long.class));		
+		verify(authorService,times(1)).findAuthorById(Mockito.anyLong());
 	}
 
 	@Test
 	void AuthorController_updateAuthor_ReturnView() throws Exception{
 
 		Author author = Mockito.mock(Author.class);
-		doReturn(author).when(authorService).findAuthorById(Mockito.any(Long.class));
+		doReturn(author).when(authorService).findAuthorById(Mockito.anyLong());
 		doReturn(author).when(authorService).updateAuthor(Mockito.any(Author.class));
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.post("/updateAuthor/{id}", Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.post("/updateAuthor/{id}", Mockito.anyLong())
+				.param("authorId","1")
+				.param("name", "nameTest")
+		)
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
 		
-		verify(authorService,times(1)).findAuthorById(Mockito.any(Long.class));
+		verify(authorService,times(1)).findAuthorById(Mockito.anyLong());
 		verify(authorService,times(1)).updateAuthor(Mockito.any(Author.class));
 	}
 
@@ -112,28 +115,28 @@ class AuthorControllerTest {
 	void AuthorController_deleteAuthor_ReturnView() throws Exception{
 		
 		Author author = Mockito.mock(Author.class);
-		doReturn(author).when(authorService).findAuthorById(Mockito.any(Long.class));
+		doReturn(author).when(authorService).findAuthorById(Mockito.anyLong());
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/deleteAuthor/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/deleteAuthor/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("delete/confirmDeleteAuthor"));
 		
-		verify(authorService,times(1)).findAuthorById(Mockito.any(Long.class));
+		verify(authorService,times(1)).findAuthorById(Mockito.anyLong());
 	}
 
 	@Test
 	void AuthorController_confirmDeleteAuthor_ReturnView() throws Exception{
 		
-		doNothing().when(authorService).deleteAuthorById(Mockito.any(Long.class));
+		doNothing().when(authorService).deleteAuthorById(Mockito.anyLong());
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/confirmDeleteAuthor/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/confirmDeleteAuthor/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
 		
-		verify(authorService, times(1)).deleteAuthorById(Mockito.any(Long.class));		
+		verify(authorService, times(1)).deleteAuthorById(Mockito.anyLong());
 	}
 	
 }

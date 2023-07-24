@@ -81,32 +81,32 @@ class BookshopControllerTest {
 	void BookshopController_editBookshop_ReturnView() throws Exception{
 		
 		Bookshop bookshop = Mockito.mock(Bookshop.class);
-		doReturn(bookshop).when(bookshopService).findBookshopById(Mockito.any(Long.class));
+		doReturn(bookshop).when(bookshopService).findBookshopById(Mockito.anyLong());
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/editBookshop/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/editBookshop/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
 		.andExpect(MockMvcResultMatchers.view().name("edit/editBookshop"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("bookshop"))
 		.andExpect(MockMvcResultMatchers.model().attribute("bookshop", bookshop));
 		
-		verify(bookshopService,times(1)).findBookshopById(Mockito.any(Long.class));		
+		verify(bookshopService,times(1)).findBookshopById(Mockito.anyLong());
 	}
 
 	@Test
 	void BookshopController_updateBookshop_ReturnView() throws Exception{
 
 		Bookshop bookshop = Mockito.mock(Bookshop.class);
-		doReturn(bookshop).when(bookshopService).findBookshopById(Mockito.any(Long.class));
+		doReturn(bookshop).when(bookshopService).findBookshopById(Mockito.anyLong());
 		doReturn(bookshop).when(bookshopService).updateBookshop(Mockito.any(Bookshop.class));
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.post("/updateBookshop/{id}", Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.post("/updateBookshop/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/bookshops"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/bookshops"));
 		
-		verify(bookshopService,times(1)).findBookshopById(Mockito.any(Long.class));
+		verify(bookshopService,times(1)).findBookshopById(Mockito.anyLong());
 		verify(bookshopService,times(1)).updateBookshop(Mockito.any(Bookshop.class));
 	}
 
@@ -114,28 +114,28 @@ class BookshopControllerTest {
 	void BookshopController_deleteBookshop_ReturnView() throws Exception{
 		
 		Bookshop bookshop = Mockito.mock(Bookshop.class);
-		doReturn(bookshop).when(bookshopService).findBookshopById(Mockito.any(Long.class));
+		doReturn(bookshop).when(bookshopService).findBookshopById(Mockito.anyLong());
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/deleteBookshop/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/deleteBookshop/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("delete/confirmDeleteBookshop"));
 		
-		verify(bookshopService,times(1)).findBookshopById(Mockito.any(Long.class));
+		verify(bookshopService,times(1)).findBookshopById(Mockito.anyLong());
 	}
 
 	@Test
 	void BookshopController_confirmDeleteBookshop_ReturnView() throws Exception{
 		
-		doNothing().when(bookshopService).deleteBookshopById(Mockito.any(Long.class));
+		doNothing().when(bookshopService).deleteBookshopById(Mockito.anyLong());
 		
 		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/confirmDeleteBookshop/{id}",Mockito.any(Long.class)))
+		.perform(MockMvcRequestBuilders.get("/confirmDeleteBookshop/{id}", Mockito.anyLong()))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/bookshops"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/bookshops"));
 		
-		verify(bookshopService, times(1)).deleteBookshopById(Mockito.any(Long.class));		
+		verify(bookshopService, times(1)).deleteBookshopById(Mockito.anyLong());
 	}
 
 }

@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ime.BookApp.dto.GenreCreationDTO;
+import ime.BookApp.dto.GenreDTO;
 import ime.BookApp.entity.Genre;
 import ime.BookApp.service.GenreService;
+import jakarta.validation.Valid;
 
 @Controller
 public class GenreController {
@@ -24,13 +27,16 @@ public class GenreController {
 	
 	@GetMapping("/addGenre")
 	public String addGenre(Model model) {
-		model.addAttribute("newGenre", new Genre());
+		model.addAttribute("newGenre", new GenreCreationDTO());
 		return "add/addGenre";
 	}
 	
 	@PostMapping("/addGenre")
-	public String saveGenre(@ModelAttribute("newGenre")Genre newGenre){
-		genreService.saveGenre(newGenre);
+	public String saveGenre(@Valid @ModelAttribute("newGenre")GenreCreationDTO newGenre){
+		Genre genre = new Genre();
+		genre.setName(newGenre.getName());
+		genre.setDescription(newGenre.getDescription());
+		genreService.saveGenre(genre);
 		return "redirect:/genres";
 	}
 	
@@ -41,7 +47,7 @@ public class GenreController {
 	}
 	
 	@PostMapping("/updateGenre/{id}")
-	public String updateGenre(@PathVariable Long id, @ModelAttribute("newGenre") Genre newGenre) {
+	public String updateGenre(@PathVariable Long id, @Valid @ModelAttribute("newGenre") GenreDTO newGenre) {
 		Genre genre = genreService.findGenreById(id);
 		genre.setName(newGenre.getName());
 		genre.setDescription(newGenre.getDescription());
