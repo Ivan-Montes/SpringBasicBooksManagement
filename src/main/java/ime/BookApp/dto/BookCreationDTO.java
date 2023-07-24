@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookNewSimpleDTO implements Serializable{	
+public class BookCreationDTO implements Serializable{	
 	/**
 	 * 
 	 */

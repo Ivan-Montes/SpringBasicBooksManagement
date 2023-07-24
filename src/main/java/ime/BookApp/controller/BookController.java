@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ime.BookApp.dto.BookNewDTO;
-import ime.BookApp.dto.BookNewSimpleDTO;
+import ime.BookApp.dto.BookCreationDTO;
 import ime.BookApp.entity.Book;
 import ime.BookApp.service.*;
 import jakarta.validation.Valid;
@@ -40,7 +40,7 @@ public class BookController {
 	
 	@GetMapping("/addBook")
 	public String addBook(Model model) {
-		model.addAttribute("newBook", new BookNewSimpleDTO());
+		model.addAttribute("newBook", new BookCreationDTO());
 		model.addAttribute("publishers",publisherService.getAllPublisherDTO());
 		model.addAttribute("genres", genreService.getAllGenreDTO());
 		model.addAttribute("authors", authorService.getAllAuthorDTO());
@@ -48,7 +48,7 @@ public class BookController {
 	}
 	
 	@PostMapping("/addBook")
-	public String saveBook(@Valid @ModelAttribute("newBook")BookNewSimpleDTO newBook){
+	public String saveBook(@Valid @ModelAttribute("newBook")BookCreationDTO newBook){
 		
 		Book book = new Book();		
 		book.setIsbn(newBook.getIsbn());
