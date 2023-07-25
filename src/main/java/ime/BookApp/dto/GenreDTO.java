@@ -21,10 +21,10 @@ public class GenreDTO implements Serializable{
 	@NotNull(message="{NotNull.GenreDTO.genreId}")
 	private Long genreId;
 
-	@Size( min = 1, max = 50, message="{Size.GenreDTO.name")
+	@Size( min = 1, max = 50, message="{Size.GenreDTO.name}")
 	private String name;
 
-	@Size( min = 1, max = 100, message="{Size.GenreDTO.description")
+	@Size( min = 1, max = 100, message="{Size.GenreDTO.description}")
 	private String description;
 	
 }

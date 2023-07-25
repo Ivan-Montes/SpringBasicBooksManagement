@@ -17,10 +17,10 @@ public class GenreCreationDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Size( min = 1, max = 50, message="{Size.GenreDTO.name")
+	@Size( min = 1, max = 50, message="{Size.GenreDTO.name}")
 	private String name;
 
-	@Size( min = 1, max = 100, message="{Size.GenreDTO.description")
+	@Size( min = 1, max = 100, message="{Size.GenreDTO.description}")
 	private String description;
 	
 }

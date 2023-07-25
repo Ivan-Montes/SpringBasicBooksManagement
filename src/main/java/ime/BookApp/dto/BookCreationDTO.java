@@ -19,10 +19,10 @@ public class BookCreationDTO implements Serializable{
 	private static final long serialVersionUID = -7523292298367025766L;
 	
 
-	@Size(min=10, max=13, message="{Size.BookNewSimpleDTO.isbn")
+	@Size(min=10, max=13, message="{Size.BookNewSimpleDTO.isbn}")
 	private String isbn;
 
-	@Size(min=1, max=100, message="{Size.BookNewSimpleDTO.title")
+	@Size(min=1, max=100, message="{Size.BookNewSimpleDTO.title}")
 	private String title;
 	
 	@NotNull(message="{NotNull.BookNewSimpleDTO.publisherId}")

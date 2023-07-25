@@ -22,16 +22,16 @@ public class BookBookshopDTO implements Serializable{
 	@NotNull(message="{NotNull.BookBookshopDTO.bookId}")
 	private Long bookId;
 
-	@Size(min=10, max=13, message="{Size.BookBookshopDTO.isbn")
+	@Size(min=10, max=13, message="{Size.BookBookshopDTO.isbn}")
 	private String isbn;
 	
-	@Size(min=1, max=100, message="{Size.BookBookshopDTO.title")
+	@Size(min=1, max=100, message="{Size.BookBookshopDTO.title}")
 	private String title;	
 	
 	@NotNull(message="{NotNull.BookBookshopDTO.bookshopId}")
 	private Long bookshopId;
 	
-	@Size( min = 1, max = 50,  message="{Size.BookBookshopDTO.name")
+	@Size( min = 1, max = 50,  message="{Size.BookBookshopDTO.name}")
 	private String name;
 	
 	@NotNull
