@@ -2,6 +2,7 @@ package ime.BookApp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,11 @@ public class BookshopController {
 	}	
 	
 	@PostMapping("/addBookshop")
-	public String saveBookshop(@Valid @ModelAttribute("newBookshop")BookshopCreationDTO newBookshop){
+	public String saveBookshop(@Valid @ModelAttribute("newBookshop")BookshopCreationDTO newBookshop, BindingResult result){
+		
+		if ( result.hasErrors()) {
+			return "add/addBookshop";
+		}
 		Bookshop bookshop = new Bookshop();
 		bookshop.setName(newBookshop.getName());
 		bookshopService.saveBookshop(bookshop);
@@ -47,7 +52,12 @@ public class BookshopController {
 	}
 	
 	@PostMapping("/updateBookshop/{id}")
-	public String updateBookshop(@PathVariable Long id, @ModelAttribute("newBookshop") BookshopDTO newBookshop) {
+	public String updateBookshop(@PathVariable Long id, @ModelAttribute("newBookshop") BookshopDTO newBookshop, BindingResult result) {
+
+		if ( result.hasErrors()) {
+			return "redirect:/editBookshop/" + id;
+		}
+		
 		Bookshop bookshop = bookshopService.findBookshopById(id);
 		bookshop.setName(newBookshop.getName());
 		bookshopService.updateBookshop(bookshop);

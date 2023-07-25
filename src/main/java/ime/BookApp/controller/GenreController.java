@@ -2,6 +2,7 @@ package ime.BookApp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,12 @@ public class GenreController {
 	}
 	
 	@PostMapping("/addGenre")
-	public String saveGenre(@Valid @ModelAttribute("newGenre")GenreCreationDTO newGenre){
+	public String saveGenre(@Valid @ModelAttribute("newGenre")GenreCreationDTO newGenre, BindingResult result){
+
+		if (result.hasErrors()) {
+			return "add/addGenre";
+		}
+		
 		Genre genre = new Genre();
 		genre.setName(newGenre.getName());
 		genre.setDescription(newGenre.getDescription());
@@ -47,7 +53,12 @@ public class GenreController {
 	}
 	
 	@PostMapping("/updateGenre/{id}")
-	public String updateGenre(@PathVariable Long id, @Valid @ModelAttribute("newGenre") GenreDTO newGenre) {
+	public String updateGenre(@PathVariable Long id, @Valid @ModelAttribute("newGenre") GenreDTO newGenre, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "redirect:/editGenre/" + id;
+		}
+		
 		Genre genre = genreService.findGenreById(id);
 		genre.setName(newGenre.getName());
 		genre.setDescription(newGenre.getDescription());
