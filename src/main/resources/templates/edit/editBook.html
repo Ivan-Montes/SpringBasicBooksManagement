@@ -24,7 +24,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" th:field="*{title}" minlength="1" maxlength="100" required>
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" th:field="*{title}" pattern="[\w\s\-&]+" minlength="1" maxlength="100" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputPublisher" class="form-label">Publisher</label>

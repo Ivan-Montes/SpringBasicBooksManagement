@@ -16,12 +16,12 @@
 				<form method="post" th:action="@{/addGenre}" th:object="${newGenre}" >
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}" name = "name" minlength="1" maxlength="50" required>
+					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{name}" name = "name" pattern="[\w\s\-&]+" minlength="1" maxlength="50" required>
 					  	<div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 					</div>
 					  <div class="form-group mb-3">
 					    <label for="inputDescription">Description</label>
-					    <input type="text" class="form-control form-control-lg" id="inputDescription" aria-describedby="descHelp" placeholder="Enter a description" th:field="*{description}" name = "description" minlength="1" maxlength="100" required>
+					    <input type="text" class="form-control form-control-lg" id="inputDescription" aria-describedby="descHelp" placeholder="Enter a description" th:field="*{description}" name = "description" pattern="[\w\s\-&\.\,\(\)]+" minlength="1" maxlength="100" required>
 					    <small id="descHelp" class="form-text text-muted">A brief description for the literary genre</small>
 					  	<div class="alert alert-warning" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
 					</div>

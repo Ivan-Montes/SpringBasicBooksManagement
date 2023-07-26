@@ -21,7 +21,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" minlength="1" maxlength="100" required>
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" pattern="[\w\s\-&]+" minlength="1" maxlength="100" required>
 						<div class="alert alert-warning" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
 					</div>
 					<div class="mb-3">

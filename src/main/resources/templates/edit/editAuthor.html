@@ -20,11 +20,11 @@
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{author.name}" minlength="1" maxlength="50" required>
+					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{author.name}" pattern="[a-zA-Z\s\-&]+" minlength="1" maxlength="50" required>
 					  </div>
 					<div class="form-group mb-3">
 					    <label for="inputSurname">Surname</label>
-					    <input type="text" class="form-control form-control-lg" id="inputSurname" placeholder="Enter surname" th:field="*{author.surname}" minlength="1" maxlength="50" required>
+					    <input type="text" class="form-control form-control-lg" id="inputSurname" placeholder="Enter surname" th:field="*{author.surname}" pattern="[a-zA-Z\s\-&]+" minlength="1" maxlength="50" required>
 					  </div>
 					  <button type="submit" class="btn btn-outline-info">Save</button>
 				</form>				
