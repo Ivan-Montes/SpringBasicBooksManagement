@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,11 @@ public class BookController {
 	}
 	
 	@PostMapping("/addBook")
-	public String saveBook(@Valid @ModelAttribute("newBook")BookCreationDTO newBook){
+	public String saveBook(@Valid @ModelAttribute("newBook")BookCreationDTO newBook, BindingResult result){
+
+		if (result.hasErrors()) {
+			return "redirect:/addBook";
+		}
 		
 		Book book = new Book();		
 		book.setIsbn(newBook.getIsbn());
@@ -86,7 +91,12 @@ public class BookController {
 	}
 	
 	@PostMapping("/updateBook/{id}")
-	public String updateBook(@PathVariable Long id, @Valid @ModelAttribute("book") BookNewDTO newBook) {
+	public String updateBook(@PathVariable Long id, @Valid @ModelAttribute("book") BookNewDTO newBook, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "redirect:/editBook/" + id;
+		}
+		
 		Book book = bookService.findBookById(id);
 		book.setIsbn(newBook.getIsbn());
 		book.setTitle(newBook.getTitle());

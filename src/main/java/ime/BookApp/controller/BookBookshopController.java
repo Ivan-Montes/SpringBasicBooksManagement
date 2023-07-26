@@ -100,7 +100,11 @@ public class BookBookshopController {
 	}
 	
 	@PostMapping("/updateBookBookshop")
-	private String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO) {
+	private String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "bookBookshops";
+		}
 		
 		BookBookshop bbs = bookBookshopService.findBookBookshopById(new BookBookshopId(newBbsDTO.getBookId(),newBbsDTO.getBookshopId()));
 		bbs.setPrice(newBbsDTO.getPrice());

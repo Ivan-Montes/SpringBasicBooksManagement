@@ -2,6 +2,7 @@ package ime.BookApp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,14 +31,20 @@ public class AuthorController {
 	
 	@GetMapping("/addAuthor")
 	public String addAuthor(Model model) {
-		model.addAttribute("newAuthor", new Author());
+		model.addAttribute("newAuthor", new AuthorCreationDTO());
 		return "add/addAuthor";
 	}
 	
 	@PostMapping("/addAuthor")
-	public String saveAuthor(@Valid @ModelAttribute("newAuthor")AuthorCreationDTO newAuthor){
+	public String saveAuthor(@Valid @ModelAttribute("newAuthor")AuthorCreationDTO newAuthor, BindingResult result){
+		
+		if (result.hasErrors()) {
+			return "add/addAuthor";
+		}
+		
 		Author author = new Author();
 		author.setName(newAuthor.getName());
+		author.setSurname(newAuthor.getSurname());
 		authorService.saveAuthor(author);
 		return "redirect:/authors";
 	}
@@ -49,7 +56,12 @@ public class AuthorController {
 	}
 	
 	@PostMapping("/updateAuthor/{id}")
-	public String updateAuthor(@PathVariable Long id,@Valid @ModelAttribute("newAuthor") AuthorDTO newAuthor) {
+	public String updateAuthor(@PathVariable Long id,@Valid @ModelAttribute("newAuthor") AuthorDTO newAuthor, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "redirect:/editAuthor/" + id;
+		}
+		
 		Author author = authorService.findAuthorById(id);
 		author.setName(newAuthor.getName());
 		author.setSurname(newAuthor.getSurname());
