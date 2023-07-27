@@ -3,6 +3,7 @@ package ime.BookApp.dto;
 import java.io.Serializable;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +23,6 @@ public class PublisherDTO implements Serializable{
 	private Long publisherId;
 
 	@Size( min = 1, max = 50, message="{Size.PublisherDTO.name}")
+	@Pattern(regexp = "[\\w\\s\\-&]+", message="{Pattern.PublisherDTO.name}")
 	private String name;	
 }
