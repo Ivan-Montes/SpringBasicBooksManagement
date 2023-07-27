@@ -31,12 +31,12 @@
 					<div class="col-md-6">
 					    <label class="form-label" for="inputPrice">Price</label>
 					    <input type="number" class="form-control form-control-lg" id="inputPrice" placeholder="Element price, max 1000000" th:field="${thebbs.price}" min="1" max="1000000" step="0.01" required>
-
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
 					  </div>
 					<div class="col-md-6">
 					    <label class="form-label" for="inputUnits">Units</label>
 					    <input type="number" class="form-control form-control-lg" id="inputUnits" placeholder="Element units, max 99" th:field="${thebbs.units}" min="1" max="99" required>
-
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('units')}" th:errors="*{units}"></div>
 					  </div>				  
 				  </div>
 				  <div class="row"> 

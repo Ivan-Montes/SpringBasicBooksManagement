@@ -103,7 +103,7 @@ public class BookBookshopController {
 	private String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return "bookBookshops";
+			return "redirect:/bookBookshops";
 		}
 		
 		BookBookshop bbs = bookBookshopService.findBookBookshopById(new BookBookshopId(newBbsDTO.getBookId(),newBbsDTO.getBookshopId()));

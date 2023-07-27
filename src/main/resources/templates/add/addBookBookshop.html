@@ -21,6 +21,7 @@
     					  <option selected th:value="null">select option</option>
 						  <option th:each="book:${allBookDTO}" th:value="${book.bookId}" th:with="bookFullName = ${book.bookId} + ' ' + ${book.title} + ' ' + ${book.isbn}" th:text="${bookFullName}"></option>
 						</select>
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('bookId')}" th:errors="*{bookId}"></div>
 					</div>
 					  
 					<div class="mb-3">
@@ -29,6 +30,7 @@
     					  <option selected th:value="null">select option</option>
 						  <option th:each="bookshop:${allBookshopDTO}" th:value="${bookshop.bookshopId}" th:with = "bbsFullName = ${bookshop.bookshopId} + ' ' + ${bookshop.name} " th:text="${bbsFullName}"></option>
 						</select>
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('bookshopId')}" th:errors="*{bookshopId}"></div>
 					</div>
 					
 					<div class="mb-3">
