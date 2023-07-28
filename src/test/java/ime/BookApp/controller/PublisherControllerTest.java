@@ -93,7 +93,7 @@ class PublisherControllerTest {
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("edit/editPublisher"))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("publisher"))
-		.andExpect(MockMvcResultMatchers.model().attribute("publisher", publisher));		
+		.andExpect(MockMvcResultMatchers.model().attributeExists("newPublisher"));		
 
 		verify(publisherService, times(1)).findPublisherById(Mockito.anyLong());
 	}
