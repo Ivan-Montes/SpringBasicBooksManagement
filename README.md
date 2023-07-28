@@ -6,25 +6,32 @@
 
 <img src="./src/main/resources/static/images/Cover.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
 
-
-<br />
-<br />
-
 <br />
 <br />
 
 <h3>👋 Welcome to your own book collection management with Spring Framework, the world’s most popular open source toolkit.</h3>
 
-
-
 <br />
 <br />
-
-<br />
-<br />
-
 
 </div>	
+
+
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1em; margin: 4em 0;">
+
+
+<img src="./src/main/resources/static/images/Sections.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
+
+<br />
+<br />
+
+<h3> :zap: Enjoy with our different sections in order to manage your amazing book collection</h3>
+
+<br />
+<br />
+
+</div>	
+
 
 <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1em; margin: 4em 0;">
 
