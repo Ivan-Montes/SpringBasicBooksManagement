@@ -16,11 +16,11 @@
 				<form method="post" th:action="@{/updateBook/{id} (id=${book.bookId})}" th:object="${book}">
 					<div class="mb-3">
 						<label for="inputId" class="form-label">Id</label>
-						<input type="text" class="form-control bg-secondary bg-gradient text-white" id="inputId" placeholder="Enter Id" name="id" required th:field="*{bookId}" readonly>
+						<input type="text" class="form-control bg-secondary bg-gradient text-white" id="inputId" placeholder="Enter Id" name="id" th:field="*{bookId}" readonly required >
 					</div>
 					<div class="mb-3">
 						<label for="inputIsbn" class="form-label">ISBN</label>
-						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" th:field="*{isbn}" minlength="10" maxlength="13" required>
+						<input type="text" class="form-control" id="inputIsbn" placeholder="Enter ISBN" name="isbn" th:field="*{isbn}" pattern="[\d]{10,13}" minlength="10" maxlength="13" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>

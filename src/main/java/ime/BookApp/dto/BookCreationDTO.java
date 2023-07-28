@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,9 +21,11 @@ public class BookCreationDTO implements Serializable{
 	
 
 	@Size(min=10, max=13, message="{Size.BookCreationDTO.isbn}")
+	@Pattern( regexp = "[\\d]{10,13}", message="{Pattern.BookCreationDTO.isbn}")
 	private String isbn;
 
 	@Size(min=1, max=100, message="{Size.BookCreationDTO.title}")
+	@Pattern(regexp = "[\\w\\s\\-&]+", message="{Pattern.BookCreationDTO.title}")
 	private String title;
 	
 	@NotNull(message="{NotNull.BookCreationDTO.publisherId}")
