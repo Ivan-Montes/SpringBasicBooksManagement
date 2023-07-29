@@ -19,7 +19,7 @@ You could Use the jar file hosted in /target or clone the whole project
 
 ## Usage
 
-[SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/)
+Try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hosted in [Render](https://render.com/)
 
 ### :zap: Welcome to your own book collection management with Spring Framework, the world’s most popular open source toolkit.
 
@@ -29,10 +29,18 @@ You could Use the jar file hosted in /target or clone the whole project
 
 <img src="./src/main/resources/static/images/Sections.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
 
+### :zap: Clear list of items with main characteristics
+
+<img src="./src/main/resources/static/images/Books.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
+
+### :zap: Edit without problems the attributes of any element
+
+<img src="./src/main/resources/static/images/Edit_Books.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
+
 
 ## Maintainers
 
-[Ivan](https://github.com/Ivan-Montes)
+Just me, [Ivan](https://github.com/Ivan-Montes)
 
 
 ## Contributing
