@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ime</groupId>
 	<artifactId>BookApp</artifactId>
-	<version>1.0-Beta</version>
+	<version>1.0</version>
 	<name>BookApp</name>
 	<description>Project for Spring Boot</description>
 	<properties>
