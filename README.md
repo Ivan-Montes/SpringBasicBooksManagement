@@ -45,12 +45,13 @@ Just me, [Ivan](https://github.com/Ivan-Montes)
 
 ## Contributing
 
-Contributions are always welcome!
+Contributions are always welcome! 
 
 
 ## License
 
-[GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
+[GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/) 
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://choosealicense.com/licenses/gpl-3.0/)
 
 
 <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1em; margin: 4em 0;">
