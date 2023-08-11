@@ -58,4 +58,4 @@ Contributions are always welcome!
 [![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://https://maven.apache.org/)
 [![Eclipse](https://badgen.net/badge/icon/eclipse?icon=eclipse&label)](https://https://eclipse.org/)
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com)
-[![Spring](https://img.shields.io/badge/spring-blue?logo=Spring&logoColor=black)](https://spring.io)
+[![Spring](https://img.shields.io/badge/spring-blue?logo=Spring&logoColor=white)](https://spring.io)
