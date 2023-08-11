@@ -37,6 +37,10 @@ Try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hoste
 
 <img src="./src/main/resources/static/images/Edit_Books.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
 
+### :zap: JUnit test in every class
+
+<img src="./src/main/resources/static/images/Tests.png" style="width: 400px; max-width: 768px; flex-grow: 1;" />
+
 
 ## Maintainers
 
