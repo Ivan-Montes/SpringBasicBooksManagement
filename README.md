@@ -7,6 +7,7 @@ Welcome to your own book collection management with Spring Framework, the worldâ
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [It's not a bug, it's a feature](#features)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
@@ -20,6 +21,10 @@ You could Use the jar file hosted in /target or clone the whole project
 ## Usage
 
 Try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hosted in [Render](https://render.com/)
+
+
+
+## Features
 
 ### :zap: Welcome to your own book collection management with Spring Framework, the worldâ€™s most popular open source toolkit.
 
@@ -40,6 +45,8 @@ Try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hoste
 ### :zap: JUnit test in every class
 
 <img src="./src/main/resources/static/images/Tests.png" style="width: 300px; max-width: 600px; flex-grow: 1;" />
+
+### :zap: Spring Security incorporated
 
 
 ## Maintainers
