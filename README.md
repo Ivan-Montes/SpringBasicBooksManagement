@@ -51,7 +51,7 @@ Try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hoste
 
 ## Maintainers
 
-Just me, [Ivan](https://github.com/Ivan-Montes)
+Just me, [Iván](https://github.com/Ivan-Montes)
 
 
 ## Contributing
