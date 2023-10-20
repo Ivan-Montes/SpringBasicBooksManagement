@@ -1,5 +1,6 @@
 package ime.book_app.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -18,6 +19,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+	@Value("${security.users.basic.passwd.local}")
+	private String passwd;
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -40,13 +44,13 @@ public class SecurityConfig {
 		
 		UserDetails user = User.builder()
 			.username("user")
-			.password(passwordEncoder().encode("password"))
+			.password(passwordEncoder().encode(passwd))
 			.roles("USER")
 			.build();
 		
 		UserDetails admin = User.builder()
 			.username("admin")
-			.password(passwordEncoder().encode("password"))
+			.password(passwordEncoder().encode(passwd))
 			.roles("USER", "ADMIN")
 			.build();
 		
