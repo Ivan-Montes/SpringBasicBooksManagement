@@ -20,12 +20,13 @@ public class BookshopController {
 	@Autowired
 	private BookshopService bookshopService;
 	
+	private static final String REDIRECT_BOOKSHOPS = "redirect:/bookshops";
+	
 	@GetMapping("/bookshops")
 	public String getAllBookshopDTO(Model model) {
 		model.addAttribute("bookshops", bookshopService.getAllBookshopDTO());
 		return "bookshops";
 	}	
-	
 
 	@GetMapping("/addBookshop")
 	public String addBookshopr(Model model) {
@@ -42,7 +43,7 @@ public class BookshopController {
 		Bookshop bookshop = new Bookshop();
 		bookshop.setName(newBookshop.getName());
 		bookshopService.saveBookshop(bookshop);
-		return "redirect:/bookshops";
+		return REDIRECT_BOOKSHOPS;
 	}
 	
 	@GetMapping("/editBookshop/{id}")
@@ -62,7 +63,7 @@ public class BookshopController {
 		bookshop.setName(newBookshop.getName());
 		bookshopService.updateBookshop(bookshop);
 		
-		return "redirect:/bookshops";
+		return REDIRECT_BOOKSHOPS;
 	}
 	
 	@GetMapping("/deleteBookshop/{id}")
@@ -75,6 +76,6 @@ public class BookshopController {
 	@GetMapping("/confirmDeleteBookshop/{id}")
 	public String confirmDeleteBookshop(@PathVariable Long id) {
 		bookshopService.deleteBookshopById(id);
-		return "redirect:/bookshops";
+		return REDIRECT_BOOKSHOPS;
 	}
 }
