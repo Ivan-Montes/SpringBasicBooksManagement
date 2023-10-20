@@ -20,6 +20,8 @@ public class PublisherController {
 
 	@Autowired
 	private PublisherService publisherService;
+
+	private static final String REDIRECT_PUBLISHERS = "redirect:/publishers";
 	
 	@GetMapping("/publishers")
 	public String getAllPublisherDTO(Model model) {
@@ -43,7 +45,7 @@ public class PublisherController {
 		Publisher publisher = new Publisher();
 		publisher.setName(newPublisher.getName());
 		publisherService.savePublisher(publisher);
-		return "redirect:/publishers";
+		return REDIRECT_PUBLISHERS;
 	}
 	
 	@GetMapping("/editPublisher/{id}")
@@ -68,7 +70,7 @@ public class PublisherController {
 		publisher.setName(newPublisher.getName());
 		publisherService.updatePublisher(publisher);
 		
-		return "redirect:/publishers";
+		return REDIRECT_PUBLISHERS;
 	}
 	
 	@GetMapping("/deletePublisher/{id}")
@@ -81,6 +83,6 @@ public class PublisherController {
 	@GetMapping("/confirmDeletePublisher/{id}")
 	public String confirmDeletePublisher(@PathVariable Long id) {
 		publisherService.deletePublisherById(id);
-		return "redirect:/publishers";
+		return REDIRECT_PUBLISHERS;
 	}
 }
