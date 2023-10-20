@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.controller.PublisherController;
 import ime.book_app.dto.PublisherDTO;
 import ime.book_app.entity.Publisher;
 import ime.book_app.service.PublisherService;
