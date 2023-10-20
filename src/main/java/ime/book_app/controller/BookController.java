@@ -32,6 +32,7 @@ public class BookController {
 	@Autowired
 	private AuthorService authorService;
 	
+	private static final String REDIRECT_BOOKS = "redirect:/books";
 	
 	@GetMapping("/books")
 	public String getAllBookDTO(Model model) {
@@ -64,7 +65,7 @@ public class BookController {
 		
 		bookService.saveBook(book);
 		
-		return "redirect:/books";
+		return REDIRECT_BOOKS;
 	}
 	
 	@GetMapping("/editBook/{id}")
@@ -106,7 +107,7 @@ public class BookController {
 		
 		bookService.updateBook(book);
 		
-		return "redirect:/books";
+		return REDIRECT_BOOKS;
 	}
 	
 	@GetMapping("/deleteBook/{id}")
@@ -120,7 +121,7 @@ public class BookController {
 	@GetMapping("/confirmDeleteBook/{id}")
 	public String confirmDeleteBook(@PathVariable Long id) {
 		bookService.deleteBookById(id);
-		return "redirect:/books";
+		return REDIRECT_BOOKS;
 	}
 	 
 	 
