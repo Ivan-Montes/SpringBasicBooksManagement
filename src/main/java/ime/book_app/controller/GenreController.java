@@ -20,6 +20,8 @@ public class GenreController {
 	@Autowired
 	private GenreService genreService;
 	
+	private static final String REDIRECT_GENRES = "redirect:/genres";
+	
 	@GetMapping("/genres")
 	public String getAllGenreDTO(Model model) {
 		model.addAttribute("genres", genreService.getAllGenreDTO());
@@ -43,7 +45,7 @@ public class GenreController {
 		genre.setName(newGenre.getName());
 		genre.setDescription(newGenre.getDescription());
 		genreService.saveGenre(genre);
-		return "redirect:/genres";
+		return REDIRECT_GENRES;
 	}
 	
 	@GetMapping("/editGenre/{id}")
@@ -64,7 +66,7 @@ public class GenreController {
 		genre.setDescription(newGenre.getDescription());
 		genreService.updateGenre(genre);
 		
-		return "redirect:/genres";
+		return REDIRECT_GENRES;
 	}
 	
 	@GetMapping("/deleteGenre/{id}")
@@ -77,7 +79,7 @@ public class GenreController {
 	@GetMapping("/confirmDeleteGenre/{id}")
 	public String confirmDeleteGenre(@PathVariable Long id) {
 		genreService.deleteGenreById(id);
-		return "redirect:/genres";
+		return REDIRECT_GENRES;
 	}
 	
 
