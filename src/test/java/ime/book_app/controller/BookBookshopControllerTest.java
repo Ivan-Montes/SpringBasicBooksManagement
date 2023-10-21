@@ -1,5 +1,6 @@
 package ime.book_app.controller;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,7 +20,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.util.LinkedMultiValueMap;
 
-import ime.book_app.controller.BookBookshopController;
 import ime.book_app.dto.BookBookshopDTO;
 import ime.book_app.dto.BookDTO;
 import ime.book_app.dto.BookshopDTO;
@@ -117,9 +117,10 @@ class BookBookshopControllerTest {
 		
 		verify(bookshopService,times(1)).getAllBookshopDTO();
 		
-		Assertions.assertThat(bookshopDTOs).isNotNull();
-		Assertions.assertThat(bookshopDTOs).isEqualTo(list);
-		
+		assertAll(
+				()->Assertions.assertThat(bookshopDTOs).isNotNull(),
+				()->Assertions.assertThat(bookshopDTOs).isEqualTo(list)
+				);
 	}
 
 	@Test
@@ -130,9 +131,10 @@ class BookBookshopControllerTest {
 		
 		verify(bookService,times(1)).getAllBookDTO();
 		
-		Assertions.assertThat(bookDTOs).isNotNull();
-		Assertions.assertThat(bookDTOs).isEqualTo(list);
-		
+		assertAll(
+				()->Assertions.assertThat(bookDTOs).isNotNull(),
+				()->Assertions.assertThat(bookDTOs).isEqualTo(list)
+				);		
 	}
 	
 	@Test
