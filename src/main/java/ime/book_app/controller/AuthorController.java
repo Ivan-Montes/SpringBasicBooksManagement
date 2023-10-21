@@ -18,7 +18,7 @@ import jakarta.validation.Valid;
 public class AuthorController {
 	
 	private AuthorService authorService;
-	
+	private static final String REDIRECT_AUTHORS = "redirect:/authors";
 	public AuthorController(AuthorService authorService) {
 		this.authorService = authorService;
 	}
@@ -46,7 +46,7 @@ public class AuthorController {
 		author.setName(newAuthor.getName());
 		author.setSurname(newAuthor.getSurname());
 		authorService.saveAuthor(author);
-		return "redirect:/authors";
+		return REDIRECT_AUTHORS;
 	}
 	
 	@GetMapping("/editAuthor/{id}")
@@ -65,9 +65,9 @@ public class AuthorController {
 		Author author = authorService.findAuthorById(id);
 		author.setName(newAuthor.getName());
 		author.setSurname(newAuthor.getSurname());
-		authorService.updateAuthor(author);
+		authorService.saveAuthor(author);
 		
-		return "redirect:/authors";
+		return REDIRECT_AUTHORS;
 	}
 	
 	@GetMapping("/deleteAuthor/{id}")
@@ -80,6 +80,6 @@ public class AuthorController {
 	@GetMapping("/confirmDeleteAuthor/{id}")
 	public String confirmDeleteAuthor(@PathVariable Long id) {
 		authorService.deleteAuthorById(id);
-		return "redirect:/authors";
+		return REDIRECT_AUTHORS;
 	}
 }
