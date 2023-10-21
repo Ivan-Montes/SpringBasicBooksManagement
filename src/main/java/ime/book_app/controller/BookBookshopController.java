@@ -32,33 +32,35 @@ public class BookBookshopController {
 	private BookshopService bookshopService;
 	
 	@ModelAttribute("allBookshopDTO")
-	private List<BookshopDTO> prepareAllBookshopDTO(){
+	public List<BookshopDTO> prepareAllBookshopDTO(){
 		return bookshopService.getAllBookshopDTO();
 	}
 	
 	@ModelAttribute("allBookDTO")
-	private List<BookDTO>prepareAllBookDTO(){
+	public List<BookDTO>prepareAllBookDTO(){
 		return bookService.getAllBookDTO();
 	}
 	
 	@ModelAttribute("newBbsDTO")
-	private BookBookshopDTO prepareBookBookshopDTO() {
+	public BookBookshopDTO prepareBookBookshopDTO() {
 		return new BookBookshopDTO();
 	}
 	
+	private static final String REDIRECT_BOOKBOOKSHOPS = "redirect:/bookBookshops";
+	
 	@GetMapping("/bookBookshops")
-	private String getAllBookBookshopDTO(Model model){
+	public String getAllBookBookshopDTO(Model model){
 		model.addAttribute("bookBookshops", bookBookshopService.getAllBookBookshopDTO());
 		return "bookBookshops";
 	}
 	
 	@GetMapping("/addBookBookshop")
-	private String addBookBookshop(Model model) {
+	public String addBookBookshop(Model model) {
 		return "add/addBookBookshop";
 	}
 	
 	@PostMapping("/addBookBookshop")
-	private String saveBookBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
+	public String saveBookBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
 		
 		if (result.hasErrors()) {
 		    return "add/addBookBookshop";
@@ -73,11 +75,11 @@ public class BookBookshopController {
 		
 		bookBookshopService.saveBookBookshop(bbs);
 		
-		return "redirect:/bookBookshops";
+		return REDIRECT_BOOKBOOKSHOPS;
 	}
 	
 	@GetMapping("/deleteBookBookshop")
-	private String deleteBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId, Model model) {		
+	public String deleteBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId, Model model) {		
 		
 		model.addAttribute("thebbs", bookBookshopService.findBookBookshopById(new BookBookshopId(bookId,bookshopId)));
 		
@@ -85,25 +87,25 @@ public class BookBookshopController {
 	}
 	
 	@GetMapping("/confirmDeleteBookBookshop")
-	private String confirmDeleteBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId) {
+	public String confirmDeleteBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId) {
 		
 		bookBookshopService.deleteBookBookshop(new BookBookshopId(bookId,bookshopId));
 		
-		return "redirect:/bookBookshops";
+		return REDIRECT_BOOKBOOKSHOPS;
 		
 	}
 	
 	@GetMapping("/editBookBookshop")
-	private String editBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId, Model model) {
+	public String editBookBookshop(@RequestParam("bookId")Long bookId, @RequestParam("bookshopId")Long bookshopId, Model model) {
 		model.addAttribute("thebbs", bookBookshopService.getBookBookshopDTOById(bookId, bookshopId));
 		return "edit/editBookBookshop";
 	}
 	
 	@PostMapping("/updateBookBookshop")
-	private String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
+	public String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return "redirect:/bookBookshops";
+			return REDIRECT_BOOKBOOKSHOPS;
 		}
 		
 		BookBookshop bbs = bookBookshopService.findBookBookshopById(new BookBookshopId(newBbsDTO.getBookId(),newBbsDTO.getBookshopId()));
@@ -111,6 +113,6 @@ public class BookBookshopController {
 		bbs.setUnits(newBbsDTO.getUnits());
 		
 		bookBookshopService.saveBookBookshop(bbs);
-		return "redirect:/bookBookshops";
+		return REDIRECT_BOOKBOOKSHOPS;
 	}
 }
