@@ -18,14 +18,14 @@ public interface AuthorRepository extends JpaRepository<Author, Long>{
 	List<Tuple>getAuthorsByBookIdWithTuples(Long id);
 	
 	
-	@Query("Select new ime.BookApp.dto.AuthorDTO(a.authorId, a.name, a.surname) "
+	@Query("Select new ime.book_app.dto.AuthorDTO(a.authorId, a.name, a.surname) "
 			+ "FROM Author a "
 			+ "JOIN a.books b "
 			+ "WHERE b.bookId = ?1")
 	List<AuthorDTO>getAuthorDTOByBookIdWithConstructor(Long id);
 	
 	
-	@Query("SELECT new ime.BookApp.dto.AuthorDTO(a.authorId, a.name, a.surname) "
+	@Query("SELECT new ime.book_app.dto.AuthorDTO(a.authorId, a.name, a.surname) "
 			+ "FROM Author a ")
 	List<AuthorDTO>getAllAuthorsDTO();
 }
