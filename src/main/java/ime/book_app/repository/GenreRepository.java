@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface GenreRepository extends JpaRepository<Genre, Long>{
 
-	@Query("SELECT new ime.BookApp.dto.GenreDTO(G.genreId, G.name, G.description) "
+	@Query("SELECT new ime.book_app.dto.GenreDTO(G.genreId, G.name, G.description) "
 			+ "FROM Genre G "
 			+ "ORDER BY G.genreId")
 	List<GenreDTO>getAllGenreDTO();
