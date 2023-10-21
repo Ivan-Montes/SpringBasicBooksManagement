@@ -18,12 +18,14 @@ import jakarta.persistence.GenerationType;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 
 @Entity
 @Table( name = "PUBLISHERS")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Generated
 public class Publisher {
 
 	@Id

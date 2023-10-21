@@ -9,12 +9,14 @@ import jakarta.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Generated
 public class BookBookshopId  implements Serializable {
 
 	/**
