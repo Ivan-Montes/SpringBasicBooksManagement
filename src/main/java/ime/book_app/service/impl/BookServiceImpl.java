@@ -30,21 +30,19 @@ public class BookServiceImpl implements BookService{
 	
 	@Override
 	public List<BookDTO> getAllBooksDTOWithQueryToTuple() {
-		List<Tuple> TupleList = bookRepository.givemeListTuple();
-		List<BookDTO> BookDTOList = TupleList.stream()
-				.map( (t) -> {
-					return BookDTO.builder()
+		List<Tuple> tupleList = bookRepository.givemeListTuple();
+		return tupleList.stream()
+				.map( t -> 
+					BookDTO.builder()
 					.bookId((Long)t.get(0))
 					.isbn((String) t.get(1))
 					.title((String) t.get(2))
 					.publisher((String) t.get(3))
 					.genre((String) t.get(4))
 					.authors(new HashSet<>(authorRepository.getAuthorDTOByBookIdWithConstructor((Long)t.get(0))))
-					.build();
-				})
-				.toList();		 
-		
-		return BookDTOList;
+					.build()
+				)
+				.toList();
 	}
 
 	@Override
