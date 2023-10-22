@@ -1,6 +1,8 @@
 package ime.book_app.repository;
 
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -11,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import ime.book_app.dto.BookBookshopDTO;
-import ime.book_app.repository.BookBookshopRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -25,8 +26,10 @@ class BookBookshopRepositoryTest {
 		
 		List<BookBookshopDTO>list = repository.getAllBookBookshopDTO();
 		
-		Assertions.assertThat(list).isNotNull();
-		Assertions.assertThat(list.size()).isGreaterThanOrEqualTo(0);		
+		assertAll(
+				()->Assertions.assertThat(list).isNotNull(),
+				()->Assertions.assertThat(list).hasSizeGreaterThanOrEqualTo(0)
+				);		
 	}
 
 }
