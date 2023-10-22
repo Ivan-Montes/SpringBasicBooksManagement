@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.controller.GenreController;
 import ime.book_app.dto.GenreDTO;
 import ime.book_app.entity.Genre;
 import ime.book_app.service.GenreService;
