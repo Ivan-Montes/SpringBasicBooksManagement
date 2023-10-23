@@ -10,8 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.controller.MainController;
-
 
 @WebMvcTest(MainController.class)
 @AutoConfigureMockMvc(addFilters = false)
