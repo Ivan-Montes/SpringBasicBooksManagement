@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface BookshopRepository extends JpaRepository<Bookshop, Long> {
 	
-	@Query("SELECT new ime.BookApp.dto.BookshopDTO(BS.bookshopId, BS.name) "
+	@Query("SELECT new ime.book_app.dto.BookshopDTO(BS.bookshopId, BS.name) "
 			+ "FROM Bookshop BS "
 			+ "ORDER BY BS.bookshopId")
 	public List<BookshopDTO> getAllBookshopDTO();
