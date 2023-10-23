@@ -1,5 +1,7 @@
 package ime.book_app.repository;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -10,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import ime.book_app.dto.PublisherDTO;
-import ime.book_app.repository.PublisherRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -20,10 +21,12 @@ class PublisherRepositoryTest {
 	private PublisherRepository publisherRepository;	
 	
 	@Test
-	public void PublisherRepository_getAllPublisherDTO_ReturnZeroOrMoreDTO() {
+	void PublisherRepository_getAllPublisherDTO_ReturnZeroOrMoreDTO() {
 		List<PublisherDTO> publisherDTOList = publisherRepository.getAllPublisherDTO();
-		Assertions.assertThat(publisherDTOList).isNotNull();
-		Assertions.assertThat(publisherDTOList.size()).isGreaterThanOrEqualTo(0);		
+		assertAll(
+				()->Assertions.assertThat(publisherDTOList).isNotNull(),
+				()->Assertions.assertThat(publisherDTOList).hasSizeGreaterThanOrEqualTo(0)
+				);	
 	}
 
 }
