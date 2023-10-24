@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ime</groupId>
-	<artifactId>BookApp</artifactId>
+	<artifactId>book-app</artifactId>
 	<version>1.0</version>
 	<name>BookApp</name>
 	<description>Project for Spring Boot</description>
@@ -41,7 +41,6 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -69,9 +68,8 @@
 	      <scope>test</scope>
 	    </dependency>
 	</dependencies>
-
 	<build>
-		<plugins>
+		<plugins>			
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -83,8 +81,26 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
+			</plugin>			
+			<plugin>
+			    <groupId>org.jacoco</groupId>
+			    <artifactId>jacoco-maven-plugin</artifactId>
+			    <version>0.8.10</version>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>report</id>
+			            <phase>prepare-package</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>			
 		</plugins>
 	</build>
-
 </project>
