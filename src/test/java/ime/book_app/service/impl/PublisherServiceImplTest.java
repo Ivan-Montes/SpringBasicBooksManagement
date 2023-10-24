@@ -1,5 +1,6 @@
 package ime.book_app.service.impl;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ime.book_app.dto.PublisherDTO;
 import ime.book_app.entity.Publisher;
 import ime.book_app.repository.PublisherRepository;
-import ime.book_app.service.impl.PublisherServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 class PublisherServiceImplTest {
@@ -31,59 +31,67 @@ class PublisherServiceImplTest {
 	private PublisherServiceImpl publisherService;
 	
 	@Test
-	public void PublisherServiceImpl_getAllPublisherDTO_ReturnZeroOrMoreDTO() {
+	void PublisherServiceImpl_getAllPublisherDTO_ReturnZeroOrMoreDTO() {
 		
 		List<PublisherDTO> publisherDTOList = List.of(Mockito.mock(PublisherDTO.class));
-		when(publisherRepository.getAllPublisherDTO()).thenReturn(publisherDTOList);		
+		when(publisherRepository.getAllPublisherDTO()).thenReturn(publisherDTOList);
+		
 		List<PublisherDTO> list = publisherService.getAllPublisherDTO();
 		
-		Assertions.assertThat(list).isNotNull();
-		Assertions.assertThat(list.size()).isEqualTo(1);
+		assertAll(
+				()->Assertions.assertThat(list).isNotNull(),
+				()->Assertions.assertThat(list).hasSize(1)
+				);
 	}
 	
 	@Test
-	public void PublisherServiceImpl_findPublisherById_ReturnPublisher() {
+	void PublisherServiceImpl_findPublisherById_ReturnPublisher() {
 		Long publisherId = 1L;
 		Publisher publisher = new Publisher();
 		publisher.setPublisherId(publisherId);
-		Optional<Publisher> opt = Optional.of(publisher);
-		
+		Optional<Publisher> opt = Optional.of(publisher);		
 		doReturn(opt).when(publisherRepository).findById(publisherId);
+		
 		Publisher publisherFound = publisherService.findPublisherById(publisherId);
 		
-		Assertions.assertThat(publisherFound).isNotNull();
-		Assertions.assertThat(publisherFound.getPublisherId()).isEqualTo(publisherId);
-		
+		assertAll(
+				()->Assertions.assertThat(publisherFound).isNotNull(),
+				()->Assertions.assertThat(publisherFound.getPublisherId()).isEqualTo(publisherId)
+				);
 	}	
 	
 	@Test
-	public void PublisherServiceImpl_updatePublisher_ReturnPublisher() {
+	void PublisherServiceImpl_updatePublisher_ReturnPublisher() {
 		Long publisherId = 1L;
 		Publisher publisher = new Publisher();
-		publisher.setPublisherId(publisherId);
-		
+		publisher.setPublisherId(publisherId);		
 		doReturn(publisher).when(publisherRepository).save(Mockito.any());
+		
 		Publisher publisherUpdated = publisherService.updatePublisher(publisher);
 		
-		Assertions.assertThat(publisherUpdated).isNotNull();
-		Assertions.assertThat(publisherUpdated.getPublisherId()).isEqualTo(publisherId);
+		assertAll(
+				()->Assertions.assertThat(publisherUpdated).isNotNull(),
+				()->Assertions.assertThat(publisherUpdated.getPublisherId()).isEqualTo(publisherId)
+				);
 	}
 
 	@Test
-	public void PublisherServiceImpl_savePublisher_ReturnPublisher() {
+	void PublisherServiceImpl_savePublisher_ReturnPublisher() {
 		Long publisherId = 1L;
 		Publisher publisher = new Publisher();
-		publisher.setPublisherId(publisherId);
-		
+		publisher.setPublisherId(publisherId);		
 		doReturn(publisher).when(publisherRepository).save(Mockito.any());
-		Publisher publisherSaved = publisherService.savePublisher(publisher);
 		
-		Assertions.assertThat(publisherSaved).isNotNull();
-		Assertions.assertThat(publisherSaved.getPublisherId()).isEqualTo(publisherId);
+		Publisher publisherSaved = publisherService.savePublisher(publisher);
+
+		assertAll(
+				()->Assertions.assertThat(publisherSaved).isNotNull(),
+				()->Assertions.assertThat(publisherSaved.getPublisherId()).isEqualTo(publisherId)
+				);
 	}
 	
 	@Test
-	public void PublisherServiceImpl_deletePublisherById_ReturnVoid() {
+	void PublisherServiceImpl_deletePublisherById_ReturnVoid() {
 		Long publisherId = 1L;
 		publisherService.deletePublisherById(publisherId);
 		
