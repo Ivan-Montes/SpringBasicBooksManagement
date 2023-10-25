@@ -1,5 +1,6 @@
 package ime.book_app.service.impl;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ime.book_app.dto.GenreDTO;
 import ime.book_app.entity.Genre;
 import ime.book_app.repository.GenreRepository;
-import ime.book_app.service.impl.GenreServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 class GenreServiceImplTest {
@@ -31,18 +31,20 @@ class GenreServiceImplTest {
 	private GenreServiceImpl genreService;
 	
 	@Test
-	public void GenreServiceImpl_getAllGenreDTO_ReturnZeroOrMoreDTO() {
+	void GenreServiceImpl_getAllGenreDTO_ReturnZeroOrMoreDTO() {
 		
 		List<GenreDTO> genreDTOList = List.of(Mockito.mock(GenreDTO.class));
 		when(genreRepository.getAllGenreDTO()).thenReturn(genreDTOList);
 		List<GenreDTO> list = genreService.getAllGenreDTO();
 		
-		Assertions.assertThat(list).isNotNull();
-		Assertions.assertThat(list.size()).isEqualTo(1);
+		assertAll(
+				()->Assertions.assertThat(list).isNotNull(),
+				()->Assertions.assertThat(list).hasSize(1)
+				);
 	}
 	
 	@Test
-	public void GenreServiceImpl_findGenreById_ReturnGenre() {
+	void GenreServiceImpl_findGenreById_ReturnGenre() {
 		Long genreId = 1L;
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
@@ -51,12 +53,14 @@ class GenreServiceImplTest {
 		doReturn(opt).when(genreRepository).findById(genreId);
 		Genre genreFound = genreService.findGenreById(genreId);
 		
-		Assertions.assertThat(genreFound).isNotNull();
-		Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId);
+		assertAll(
+				()->Assertions.assertThat(genreFound).isNotNull(),
+				()->Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId)
+				);
 	}
 
 	@Test
-	public void GenreServiceImpl_updateGenre_ReturnGenre() {
+	void GenreServiceImpl_updateGenre_ReturnGenre() {
 		Long genreId = 1L;
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
@@ -64,12 +68,14 @@ class GenreServiceImplTest {
 		doReturn(genre).when(genreRepository).save(genre);
 		Genre genreFound = genreService.updateGenre(genre);
 		
-		Assertions.assertThat(genreFound).isNotNull();
-		Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId);
+		assertAll(
+				()->Assertions.assertThat(genreFound).isNotNull(),
+				()->Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId)
+				);
 	}
 	
 	@Test
-	public void GenreServiceImpl_saveGenre_ReturnGenre() {
+	void GenreServiceImpl_saveGenre_ReturnGenre() {
 		Long genreId = 1L;
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
@@ -77,12 +83,14 @@ class GenreServiceImplTest {
 		doReturn(genre).when(genreRepository).save(genre);
 		Genre genreFound = genreService.saveGenre(genre);
 		
-		Assertions.assertThat(genreFound).isNotNull();
-		Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId);
+		assertAll(
+				()->Assertions.assertThat(genreFound).isNotNull(),
+				()->Assertions.assertThat(genreFound.getGenreId()).isEqualTo(genreId)
+				);
 	}
 	
 	@Test
-	public void GenreServiceImpl_deleteGenreById_ReturnVoid() {
+	void GenreServiceImpl_deleteGenreById_ReturnVoid() {
 		Long genreId = 1L;
 		
 		genreService.deleteGenreById(genreId);
