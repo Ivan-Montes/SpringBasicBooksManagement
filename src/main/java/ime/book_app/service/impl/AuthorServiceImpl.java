@@ -15,15 +15,13 @@ import ime.book_app.service.AuthorService;
 public class AuthorServiceImpl implements AuthorService{
 
 	
-	private AuthorRepository authorRepository;
-	
+	private AuthorRepository authorRepository;	
 	 
 	
 	public AuthorServiceImpl(AuthorRepository authorRepository) {
 		super();
 		this.authorRepository = authorRepository;
 	}
-
 
 
 	@Override
@@ -33,26 +31,15 @@ public class AuthorServiceImpl implements AuthorService{
 	}
 
 
-
 	@Override
 	public Author findAuthorById(Long id) {
 		return authorRepository.findById(id).orElse(new Author());
 	}
 
-
-
-	@Override
-	public Author updateAuthor(Author author) {
-		return authorRepository.save(author);		
-	}
-
-
-
 	@Override
 	public Author saveAuthor(Author author) {
 		return authorRepository.save(author);		
 	}
-
 
 
 	@Override
