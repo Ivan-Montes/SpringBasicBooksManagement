@@ -8,16 +8,18 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Generated
 public class BookCreationDTO implements Serializable{	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7523292298367025766L;
+	private static final long serialVersionUID = -7523292298367025767L;
 	
 
 	@Size(min=10, max=13, message="{Size.BookCreationDTO.isbn}")
