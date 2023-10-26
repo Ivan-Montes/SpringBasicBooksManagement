@@ -19,7 +19,7 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 		
 	//JPQL Funciona, falta lista de authors ***
 	// Con authors no matching constructor found,  a no ser que creemos un constructor sin ese campo.
-	@Query(value = "SELECT new ime.BookApp.dto.BookDTO(bookId, isbn, title, publisher.name, genre.name) "
+	@Query(value = "SELECT new ime.book_app.dto.BookDTO(bookId, isbn, title, publisher.name, genre.name) "
 			+ "FROM Book "
 			+ "ORDER BY bookId")
 	List<BookDTO>getAllBookDTO();	
