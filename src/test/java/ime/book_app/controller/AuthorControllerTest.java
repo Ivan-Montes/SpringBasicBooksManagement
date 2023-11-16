@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.controller.AuthorController;
 import ime.book_app.dto.AuthorDTO;
 import ime.book_app.entity.Author;
 import ime.book_app.service.AuthorService;
@@ -97,7 +96,7 @@ class AuthorControllerTest {
 
 		Author author = Mockito.mock(Author.class);
 		doReturn(author).when(authorService).findAuthorById(Mockito.anyLong());
-		doReturn(author).when(authorService).updateAuthor(Mockito.any(Author.class));
+		doReturn(author).when(authorService).saveAuthor(Mockito.any(Author.class));
 		
 		this.mockMvc
 		.perform(MockMvcRequestBuilders.post("/updateAuthor/{id}", Mockito.anyLong())
@@ -109,7 +108,7 @@ class AuthorControllerTest {
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
 		
 		verify(authorService,times(1)).findAuthorById(Mockito.anyLong());
-		verify(authorService,times(1)).updateAuthor(Mockito.any(Author.class));
+		verify(authorService,times(1)).saveAuthor(Mockito.any(Author.class));
 	}
 
 	@Test
