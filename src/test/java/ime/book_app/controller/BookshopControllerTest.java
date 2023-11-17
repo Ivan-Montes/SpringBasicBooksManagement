@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.controller.BookshopController;
 import ime.book_app.dto.BookshopDTO;
 import ime.book_app.entity.Bookshop;
 import ime.book_app.service.BookshopService;
