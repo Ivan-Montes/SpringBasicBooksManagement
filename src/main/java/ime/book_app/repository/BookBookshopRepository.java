@@ -11,11 +11,11 @@ import ime.book_app.entity.BookBookshopId;
 
 public interface BookBookshopRepository  extends JpaRepository<BookBookshop, BookBookshopId>{
 
-	@Query("SELECT new ime.BookApp.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name, B.price, B.units) "
+	@Query("SELECT new ime.book_app.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name, B.price, B.units) "
 			+ "FROM BookBookshop B ")
 	List<BookBookshopDTO>getAllBookBookshopDTO();
 	
-	@Query("SELECT new ime.BookApp.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name, B.price, B.units) "
+	@Query("SELECT new ime.book_app.dto.BookBookshopDTO(B.book.bookId, B.book.isbn, B.book.title, B.bookshop.bookshopId, B.bookshop.name, B.price, B.units) "
 			+ "FROM BookBookshop B "
 			+ "WHERE B.book.bookId = ?1 AND B.bookshop.bookshopId = ?2")
 	BookBookshopDTO getBookBookshopDTOById(Long bookId, Long bookshopId);
