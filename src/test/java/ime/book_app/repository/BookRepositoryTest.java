@@ -1,5 +1,7 @@
 package ime.book_app.repository;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Order;
@@ -13,7 +15,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import ime.book_app.dto.BookDTO;
-import ime.book_app.repository.BookRepository;
 import jakarta.persistence.Tuple;
 
 @DataJpaTest
@@ -26,18 +27,22 @@ class BookRepositoryTest {
 	
 	@Test
 	@Order(1)
-	public void BookRepository_givemeListTuple_ReturnZeroOrMoreDTO() {
+	void BookRepository_givemeListTuple_ReturnZeroOrMoreDTO() {
 		List<Tuple> bookDTOList = bookRepository.givemeListTuple();
-		Assertions.assertThat(bookDTOList).isNotNull();
-		Assertions.assertThat(bookDTOList.size()).isGreaterThanOrEqualTo(0);
+		assertAll(
+				()->Assertions.assertThat(bookDTOList).isNotNull(),
+				()->Assertions.assertThat(bookDTOList).hasSizeGreaterThanOrEqualTo(0)
+				);
 	}
 	
 	@Test
 	@Order(2)
-	public void BookRepository_getAllBookDTO_ReturnZeroOrMoreDTO() {
+	void BookRepository_getAllBookDTO_ReturnZeroOrMoreDTO() {
 		List<BookDTO> bookDTOList = bookRepository.getAllBookDTO();
-		Assertions.assertThat(bookDTOList).isNotNull();
-		Assertions.assertThat(bookDTOList.size()).isGreaterThanOrEqualTo(0);
+		assertAll(
+				()->Assertions.assertThat(bookDTOList).isNotNull(),
+				()->Assertions.assertThat(bookDTOList).hasSizeGreaterThanOrEqualTo(0)
+				);
 	}
 	
 	
