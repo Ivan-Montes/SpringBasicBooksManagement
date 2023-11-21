@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 
@@ -15,13 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-
+@Generated
 public class BookDTO implements Serializable{
+	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1880278942915598416L;
-	
+	private static final long serialVersionUID = 1214675481560816948L;
+
 	@NotNull(message="{NotNull.BookDTO.bookId}")
 	private Long bookId;
 
