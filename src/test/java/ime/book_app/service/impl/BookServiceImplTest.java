@@ -1,5 +1,6 @@
 package ime.book_app.service.impl;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -14,8 +15,6 @@ import ime.book_app.dto.*;
 import ime.book_app.entity.Book;
 import ime.book_app.repository.AuthorRepository;
 import ime.book_app.repository.BookRepository;
-import ime.book_app.service.impl.BookServiceImpl;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,7 +37,7 @@ class BookServiceImplTest {
 	private BookServiceImpl bookService;
 	
 	@Test
-	public void BookServiceImpl_getAllBookDTO_ReturnZeroOrMoreDTO() {
+	void BookServiceImpl_getAllBookDTO_ReturnZeroOrMoreDTO() {
 		
 		List<BookDTO> bookDTOList = List.of(Mockito.mock(BookDTO.class));
 		when(bookRepository.getAllBookDTO()).thenReturn(bookDTOList);
@@ -48,13 +47,14 @@ class BookServiceImplTest {
 		
 		List<BookDTO> list = bookService.getAllBookDTO();
 		
-		Assertions.assertThat(list).isNotNull();
-		Assertions.assertThat(list.size()).isEqualTo(1);
-		
+		assertAll(
+				()->Assertions.assertThat(list).isNotNull(),
+				()->Assertions.assertThat(list).hasSize(1)
+				);
 	}
 	
 	@Test
-	public void BookServiceImpl_getAllBooksDTOWithQueryToTuple_ReturnZeroOrMoreDTO() {
+	void BookServiceImpl_getAllBooksDTOWithQueryToTuple_ReturnZeroOrMoreDTO() {
 		
 		List<Tuple> tupleList = List.of(Mockito.mock(Tuple.class));
 		when(bookRepository.givemeListTuple()).thenReturn(tupleList);
@@ -64,13 +64,14 @@ class BookServiceImplTest {
 		
 		List<BookDTO> list = bookService.getAllBooksDTOWithQueryToTuple();
 		
-		Assertions.assertThat(list).isNotNull();
-		Assertions.assertThat(list.size()).isEqualTo(1);
-		
+		assertAll(
+				()->Assertions.assertThat(list).isNotNull(),
+				()->Assertions.assertThat(list).hasSize(1)
+				);
 	}
 	
 	@Test
-	public void BookServiceImpl_findBookById_ReturnBook() {
+	void BookServiceImpl_findBookById_ReturnBook() {
 		Long bookId = 1L;
 		Book book = new Book();
 		book.setBookId(bookId);
@@ -79,13 +80,14 @@ class BookServiceImplTest {
 		doReturn(opt).when(bookRepository).findById(bookId);
 		Book bookFound = bookService.findBookById(bookId);
 		
-		Assertions.assertThat(bookFound).isNotNull();
-		Assertions.assertThat(bookFound.getBookId()).isEqualTo(bookId);
-		
+		assertAll(
+				()->Assertions.assertThat(bookFound).isNotNull(),
+				()->Assertions.assertThat(bookFound.getBookId()).isEqualTo(bookId)
+				);
 	}
 
 	@Test
-	public void BookServiceImpl_updateBook_ReturnBook() {
+	void BookServiceImpl_updateBook_ReturnBook() {
 		Long bookId = 1L;
 		Book book = new Book();
 		book.setBookId(bookId);
@@ -93,12 +95,14 @@ class BookServiceImplTest {
 		doReturn(book).when(bookRepository).save(book);
 		Book bookFound = bookService.updateBook(book);
 		
-		Assertions.assertThat(bookFound).isNotNull();
-		Assertions.assertThat(bookFound.getBookId()).isEqualTo(bookId);
+		assertAll(
+				()->Assertions.assertThat(bookFound).isNotNull(),
+				()->Assertions.assertThat(bookFound.getBookId()).isEqualTo(bookId)
+				);
 	}
 
 	@Test
-	public void BookServiceImpl_saveBook_ReturnBook() {
+	void BookServiceImpl_saveBook_ReturnBook() {
 		Long bookId = 1L;
 		Book book = new Book();
 		book.setBookId(bookId);
@@ -106,12 +110,14 @@ class BookServiceImplTest {
 		doReturn(book).when(bookRepository).save(book);
 		Book bookFound = bookService.saveBook(book);
 		
-		Assertions.assertThat(bookFound).isNotNull();
-		Assertions.assertThat(bookFound.getBookId()).isEqualTo(bookId);
+		assertAll(
+				()->Assertions.assertThat(bookFound).isNotNull(),
+				()->Assertions.assertThat(bookFound.getBookId()).isEqualTo(bookId)
+				);
 	}
 
 	@Test
-	public void BookServiceImpl_deleteBookById_ReturnVoid() {
+	void BookServiceImpl_deleteBookById_ReturnVoid() {
 		Long bookId = 1L;
 		
 		bookService.deleteBookById(bookId);
