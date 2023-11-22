@@ -1,5 +1,7 @@
 package ime.book_app.repository;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -10,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import ime.book_app.dto.GenreDTO;
-import ime.book_app.repository.GenreRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -20,10 +21,12 @@ class GenreRepositoryTest {
 	private GenreRepository genreRepository;
 	
 	@Test
-	public void GenreRepository_getAllGenreDTO_ReturnZeroOrMoreDTO() {
+	void GenreRepository_getAllGenreDTO_ReturnZeroOrMoreDTO() {
 		List<GenreDTO> genreDTOList = genreRepository.getAllGenreDTO();
-		Assertions.assertThat(genreDTOList).isNotNull();
-		Assertions.assertThat(genreDTOList.size()).isGreaterThanOrEqualTo(0);
+		assertAll(
+				()->Assertions.assertThat(genreDTOList).isNotNull(),
+				()->Assertions.assertThat(genreDTOList).hasSizeGreaterThanOrEqualTo(0)
+				);
 	}
 	
 
