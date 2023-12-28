@@ -16,7 +16,7 @@ import jakarta.validation.ConstraintViolationException;
 class GlobalExceptionHandlerTest {
 
 	private GlobalExceptionHandler globalExceptionHandler;
-	private static final String PATH_ERROR_EXCEPTION = "/error/exception";
+	private static final String PATH_ERROR_EXCEPTION = "error/exception";
 	private static final String EXCEPTION_TEXT = "33";
 	
 	@BeforeEach
