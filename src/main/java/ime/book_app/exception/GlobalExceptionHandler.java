@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 	
 	private static final String EXCEPTION_TITLE = "exception";
-	private static final String PATH_ERROR_EXCEPTION = "/error/exception";
+	private static final String PATH_ERROR_EXCEPTION = "error/exception";
 
 	@ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
 	public String hibernateConstraintViolationException(Exception ex, Model model) {
