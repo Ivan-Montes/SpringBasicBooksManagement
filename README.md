@@ -64,6 +64,8 @@ Finally use your browser to visit localhost:8080
 
 ### :zap: Spring Security incorporated
 
+### :zap: Developed with an H2 in-memory database with incorporated data
+
 
 ## Maintainers
 
