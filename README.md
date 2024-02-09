@@ -21,9 +21,13 @@ Just cloning or downloading the project. Other option is to use the online versi
 
 - Easiest way is to try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hosted in [Render](https://render.com/)
 
-- Or you could use the jar file hosted in /target
-
 - Maybe you prefer to open it from you favorite IDE
+
+- Or you could use the jar file hosted in /target. For this, run this command from the folder and visit localhost:8080
+
+```
+java -jar book-app-1.0.jar
+```
 
 - Also, you can use [Docker](https://docs.docker.com/engine/install/). Whether it is your flavor, first, from the inside of the main project folder, build the image using the settings from Dockerfile
 
@@ -62,7 +66,7 @@ Finally use your browser to visit localhost:8080
 
 <img src="./src/main/resources/static/images/Tests.png" style="width: 300px; max-width: 600px; flex-grow: 1;" />
 
-### :zap: Spring Security incorporated
+### :zap: Spring Security included and pre-configured
 
 ### :zap: Developed with an H2 in-memory database with incorporated data
 
