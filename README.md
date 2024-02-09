@@ -15,13 +15,29 @@ Welcome to your own book collection management with Spring Framework, the worldâ
 
 ## Installation
 
-You could Use the jar file hosted in /target or clone the whole project
-
+Just cloning or downloading the project. Other option is to use the online version
 
 ## Usage
 
-Try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hosted in [Render](https://render.com/)
+- Easiest way is to try [SpringBasicBooksManagement](https://springbasicbookmng.onrender.com/) hosted in [Render](https://render.com/)
 
+- Or you could use the jar file hosted in /target
+
+- Maybe you prefer to open it from you favorite IDE
+
+- Also, you can use [Docker](https://docs.docker.com/engine/install/). Whether it is your flavor, first, from the inside of the main project folder, build the image using the settings from Dockerfile
+
+```
+docker build -t spring-books-mng:latest .
+```
+
+Then create and run a container with, for instance, these settings
+
+```
+docker run --name spring-books-mng-container -p 8080:8080 -d spring-books-mng
+```
+
+Finally use your browser to visit localhost:8080
 
 
 ## Features
