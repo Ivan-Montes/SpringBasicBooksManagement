@@ -1,12 +1,13 @@
 package ime.book_app.security;
 
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,12 +17,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 	
-	@Value("${security.users.basic.passwd.local}")
-	private String passwd;
+	private final ConfigurationPropertyValues cpv;
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,12 +38,15 @@ public class SecurityConfig {
                 .headers(head-> head.frameOptions(f->f.sameOrigin())) // H2 database
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
+        		.logout(LogoutConfigurer::permitAll)
                 .build();		
 	}
 	
 
 	@Bean
 	UserDetailsService users() {
+
+		String passwd = cpv.getPassValue();
 		
 		UserDetails user = User.builder()
 			.username("user")
