@@ -37,7 +37,7 @@ public class SecurityConfig {
                 })
                 .headers(head-> head.frameOptions(f->f.sameOrigin())) // H2 database
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
+                .formLogin( f -> f.loginPage("/login").defaultSuccessUrl("/success").permitAll())
         		.logout(LogoutConfigurer::permitAll)
                 .build();		
 	}
