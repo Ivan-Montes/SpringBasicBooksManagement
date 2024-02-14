@@ -1,6 +1,5 @@
 # Set main image
-ARG TAG=17-jre-alpine
-FROM eclipse-temurin:${TAG}
+FROM eclipse-temurin:17-jre-alpine
 
 # Define meta info
 LABEL ime.school-api-rest.version="1.0"
