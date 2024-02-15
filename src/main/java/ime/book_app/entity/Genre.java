@@ -7,6 +7,7 @@ import java.util.HashSet;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import ime.book_app.tool.RegexPattern;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
@@ -35,11 +36,11 @@ public class Genre {
 	private Long genreId;
 	
 	@Column(unique = true, nullable = false, length = 50)
-	@Size( min = 1, max = 50)
+	@Pattern( regexp = RegexPattern.NAME_FULL)
 	private String name;
 	
 	@Column(nullable = false, length = 100)
-	@Size( min = 1, max = 100)
+	@Pattern( regexp = RegexPattern.DESCRIPTION_FULL)
 	private String description;
 	
 	@CreationTimestamp
