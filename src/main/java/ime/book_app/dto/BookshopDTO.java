@@ -2,6 +2,7 @@ package ime.book_app.dto;
 
 import java.io.Serializable;
 
+import ime.book_app.tool.RegexPattern;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -25,7 +26,7 @@ public class BookshopDTO implements Serializable{
 	private Long bookshopId;
 	
 	@Size( min = 1, max = 50, message="{Size.BookshopDTO.name}")
-	@Pattern( regexp = "[\\w\\s\\-&]+", message="{Pattern.BookshopDTO.name}")
+	@Pattern( regexp = RegexPattern.NAME_BASIC, message="{Pattern.BookshopDTO.name}")
 	private String name;
 	
 }
