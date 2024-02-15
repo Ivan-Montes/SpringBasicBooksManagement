@@ -67,7 +67,8 @@ class AuthorControllerTest {
 		
 		this.mockMvc
 		.perform(MockMvcRequestBuilders.post("/addAuthor")
-				.param("name", "nameTest"))
+				.param("name", "nameTest")
+				.param("surname","surnameTest"))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));
@@ -102,7 +103,7 @@ class AuthorControllerTest {
 		.perform(MockMvcRequestBuilders.post("/updateAuthor/{id}", Mockito.anyLong())
 				.param("authorId","1")
 				.param("name", "nameTest")
-		)
+				.param("surname","surnameTest"))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/authors"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/authors"));

@@ -1,6 +1,6 @@
 package ime.book_app.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,12 +14,13 @@ import ime.book_app.dto.PublisherDTO;
 import ime.book_app.entity.Publisher;
 import ime.book_app.service.PublisherService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class PublisherController {
 
-	@Autowired
-	private PublisherService publisherService;
+	private final PublisherService publisherService;
 
 	private static final String REDIRECT_PUBLISHERS = "redirect:/publishers";
 	

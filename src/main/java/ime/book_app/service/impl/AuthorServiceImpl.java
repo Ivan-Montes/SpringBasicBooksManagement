@@ -15,21 +15,17 @@ import ime.book_app.service.AuthorService;
 public class AuthorServiceImpl implements AuthorService{
 
 	
-	private AuthorRepository authorRepository;	
+	private final AuthorRepository authorRepository;
 	 
 	
 	public AuthorServiceImpl(AuthorRepository authorRepository) {
-		super();
 		this.authorRepository = authorRepository;
 	}
 
-
 	@Override
 	public List<AuthorDTO> getAllAuthorDTO() {
-		
 		return authorRepository.getAllAuthorsDTO();
 	}
-
 
 	@Override
 	public Author findAuthorById(Long id) {
@@ -41,18 +37,15 @@ public class AuthorServiceImpl implements AuthorService{
 		return authorRepository.save(author);		
 	}
 
-
 	@Override
 	public void deleteAuthorById(Long id) {
 		authorRepository.deleteById(id);
 	}
 
-
 	@Override
 	public Set<Author> findAllById(Set<Long> ids) {		
 		return authorRepository.findAllById(ids).stream().collect(Collectors.toSet());
 	}
-
 
 	@Override
 	public List<AuthorDTO> getAuthorDTOByBookIdWithConstructor(Long id) {

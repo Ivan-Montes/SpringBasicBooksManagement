@@ -2,7 +2,6 @@ package ime.book_app.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.GenreDTO;
@@ -13,9 +12,12 @@ import ime.book_app.service.GenreService;
 @Service
 public class GenreServiceImpl implements GenreService {
 
-	@Autowired
-	private GenreRepository genreRepository;
+	private final GenreRepository genreRepository;	
 	
+	public GenreServiceImpl(GenreRepository genreRepository) {
+		this.genreRepository = genreRepository;
+	}
+
 	@Override
 	public List<GenreDTO> getAllGenreDTO() {
 		return genreRepository.getAllGenreDTO();
@@ -27,9 +29,8 @@ public class GenreServiceImpl implements GenreService {
 	}
 
 	@Override
-	public Genre updateGenre(Genre genre) {
-		return genreRepository.save(genre);
-		
+	public Genre updateGenre(Genre genre) {		
+		return genreRepository.save(genre);		
 	}
 
 	@Override

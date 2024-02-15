@@ -2,7 +2,6 @@ package ime.book_app.controller;
 
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,21 +15,19 @@ import ime.book_app.dto.BookNewDTO;
 import ime.book_app.entity.Book;
 import ime.book_app.service.*;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class BookController {
 
-	@Autowired
-	private BookService bookService;
+	private final BookService bookService;
 	
-	@Autowired
-	private PublisherService publisherService;
+	private final PublisherService publisherService;
 	
-	@Autowired
-	private GenreService genreService;
+	private final GenreService genreService;
 	
-	@Autowired
-	private AuthorService authorService;
+	private final AuthorService authorService;
 	
 	private static final String REDIRECT_BOOKS = "redirect:/books";
 	

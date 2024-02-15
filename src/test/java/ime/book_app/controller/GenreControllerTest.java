@@ -67,7 +67,8 @@ class GenreControllerTest {
 		
 		this.mockMvc
 		.perform(MockMvcRequestBuilders.post("/addGenre")
-				.param("name", "nameTest"))
+				.param("name", "nameTest")
+				.param("description", "descTest"))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/genres"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/genres"));
@@ -102,7 +103,7 @@ class GenreControllerTest {
 		.perform(MockMvcRequestBuilders.post("/updateGenre/{id}", Mockito.anyLong())
 				.param("genreId", "1")
 				.param("name", "nameTest")
-		)
+				.param("description", "descTest"))
 		.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
 		.andExpect(MockMvcResultMatchers.view().name("redirect:/genres"))
 		.andExpect(MockMvcResultMatchers.redirectedUrl("/genres"));

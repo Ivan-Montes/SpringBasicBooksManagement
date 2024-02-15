@@ -2,7 +2,6 @@ package ime.book_app.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,18 +17,17 @@ import ime.book_app.service.BookBookshopService;
 import ime.book_app.service.BookService;
 import ime.book_app.service.BookshopService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class BookBookshopController {
 
-	@Autowired
-	private BookBookshopService bookBookshopService;
+	private final BookBookshopService bookBookshopService;
 	
-	@Autowired
-	private BookService bookService;
+	private final BookService bookService;
 
-	@Autowired
-	private BookshopService bookshopService;
+	private final BookshopService bookshopService;
 	
 	@ModelAttribute("allBookshopDTO")
 	public List<BookshopDTO> prepareAllBookshopDTO(){
@@ -105,7 +103,11 @@ public class BookBookshopController {
 	public String updateBookshop(@Valid @ModelAttribute("newBbsDTO") BookBookshopDTO newBbsDTO, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return REDIRECT_BOOKBOOKSHOPS;
+			return new StringBuffer("/editBookBookshop?")
+					.append("bookshopId=").append(newBbsDTO.getBookshopId().toString())
+					.append("&")
+					.append("bookId=").append(newBbsDTO.getBookId())
+					.toString();
 		}
 		
 		BookBookshop bbs = bookBookshopService.findBookBookshopById(new BookBookshopId(newBbsDTO.getBookId(),newBbsDTO.getBookshopId()));

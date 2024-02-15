@@ -13,15 +13,15 @@ import ime.book_app.dto.AuthorDTO;
 import ime.book_app.entity.Author;
 import ime.book_app.service.*;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthorController {
 	
-	private AuthorService authorService;
-	private static final String REDIRECT_AUTHORS = "redirect:/authors";
-	public AuthorController(AuthorService authorService) {
-		this.authorService = authorService;
-	}
+	private final AuthorService authorService;
+	
+	private static final String REDIRECT_AUTHORS = "redirect:/authors";	
 	
 	@GetMapping("/authors")
 	public String getAllAuthorDTO(Model model) {		

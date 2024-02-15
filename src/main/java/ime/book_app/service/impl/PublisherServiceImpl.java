@@ -2,7 +2,6 @@ package ime.book_app.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.PublisherDTO;
@@ -13,9 +12,11 @@ import ime.book_app.service.PublisherService;
 @Service
 public class PublisherServiceImpl implements PublisherService{
 
+	private final PublisherRepository publisherRepository;
 
-	@Autowired
-	private PublisherRepository publisherRepository;
+	public PublisherServiceImpl(PublisherRepository publisherRepository) {
+		this.publisherRepository = publisherRepository;
+	}
 
 	@Override
 	public List<PublisherDTO> getAllPublisherDTO() {		
@@ -40,7 +41,6 @@ public class PublisherServiceImpl implements PublisherService{
 	@Override
 	public void deletePublisherById(Long id) {
 		publisherRepository.deleteById(id);
-	}
-	
+	}	
 	
 }

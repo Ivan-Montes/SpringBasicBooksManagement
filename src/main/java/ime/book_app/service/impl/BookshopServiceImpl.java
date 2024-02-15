@@ -2,7 +2,6 @@ package ime.book_app.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.BookshopDTO;
@@ -13,9 +12,12 @@ import ime.book_app.service.BookshopService;
 @Service
 public class BookshopServiceImpl implements BookshopService{
 
-	@Autowired
-	private BookshopRepository bookshopRepository;
+	private final BookshopRepository bookshopRepository;	
 	
+	public BookshopServiceImpl(BookshopRepository bookshopRepository) {
+		this.bookshopRepository = bookshopRepository;
+	}
+
 	@Override
 	public List<BookshopDTO> getAllBookshopDTO() {		
 		return bookshopRepository.getAllBookshopDTO();

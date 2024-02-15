@@ -2,7 +2,6 @@ package ime.book_app.service.impl;
 
 import java.util.HashSet;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.BookDTO;
@@ -15,12 +14,15 @@ import jakarta.persistence.Tuple;
 @Service
 public class BookServiceImpl implements BookService{
 
-	@Autowired
-	private BookRepository bookRepository;
+	private final BookRepository bookRepository;
 	
-	@Autowired
-	private AuthorRepository authorRepository;	
+	private final AuthorRepository authorRepository;	
 	
+	public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+		this.bookRepository = bookRepository;
+		this.authorRepository = authorRepository;
+	}
+
 	@Override
 	public List<BookDTO> getAllBookDTO() {
 		List<BookDTO> listDTO = bookRepository.getAllBookDTO();
