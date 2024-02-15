@@ -12,7 +12,6 @@ import ime.book_app.dto.GenreCreationDTO;
 import ime.book_app.dto.GenreDTO;
 import ime.book_app.entity.Genre;
 import ime.book_app.service.GenreService;
-import ime.book_app.tool.RegexPattern;
 import jakarta.validation.Valid;
 
 @Controller
