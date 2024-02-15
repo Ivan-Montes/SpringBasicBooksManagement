@@ -32,43 +32,46 @@ java -jar book-app-1.0.jar
 - Also, you can use [Docker](https://docs.docker.com/engine/install/). Whether it is your flavor, first, from the inside of the main project folder, build the image using the settings from Dockerfile
 
 ```
-docker build -t spring-books-mng:latest .
+docker build -t spring-books-mng .
 ```
 
-Then create and run a container with, for instance, these settings
+&nbsp;&nbsp;&nbsp;&nbsp;Then create and run a container with, for instance, these settings
 
 ```
 docker run --name spring-books-mng-container -p 8080:8080 -d spring-books-mng
 ```
 
-Finally use your browser to visit localhost:8080
+&nbsp;&nbsp;&nbsp;&nbsp;Finally use your browser to visit localhost:8080
 
 
 ## Features
 
-### :zap: Welcome to your own book collection management with Spring Framework, the world’s most popular open source toolkit.
+#### :zap: JUnit test in business logic classes
+
+#### :zap: Spring Security included and pre-configured
+
+#### :zap: Jakarta validations and HTML patterns in MVC layers
+
+#### :zap: Developed with an H2 in-memory database with incorporated data
+
+
+### PhotoCall
+
+#### :zap: Welcome to your own book collection management with Spring Framework, the world’s most popular open source toolkit.
 
 <img src="./src/main/resources/static/images/Cover.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
 
-### :zap: Enjoy with our different sections in order to manage your amazing book collection
+#### :zap: Enjoy with our different sections in order to manage your amazing book collection
 
 <img src="./src/main/resources/static/images/Sections.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
 
-### :zap: Clear list of items with main characteristics
+#### :zap: Clear list of items with main characteristics
 
 <img src="./src/main/resources/static/images/Books.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
 
-### :zap: Edit without problems the attributes of any element
+#### :zap: Edit without problems the attributes of any element
 
 <img src="./src/main/resources/static/images/Edit_Books.png" style="width: 800px; max-width: 1024px; flex-grow: 1;" />
-
-### :zap: JUnit test in every class
-
-<img src="./src/main/resources/static/images/Tests.png" style="width: 300px; max-width: 600px; flex-grow: 1;" />
-
-### :zap: Spring Security included and pre-configured
-
-### :zap: Developed with an H2 in-memory database with incorporated data
 
 
 ## Maintainers
