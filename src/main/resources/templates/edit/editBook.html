@@ -21,7 +21,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="inputTitle" class="form-label">Title</label>
-						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" th:field="*{title}" pattern="[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s\-\?¿\!¡\.&,:]+" minlength="1" maxlength="100" required>
+						<input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" name="title" th:field="*{title}" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ¿¡]+[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s\-\?¿\!¡\.&,:]*" minlength="1" maxlength="100" required>
 					</div>
 					<div class="mb-3">
 						<label for="inputPublisher" class="form-label">Publisher</label>

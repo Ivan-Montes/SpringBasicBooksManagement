@@ -3,6 +3,7 @@ package ime.book_app.dto;
 import java.io.Serializable;
 import java.util.Set;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class BookDTO implements Serializable{
 	@Size(min=10, max=13, message="{Size.BookDTO.isbn}")
 	private String isbn;
 
+	@NotBlank()
 	@Size(min=1, max=100, message="{Size.BookDTO.title}")
 	private String title;
 	

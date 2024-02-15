@@ -1,5 +1,5 @@
 package ime.book_app.controller;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +13,13 @@ import ime.book_app.dto.GenreDTO;
 import ime.book_app.entity.Genre;
 import ime.book_app.service.GenreService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
-public class GenreController {
+@RequiredArgsConstructor
+public class GenreController {	
 	
-	@Autowired
-	private GenreService genreService;
+	private final GenreService genreService;
 	
 	private static final String REDIRECT_GENRES = "redirect:/genres";
 	

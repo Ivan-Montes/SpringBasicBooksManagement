@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import ime.book_app.tool.RegexPattern;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -30,6 +31,7 @@ public class BookNewDTO implements Serializable {
 	@Pattern( regexp = "[\\d]{10,13}", message="{Pattern.BookNewDTO.isbn}")
 	private String isbn;
 
+	@NotBlank()
 	@Size(min=1, max=100, message="{Size.BookNewDTO.title}")
 	@Pattern(regexp = RegexPattern.TITLE_BASIC, message="{Pattern.BookNewDTO.title}")
 	private String title;

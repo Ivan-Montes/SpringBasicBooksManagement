@@ -3,6 +3,7 @@ package ime.book_app.dto;
 import java.io.Serializable;
 
 import ime.book_app.tool.RegexPattern;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -25,11 +26,13 @@ public class AuthorDTO implements Serializable{
 
 	@NotNull(message="{NotNull.AuthorDTO.authorId}")
 	private Long authorId;
-	
+
+	@NotBlank()
 	@Size(min = 1, max = 50, message="{Size.AuthorDTO.name}")
 	@Pattern( regexp = RegexPattern.NAME_BASIC, message="{Pattern.AuthorDTO.name}")
 	private String name;
-	
+
+	@NotBlank()
 	@Size(min = 1, max = 50, message="{Size.AuthorDTO.surname}")
 	@Pattern( regexp = RegexPattern.SURNAME_BASIC, message="{Pattern.AuthorDTO.surname}")
 	private String surname;

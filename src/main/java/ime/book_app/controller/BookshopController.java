@@ -1,5 +1,5 @@
 package ime.book_app.controller;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +13,13 @@ import ime.book_app.dto.BookshopDTO;
 import ime.book_app.entity.Bookshop;
 import ime.book_app.service.BookshopService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class BookshopController {
-
-	@Autowired
-	private BookshopService bookshopService;
+	
+	private final BookshopService bookshopService;
 	
 	private static final String REDIRECT_BOOKSHOPS = "redirect:/bookshops";
 	

@@ -16,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,10 +37,12 @@ public class Genre {
 	private Long genreId;
 	
 	@Column(unique = true, nullable = false, length = 50)
+	@NotBlank()
 	@Pattern( regexp = RegexPattern.NAME_FULL)
 	private String name;
 	
 	@Column(nullable = false, length = 100)
+	@NotBlank()
 	@Pattern( regexp = RegexPattern.DESCRIPTION_FULL)
 	private String description;
 	

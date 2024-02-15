@@ -20,6 +20,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -47,6 +48,7 @@ public class Book {
 	private String isbn;
 	
 	@Column(nullable = false, length = 100)
+	@NotBlank()
 	@Pattern( regexp = RegexPattern.TITLE_FULL)
 	private String title;		
 

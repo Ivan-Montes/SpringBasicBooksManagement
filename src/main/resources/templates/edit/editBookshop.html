@@ -17,7 +17,7 @@
 					  </div>
 					  <div class="form-group mb-3">
 					    <label for="inputName">Name</label>
-					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{bookshop.name}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s\-\.,&:]+" minlength="1" maxlength="50" required>
+					    <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Enter name" th:field="*{bookshop.name}" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+[a-zA-ZñÑáéíóúÁÉÍÓÚ\s\-\.,&:]*" minlength="1" maxlength="50" required>
 					  </div>
 					  <button type="submit" class="btn btn-outline-info">Save</button>
 				</form>				

@@ -10,6 +10,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -37,6 +38,7 @@ public class Publisher {
 	private Long publisherId;
 	
 	@Column( unique = true, nullable = false, length = 50)
+	@NotBlank()
 	@Pattern( regexp = RegexPattern.NAME_FULL)
 	private String name;	
 	
