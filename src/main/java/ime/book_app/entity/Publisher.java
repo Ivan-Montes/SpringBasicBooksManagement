@@ -1,13 +1,16 @@
 package ime.book_app.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
+
+import ime.book_app.tool.RegexPattern;
+
 import java.util.HashSet;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
@@ -34,7 +37,7 @@ public class Publisher {
 	private Long publisherId;
 	
 	@Column( unique = true, nullable = false, length = 50)
-	@Size( min = 1, max = 50)
+	@Pattern( regexp = RegexPattern.NAME_FULL)
 	private String name;	
 	
 	@Column( name = "creation_timestamp")

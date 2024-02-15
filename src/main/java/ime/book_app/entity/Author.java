@@ -6,10 +6,13 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import ime.book_app.tool.RegexPattern;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Generated;
 import lombok.Getter;
@@ -31,11 +34,11 @@ public class Author {
 	private Long authorId;
 	 
 	@Column(nullable = false, length = 50 )
-	@Size(min = 1, max = 50)
+	@Pattern( regexp = RegexPattern.NAME_FULL)
 	private String name;
 	
 	@Column(nullable=false, length = 50 )
-	@Size(min = 1, max = 50)
+	@Pattern( regexp = RegexPattern.SURNAME_FULL)
 	private String surname;
 	
 	@CreationTimestamp

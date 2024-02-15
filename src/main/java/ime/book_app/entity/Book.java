@@ -8,6 +8,7 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import ime.book_app.tool.RegexPattern;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Generated;
@@ -45,7 +47,7 @@ public class Book {
 	private String isbn;
 	
 	@Column(nullable = false, length = 100)
-	@Size(min=1, max=100)
+	@Pattern( regexp = RegexPattern.TITLE_FULL)
 	private String title;		
 
 	@CreationTimestamp

@@ -5,6 +5,8 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import ime.book_app.tool.RegexPattern;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
@@ -15,7 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
@@ -35,7 +37,7 @@ public class Bookshop {
 	private Long bookshopId;
 	
 	@Column(nullable = false, length = 50)
-	@Size( min = 1, max = 50)
+	@Pattern( regexp = RegexPattern.NAME_FULL)
 	private String name;
 	
 	@OneToMany( mappedBy = "bookshop")
