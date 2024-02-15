@@ -54,6 +54,8 @@ docker run --name spring-books-mng-container -p 8080:8080 -d spring-books-mng
 
 #### :zap: Jakarta validations and HTML patterns in MVC layers
 
+#### :zap: Dynamic web pages with the Thymeleaf template engine
+
 #### :zap: Developed with an H2 in-memory database with incorporated data
 
 
