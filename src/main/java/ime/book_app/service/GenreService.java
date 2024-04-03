@@ -1,4 +1,5 @@
 package ime.book_app.service;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.GenreDTO;
@@ -18,4 +19,6 @@ public interface GenreService {
 	Genre saveGenre(Genre genre);
 	
 	void deleteGenreById(Long id);
+	
+	Page<Genre>getAllPaged(int page,String sortField, String sortDir);
 }
