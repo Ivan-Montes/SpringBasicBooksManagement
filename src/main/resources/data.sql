@@ -14,7 +14,15 @@ INSERT INTO GENRES (name, description, creation_timestamp, update_timestamp)
 VALUES('Drama','Sucesos desafortunados en la vida',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Ciencia Ficción','Literatura fantástica y narrativa de terror',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Manga','Historietas de origen japonés',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-('Autoayuda','Desarrollo personal y aceptación emocional',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+('Autoayuda','Desarrollo personal y aceptación emocional',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Acción', 'Emocionantes escenas de lucha y aventura', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Comedia', 'Historias divertidas y situaciones cómicas', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Ciencia ficción', 'Exploración de futuros posibles y tecnología avanzada', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Romance', 'Historias de amor y relaciones personales', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Terror', 'Escenas aterradoras y elementos sobrenaturales', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Fantasía', 'Mundos mágicos, criaturas y aventuras épicas', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Animación', 'Películas dibujadas o generadas por computadora', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Documental', 'Exploración de hechos reales y eventos históricos', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO BOOKSHOPS (name, creation_timestamp, update_timestamp)
 VALUES('The Cornershop', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
