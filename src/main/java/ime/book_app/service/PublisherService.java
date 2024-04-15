@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.PublisherDTO;
 import ime.book_app.entity.Publisher;
+import org.springframework.data.domain.Page;
 
 @Service
 public interface PublisherService {
@@ -18,4 +19,6 @@ public interface PublisherService {
 	Publisher savePublisher(Publisher publisher);
 	
 	void deletePublisherById(Long id);
+	
+	Page<Publisher>getAllPaged(int page, String sortField, String sortDir);
 }

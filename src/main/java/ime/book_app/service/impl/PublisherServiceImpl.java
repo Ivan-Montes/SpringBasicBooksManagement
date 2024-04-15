@@ -2,6 +2,9 @@ package ime.book_app.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.PublisherDTO;
@@ -41,6 +44,13 @@ public class PublisherServiceImpl implements PublisherService{
 	@Override
 	public void deletePublisherById(Long id) {
 		publisherRepository.deleteById(id);
+	}
+
+	@Override
+	public Page<Publisher> getAllPaged(int page, String sortField, String sortDir) {
+		
+		return publisherRepository.findAll(PageRequest.of(page - 1, 5,sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending() ) );
 	}	
 	
 }
