@@ -6,7 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.dto.AuthorDTO;
 import ime.book_app.entity.Author;
 import ime.book_app.service.AuthorService;
 
@@ -36,16 +36,33 @@ class AuthorControllerTest {
 	private AuthorService authorService;
 	
 	@Test
-	void AuthorController_getAllAuthorDTO_ReturnView() throws Exception{
-		List<AuthorDTO>authorDTOList = List.of(Mockito.mock(AuthorDTO.class));
-		when(authorService.getAllAuthorDTO()).thenReturn(authorDTOList);
+	void AuthorController_getAllPaged_ReturnView() throws Exception{		
+
+		@SuppressWarnings("unchecked")
+		Page<Author> pageMock = Mockito.mock(Page.class);
+		when(authorService.getAllPaged(Mockito.anyInt(), Mockito.anyString(), Mockito.anyString())).thenReturn(pageMock);
+		doReturn(new ArrayList<Author>()).when(pageMock).getContent();
+		when(pageMock.getContent()).thenReturn(new ArrayList<Author>());
+		when(pageMock.getTotalPages()).thenReturn(8);
+		when(pageMock.getTotalElements()).thenReturn(7L);
 		
-		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/authors"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/authors"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("authors"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("currentPage"))
+		.andExpect(MockMvcResultMatchers.model().attribute("currentPage", 1))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("totalPages"))
+		.andExpect(MockMvcResultMatchers.model().attribute("totalPages", 8))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("totalItems"))
+		.andExpect(MockMvcResultMatchers.model().attribute("totalItems", 7L))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("authors"))
-		.andExpect(MockMvcResultMatchers.model().attribute("authors", authorDTOList));
+		.andExpect(MockMvcResultMatchers.model().attributeExists("sortField"))
+		.andExpect(MockMvcResultMatchers.model().attribute("sortField","authorId"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("sortDir"))
+		.andExpect(MockMvcResultMatchers.model().attribute("sortDir", "asc"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("reverseSortDir"))
+		.andExpect(MockMvcResultMatchers.model().attribute("reverseSortDir", "desc"));
+		
 	}
 
 

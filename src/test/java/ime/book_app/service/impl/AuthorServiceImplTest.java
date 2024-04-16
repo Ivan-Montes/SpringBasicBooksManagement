@@ -18,6 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import ime.book_app.dto.*;
 import ime.book_app.entity.Author;
@@ -105,6 +107,34 @@ class AuthorServiceImplTest {
 				()->Assertions.assertThat(authorsDTO).isNotNull(),
 				()->Assertions.assertThat(authorsDTO).hasSize(1)
 				);
+	}
+
+	@Test
+	void AuthorServiceImpl_getAllPaged_ReturnPageAsc() {
+		
+		Page<Author>page = Page.empty();
+		when(authorRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Author>pageGenreResult = authorService.getAllPaged(1, "authorId", "asc");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
+	@Test
+	void AuthorServiceImpl_getAllPaged_ReturnPageDesc() {
+		
+		Page<Author>page = Page.empty();
+		when(authorRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Author>pageGenreResult = authorService.getAllPaged(1, "authorId", "d");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
 	}
 
 }
