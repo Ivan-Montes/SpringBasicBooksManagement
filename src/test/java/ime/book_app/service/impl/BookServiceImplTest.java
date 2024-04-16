@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import ime.book_app.dto.*;
 import ime.book_app.entity.Book;
@@ -124,6 +126,33 @@ class BookServiceImplTest {
 		
 		verify(bookRepository,times(1)).deleteById(bookId);
 	}
+
+	@Test
+	void BookServiceImpl_getAllPaged_ReturnPageBookAsc() {
+		
+		Page<Book>page = Page.empty();
+		when(bookRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Book>pageGenreResult = bookService.getAllPaged(1, "bookId", "asc");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
 	
-	
+	@Test
+	void BookServiceImpl_getAllPaged_ReturnPageBookDesc() {
+		
+		Page<Book>page = Page.empty();
+		when(bookRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Book>pageGenreResult = bookService.getAllPaged(1, "bookId", "d");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
 }
