@@ -3,6 +3,7 @@ package ime.book_app.service;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.AuthorDTO;
@@ -22,4 +23,6 @@ public interface AuthorService {
 	Set<Author> findAllById(Set<Long> ids);
 	
 	List<AuthorDTO>getAuthorDTOByBookIdWithConstructor(Long id);
+	
+	Page<Author>getAllPaged(int page, String sortField, String sortDir);
 }

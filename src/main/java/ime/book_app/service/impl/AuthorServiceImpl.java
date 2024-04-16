@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.AuthorDTO;
@@ -50,6 +53,13 @@ public class AuthorServiceImpl implements AuthorService{
 	@Override
 	public List<AuthorDTO> getAuthorDTOByBookIdWithConstructor(Long id) {
 		return authorRepository.getAuthorDTOByBookIdWithConstructor(id);
+	}
+
+	@Override
+	public Page<Author> getAllPaged(int page, String sortField, String sortDir) {
+		
+		return authorRepository.findAll(PageRequest.of(page - 1, 5,sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending() ) );
 	}
 	
 }
