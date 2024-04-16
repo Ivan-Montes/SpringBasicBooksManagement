@@ -26,6 +26,7 @@ public class BookMapper {
 		dto.setPublisher(book.getPublisher().getName());
 		dto.setGenre(book.getGenre().getName());
 		dto.setAuthors(authorMapper.fromSetEntityToListDto(book.getAuthors()));
+		
 		return dto;
 	}
 	

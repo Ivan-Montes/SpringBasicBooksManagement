@@ -2,6 +2,10 @@ package ime.book_app.service.impl;
 
 import java.util.HashSet;
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.BookDTO;
@@ -65,6 +69,13 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public Book saveBook(Book book) {
 		return bookRepository.save(book);
+	}
+
+	@Override
+	public Page<Book> getAllPaged(int page, String sortField, String sortDir) {
+		
+		return bookRepository.findAll(PageRequest.of(page - 1, 5,sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending() ) );
 	}
 	
 	
