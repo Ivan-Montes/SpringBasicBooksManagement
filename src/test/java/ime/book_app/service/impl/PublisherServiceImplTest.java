@@ -16,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import ime.book_app.dto.PublisherDTO;
 import ime.book_app.entity.Publisher;
@@ -96,6 +98,34 @@ class PublisherServiceImplTest {
 		publisherService.deletePublisherById(publisherId);
 		
 		verify(publisherRepository, times(1)).deleteById(publisherId);
+	}
+
+	@Test
+	void PublisherServiceImpl_getAllPaged_ReturnPageAsc() {
+		
+		Page<Publisher>page = Page.empty();
+		when(publisherRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Publisher>pageGenreResult = publisherService.getAllPaged(1, "publisherId", "asc");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
+	@Test
+	void PublisherServiceImpl_getAllPaged_ReturnPageDesc() {
+		
+		Page<Publisher>page = Page.empty();
+		when(publisherRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Publisher>pageGenreResult = publisherService.getAllPaged(1, "publisherId", "d");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
 	}
 	
 }

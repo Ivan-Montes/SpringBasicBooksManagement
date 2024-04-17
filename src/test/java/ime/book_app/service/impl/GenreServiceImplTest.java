@@ -10,12 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import ime.book_app.dto.GenreDTO;
 import ime.book_app.entity.Genre;
@@ -29,6 +32,17 @@ class GenreServiceImplTest {
 	
 	@InjectMocks
 	private GenreServiceImpl genreService;
+	
+	private Genre genre;
+	private final Long genreId = 1L;
+	
+	@BeforeEach
+	private void createObjects() {
+		
+		genre = new Genre();
+		genre.setGenreId(genreId);
+
+	}
 	
 	@Test
 	void GenreServiceImpl_getAllGenreDTO_ReturnZeroOrMoreDTO() {
@@ -44,10 +58,8 @@ class GenreServiceImplTest {
 	}
 	
 	@Test
-	void GenreServiceImpl_findGenreById_ReturnGenre() {
-		Long genreId = 1L;
-		Genre genre = new Genre();
-		genre.setGenreId(genreId);
+	void GenreServiceImpl_findGenreById_ReturnGenre() {		
+		
 		Optional<Genre>opt = Optional.of(genre);
 		
 		doReturn(opt).when(genreRepository).findById(genreId);
@@ -61,9 +73,6 @@ class GenreServiceImplTest {
 
 	@Test
 	void GenreServiceImpl_updateGenre_ReturnGenre() {
-		Long genreId = 1L;
-		Genre genre = new Genre();
-		genre.setGenreId(genreId);
 		
 		doReturn(genre).when(genreRepository).save(genre);
 		Genre genreFound = genreService.updateGenre(genre);
@@ -76,10 +85,7 @@ class GenreServiceImplTest {
 	
 	@Test
 	void GenreServiceImpl_saveGenre_ReturnGenre() {
-		Long genreId = 1L;
-		Genre genre = new Genre();
-		genre.setGenreId(genreId);
-		
+				
 		doReturn(genre).when(genreRepository).save(genre);
 		Genre genreFound = genreService.saveGenre(genre);
 		
@@ -91,10 +97,38 @@ class GenreServiceImplTest {
 	
 	@Test
 	void GenreServiceImpl_deleteGenreById_ReturnVoid() {
-		Long genreId = 1L;
 		
 		genreService.deleteGenreById(genreId);
 		
 		verify(genreRepository,times(1)).deleteById(genreId);
 	}
+	
+	@Test
+	void GenreServiceImpl_getAllPaged_ReturnPageAsc() {
+		
+		Page<Genre>page = Page.empty();
+		when(genreRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Genre>pageGenreResult = genreService.getAllPaged(1, "genreId", "asc");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
+	@Test
+	void GenreServiceImpl_getAllPaged_ReturnPageDesc() {
+		
+		Page<Genre>page = Page.empty();
+		when(genreRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Genre>pageGenreResult = genreService.getAllPaged(1, "genreId", "d");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+	
 }
