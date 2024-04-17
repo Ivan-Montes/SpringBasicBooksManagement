@@ -16,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import ime.book_app.dto.BookshopDTO;
 import ime.book_app.entity.Bookshop;
@@ -92,5 +94,33 @@ class BookshopServiceImplTest {
 		bookShopService.deleteBookshopById(bookshopId);
 	
 		verify(boookShopRepository, times(1)).deleteById(bookshopId);
+	}
+
+	@Test
+	void BookshopServiceImpl_getAllPaged_ReturnPageAsc() {
+		
+		Page<Bookshop>page = Page.empty();
+		when(boookShopRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Bookshop>pageGenreResult = bookShopService.getAllPaged(1, "bookshopId", "asc");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
+	@Test
+	void BookshopServiceImpl_getAllPaged_ReturnPageDesc() {
+		
+		Page<Bookshop>page = Page.empty();
+		when(boookShopRepository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<Bookshop>pageGenreResult = bookShopService.getAllPaged(1, "bookshopId", "d");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
 	}
 }

@@ -6,7 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.dto.BookshopDTO;
 import ime.book_app.entity.Bookshop;
 import ime.book_app.service.BookshopService;
 
@@ -37,17 +37,32 @@ class BookshopControllerTest {
 	private BookshopService bookshopService;
 	
 	@Test
-	void BookshopController_getAllBookshopDTO_ReturnView() throws Exception{
+	void BookshopController_getAllPaged_ReturnView() throws Exception{
+
+		@SuppressWarnings("unchecked")
+		Page<Bookshop> pageMock = Mockito.mock(Page.class);
+		when(bookshopService.getAllPaged(Mockito.anyInt(), Mockito.anyString(), Mockito.anyString())).thenReturn(pageMock);
+		doReturn(new ArrayList<Bookshop>()).when(pageMock).getContent();
+		when(pageMock.getContent()).thenReturn(new ArrayList<Bookshop>());
+		when(pageMock.getTotalPages()).thenReturn(8);
+		when(pageMock.getTotalElements()).thenReturn(7L);
 		
-		List<BookshopDTO>bookshopDTOList = List.of(Mockito.mock(BookshopDTO.class));
-		when(bookshopService.getAllBookshopDTO()).thenReturn(bookshopDTOList);
-		
-		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/bookshops"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/bookshops"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("bookshops"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("currentPage"))
+		.andExpect(MockMvcResultMatchers.model().attribute("currentPage", 1))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("totalPages"))
+		.andExpect(MockMvcResultMatchers.model().attribute("totalPages", 8))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("totalItems"))
+		.andExpect(MockMvcResultMatchers.model().attribute("totalItems", 7L))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("bookshops"))
-		.andExpect(MockMvcResultMatchers.model().attribute("bookshops", bookshopDTOList));
+		.andExpect(MockMvcResultMatchers.model().attributeExists("sortField"))
+		.andExpect(MockMvcResultMatchers.model().attribute("sortField","bookshopId"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("sortDir"))
+		.andExpect(MockMvcResultMatchers.model().attribute("sortDir", "asc"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("reverseSortDir"))
+		.andExpect(MockMvcResultMatchers.model().attribute("reverseSortDir", "desc"));
 		
 	}
 	
