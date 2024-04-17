@@ -14,8 +14,12 @@
 						<caption class="invisible">List of bookshops</caption>
 		  				<thead>
 						    <tr>
-						      <th scope="col">Id</th>
-						      <th scope="col">Name</th>
+						      <th scope="col">
+								<a th:href="@{'/bookshops/' + ${currentPage} + '?sortField=bookshopId&sortDir=' + ${reverseSortDir}}">Id</a>
+							  </th>
+						      <th scope="col">
+								<a th:href="@{'/bookshops/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Name</a>
+							  </th>
 						      <th scope="col" colspan="2">Actions</th>
 						    </tr>
 						  </thead>
@@ -28,6 +32,32 @@
 							  </tr>							  
 						  </tbody>
 					</table>
+					
+					<div><i><p>Sorted by [[${sortField}]] in [[${sortDir}]] order</p></i></div>
+					<div>
+						Total Items: [[${totalItems}]]
+						&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;   
+						<a th:if="${currentPage > 1}" th:href="@{'/bookshops/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>
+						<span th:unless="${currentPage > 1}">First</span>
+						&nbsp;&nbsp;
+						<a th:if="${currentPage > 1}" th:href="@{'/bookshops/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+						<span th:unless="${currentPage > 1}">Previous</span>
+						&nbsp;&nbsp;
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						    <a th:if="${currentPage != i}" th:href="@{'/bookshops/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						    <span th:unless="${currentPage != i}">[[${i}]]</span>
+						    &nbsp;
+						</span>
+						
+						<a th:if="${currentPage < totalPages}" th:href="@{'/bookshops/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+						<span th:unless="${currentPage < totalPages}">Next</span>
+						&nbsp;&nbsp;
+						
+						<a th:if="${currentPage < totalPages}" th:href="@{'/bookshops/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+						<span th:unless="${currentPage < totalPages}">Last</span>
+
+					</div>
+					
 				</div>
 					<div class=" text-center">
 						<a th:href="@{/addBookshop}" role="button" class="btn btn-outline-success">Add New</a>

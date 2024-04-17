@@ -1,5 +1,10 @@
 package ime.book_app.controller;
 
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ime.book_app.dto.BookshopCreationDTO;
 import ime.book_app.dto.BookshopDTO;
@@ -23,12 +29,32 @@ public class BookshopController {
 	
 	private static final String REDIRECT_BOOKSHOPS = "redirect:/bookshops";
 	
-	@GetMapping("/bookshops")
-	public String getAllBookshopDTO(Model model) {
-		model.addAttribute("bookshops", bookshopService.getAllBookshopDTO());
-		return "bookshops";
-	}	
+	@GetMapping( value = {
+			"/bookshops/{pageNum}",
+			"/bookshops"
+	})
+	public String getAllPaged(Model model, @PathVariable Optional<Integer> pageNum, @RequestParam( defaultValue = "bookshopId") String sortField, @RequestParam( defaultValue = "asc") String sortDir) {
+		
+		int initPageNumber = 1;
+		
+		if (pageNum.isPresent()) {
+			initPageNumber = pageNum.get();
+		}
+		
+		Page<Bookshop> page = bookshopService.getAllPaged(initPageNumber, sortField, sortDir);
+		List<Bookshop>list = page.getContent();
 
+		model.addAttribute("currentPage", initPageNumber);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+	    model.addAttribute("bookshops", list);
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("sortDir", sortDir);
+	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+	    
+		return "bookshops";
+	}
+	
 	@GetMapping("/addBookshop")
 	public String addBookshopr(Model model) {
 		model.addAttribute("newBookshop", new Bookshop() );

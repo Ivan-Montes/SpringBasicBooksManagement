@@ -1,6 +1,7 @@
 package ime.book_app.service;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import ime.book_app.dto.BookshopDTO;
@@ -18,4 +19,6 @@ public interface BookshopService {
 	Bookshop saveBookshop(Bookshop bookshop);
 	
 	void deleteBookshopById(Long id);
+	
+	Page<Bookshop>getAllPaged(int page, String sortField, String sortDir);
 }
