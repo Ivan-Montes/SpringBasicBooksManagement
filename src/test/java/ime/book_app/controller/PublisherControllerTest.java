@@ -5,7 +5,8 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import java.util.List;
+
+import java.util.ArrayList;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,12 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import ime.book_app.dto.PublisherDTO;
 import ime.book_app.entity.Publisher;
 import ime.book_app.service.PublisherService;
 
@@ -38,16 +39,32 @@ class PublisherControllerTest {
 	
 	
 	@Test
-	void PublisherController_getAllPublisherDTO_ReturnView() throws Exception {
-		List<PublisherDTO> publisherDTOList = List.of(Mockito.mock(PublisherDTO.class));
-		when(publisherService.getAllPublisherDTO()).thenReturn(publisherDTOList);
+	void PublisherController_getAllPaged_ReturnView() throws Exception {
+
+		@SuppressWarnings("unchecked")
+		Page<Publisher> pageMock = Mockito.mock(Page.class);
+		when(publisherService.getAllPaged(Mockito.anyInt(), Mockito.anyString(), Mockito.anyString())).thenReturn(pageMock);
+		doReturn(new ArrayList<Publisher>()).when(pageMock).getContent();
+		when(pageMock.getContent()).thenReturn(new ArrayList<Publisher>());
+		when(pageMock.getTotalPages()).thenReturn(8);
+		when(pageMock.getTotalElements()).thenReturn(7L);
 		
-		this.mockMvc
-		.perform(MockMvcRequestBuilders.get("/publishers"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/publishers"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.view().name("publishers"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("currentPage"))
+		.andExpect(MockMvcResultMatchers.model().attribute("currentPage", 1))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("totalPages"))
+		.andExpect(MockMvcResultMatchers.model().attribute("totalPages", 8))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("totalItems"))
+		.andExpect(MockMvcResultMatchers.model().attribute("totalItems", 7L))
 		.andExpect(MockMvcResultMatchers.model().attributeExists("publishers"))
-		.andExpect(MockMvcResultMatchers.model().attribute("publishers", publisherDTOList));
+		.andExpect(MockMvcResultMatchers.model().attributeExists("sortField"))
+		.andExpect(MockMvcResultMatchers.model().attribute("sortField","publisherId"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("sortDir"))
+		.andExpect(MockMvcResultMatchers.model().attribute("sortDir", "asc"))
+		.andExpect(MockMvcResultMatchers.model().attributeExists("reverseSortDir"))
+		.andExpect(MockMvcResultMatchers.model().attribute("reverseSortDir", "desc"));
 		
 	}
 	
