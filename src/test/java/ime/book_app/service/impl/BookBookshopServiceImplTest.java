@@ -7,6 +7,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import ime.book_app.dto.BookBookshopDTO;
 import ime.book_app.entity.BookBookshop;
@@ -114,4 +117,33 @@ class BookBookshopServiceImplTest {
 				()->Assertions.assertThat(bookBookshopDTOfound).isEqualTo(bookBookshopDTO)
 				);
 	}
+
+	@Test
+	void BookBookshopServiceImpl_getAllPaged_ReturnPageAsc() {
+		
+		Page<BookBookshop>page = Page.empty();
+		when(repository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<BookBookshop>pageGenreResult = bookService.getAllPaged(1, "bookBookshopId", "asc");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
+	@Test
+	void BookBookshopServiceImpl_getAllPaged_ReturnPageDesc() {
+		
+		Page<BookBookshop>page = Page.empty();
+		when(repository.findAll(Mockito.any(PageRequest.class))).thenReturn(page);
+		
+		Page<BookBookshop>pageGenreResult = bookService.getAllPaged(1, "bookBookshopId", "d");
+		
+		assertAll(
+				()->Assertions.assertThat(pageGenreResult).isNotNull(),
+				()->Assertions.assertThat(pageGenreResult.isEmpty())
+				);		
+	}
+
 }
