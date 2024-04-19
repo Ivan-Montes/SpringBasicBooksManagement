@@ -1,6 +1,6 @@
 # SpringBasicBooksManagement 
 
-Welcome to your own book collection management with Spring Framework, the world’s most popular open source toolkit.
+Monolithic architecture MVC with Spring Framework for managing a book collection.
 
 
 ## Table of contents
