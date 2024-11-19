@@ -1,6 +1,6 @@
 # BUILD STAGE
 # Set main image
-FROM maven:3.9.6-eclipse-temurin-17-alpine as builder
+FROM maven:3.9.6-eclipse-temurin-21-alpine as builder
 
 # Set the working directory using variables
 WORKDIR /app
@@ -12,7 +12,7 @@ RUN mvn clean install -DskipTests
 
 # DEPLOY STAGE
 # Set main image
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 
 # Set the working directory using variables
 WORKDIR /app
