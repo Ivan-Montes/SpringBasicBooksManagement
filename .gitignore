@@ -2,22 +2,32 @@ HELP.md
 
 ## Custom ##
 
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 # Compiled class file
 *.class
 
 # Log file
 *.log
 
-# Edited for RENDER plataform
-#target/
-#!.mvn/wrapper/maven-wrapper.jar
-#!**/src/main/**/target/
-#!**/src/test/**/target/
 
-# Other - Incompatible with RENDER??
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Other
 target/*
-!target/*.jar
-
 
 ### STS ###
 .apt_generated
