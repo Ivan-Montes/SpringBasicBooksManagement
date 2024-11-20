@@ -22,12 +22,6 @@ Just cloning or downloading the project. Other option is to use the online versi
 
 - Maybe you prefer to open it from you favorite IDE
 
-- Or you could use the jar file hosted in /target. For this, run this command from the folder and visit localhost:8080
-
-```
-java -jar book-app-1.0.jar
-```
-
 - Also, you can use [Docker](https://docs.docker.com/engine/install/). Whether it is your flavor, first, from the inside of the main project folder, build the image using the settings from Dockerfile
 
 ```
@@ -86,7 +80,7 @@ Just me, [Iván](https://github.com/Ivan-Montes)
 
 ---
 
-[![Java](https://badgen.net/static/JavaSE/17/orange)](https://www.java.com/es/)
+[![Java](https://badgen.net/static/JavaSE/21/orange)](https://www.java.com/es/)
 [![Maven](https://badgen.net/badge/icon/maven?icon=maven&label&color=red)](https://https://maven.apache.org/)
 [![Spring](https://img.shields.io/badge/spring-blue?logo=Spring&logoColor=white)](https://spring.io)
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com)
